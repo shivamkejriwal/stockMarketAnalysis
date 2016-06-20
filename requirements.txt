@@ -1,0 +1,7 @@
+pymongo>=3.2.2
+numpy>=1.10.4
+scipy>=0.17.0
+matplotlib>=1.5.1
+scikit-learn>=0.17
+Quandl>=3.0.1
+pandas-datareader>=0.2.1
