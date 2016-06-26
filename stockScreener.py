@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import quandl
 from pandas_datareader import data, wb
-quandl.ApiConfig.api_key = "zbJ7Hr8jdBZaxAXg9KTR"
+quandl.ApiConfig.api_key = ""
 
 
 '''
