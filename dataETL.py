@@ -40,18 +40,20 @@ def getStock(symbol, start, end):
             return None
     return stock_data
 
-def getWorldExchangeData(fout, start, end):
+def getWorldExchangeData(start, end):
     
-    nasdaq = getStockFromYahoo('^IXIC', start, end)
-    frankfurt = getStockFromYahoo('^GDAXI', start, end)
-    london = getStockFromYahoo('^FTSE', start, end)
-    paris = getStockFromYahoo('^FCHI', start, end)
-    hkong = getStockFromYahoo('^HSI', start, end)
-    nikkei = getStockFromYahoo('^N225', start, end)
-    australia = getStockFromYahoo('^AXJO', start, end)
-    djia = getStockFromQuandl("YAHOO/INDEX_DJI", 'Djia', start, end)
+    exchanges = {
+        "nasdaq":getStockFromYahoo('^IXIC', start, end),
+        "frankfurt":getStockFromYahoo('^GDAXI', start, end),
+        "london":getStockFromYahoo('^FTSE', start, end),
+        "paris":getStockFromYahoo('^FCHI', start, end),
+        "hkong":getStockFromYahoo('^HSI', start, end),
+        "nikkei":getStockFromYahoo('^N225', start, end),
+        "australia":getStockFromYahoo('^AXJO', start, end),
+        "djia":getStockFromQuandl("YAHOO/INDEX_DJI", 'Djia', start, end),
+    }
     
-    return [nasdaq, djia, frankfurt, london, paris, hkong, nikkei, australia]
+    return exchanges
 
 def getExchangeData(convert=False):
     exchange_list = ["nasdaq", "nyse" ] #+ ["amex"]
