@@ -71,8 +71,8 @@ def getFinancials(ticker,year_str):
 			result[statement_type][period] = data['data']
 	return result
 
-ticker = 'SCON'
-data = getFinancials(ticker,'2015')
-pp(data)
+# ticker = 'SCON'
+# data = getFinancials(ticker,'2015')
+# pp(data)
 
 

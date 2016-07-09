@@ -47,7 +47,27 @@ def getZacksRank(symbol):
 
 	return rank, interpretation
 
+def getZacksStyleScore(symbol):
+	symbol = symbol.upper()
+	style_score  = {
+		"Value":None,
+		"Growth":None,
+		"Momentum":None,
+		"VGM":None,
+	}
 
+	symbol = symbol.upper()
+	page = requests.get('https://www.zacks.com/stock/quote/'+symbol)
+	tree = html.fromstring(page.content)
+	stylebox = tree.xpath('//div[@class="composite_group"]/p/span')
+	if len(stylebox) > 1:
+		style_score  = {
+			"Value":stylebox[1].text,
+			"Growth":stylebox[2].text,
+			"Momentum":stylebox[3].text,
+			"VGM":stylebox[4].text,
+		}
+	return style_score
 
 '''
 import concurrent.futures
@@ -87,3 +107,5 @@ def getZacksRankInParallel(data):
 
 
 # print getZacksRank("thld")
+
+# print getZacksStyleScore("scon")
