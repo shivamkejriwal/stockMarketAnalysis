@@ -1,5 +1,4 @@
 import json
-from pprint import pprint as pp
 import requests
 import config as config
 
@@ -11,7 +10,7 @@ def getAuthorizedURL(url):
 	return AuthorizedURL
 
 def getData(url):
-	print "url:",getAuthorizedURL(url)
+	# print "url:",getAuthorizedURL(url)
 	response = requests.get(getAuthorizedURL(url))
 	if 'Internal Server Error' in response.content:
 		return {
@@ -43,7 +42,6 @@ def create_financials_url(ticker,statement_type,year_str,fiscal_period_type):
 	statement = '&statement='+statement_type
 	fiscal_year = '&fiscal_year='+year_str
 	fiscal_period ='&fiscal_period='+fiscal_period_type
-	# date = '&date'+date_str
 	return url+ticker+statement+fiscal_year+fiscal_period
 
 def getFinancials(ticker,year_str):
@@ -59,8 +57,9 @@ def getFinancials(ticker,year_str):
 			result[statement_type][period] = data['data']
 	return result
 
+
+# ========
+# 	Main
+# ========
 # ticker = 'SCON'
-# data = getFinancials(ticker,'2015')
-# pp(data)
-
-
+# print getFinancials(ticker,'2015')
