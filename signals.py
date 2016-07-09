@@ -5,9 +5,16 @@ from datetime import datetime, timedelta
 import technicalIndicators as tech_indicators
 
 '''
+To-Do
 converts indicator into bearish, bullish signals
-
 Try: strong_buy, buy, hold, sell, strong_sell
+'''
+
+
+'''
+======================
+ Basic Indicator
+======================
 '''
 
 #200 ema > closing
@@ -39,9 +46,20 @@ def emaCheck(prices):
 
 #Macd vs 9D signal line
 def macdCheck(prices):
+	'''
+    signal 	= -1,-1,0,1,1
+    macd 	= 1,1,0,-1,-1
+    signal-macd = -2,-2,0,2,2
+    bear: signal-macd<0
+ 	bull: signal-macd>0
+ 	'''
 	emaslow, emafast, macd = tech_indicators.moving_average_convergence(prices)
-    ema9 = tech_indicators.moving_average(macd, 9, type='exponential')
-    #do something
+	ema9 = tech_indicators.moving_average(macd, 9, type='exponential')
+	change  = np.greater(ema9[-10:] , macd[-10:])
+	current = np.mean(change[-5:])
+	past = np.mean(cchange[-10:-5])
+	if current > past:
+		return 1
 	return 0
 
 #RSI <30 or >70
@@ -74,6 +92,24 @@ def volumeCheck(volumes):
 '''
 
 
+'''
+======================
+ Market Indicators
+======================
+'''
 
+'''
+sector wide performace - gauge sector performace
+exchange wide performace - gauge world market performace
+Zacks Industry Rank :-
+	The Zacks Industry Rank assigns a rating to each of the 265 X (Expanded) 
+	Industries based on their average Zacks Rank. An industry with a larger 
+	percentage of Zacks Rank #1's and #2's will have a better average Zacks 
+	Rank than one with a larger percentage of Zacks Rank #4's and #5's.
+	The industry with the best average Zacks Rank would be considered the top 
+	industry (1 out of 265), which would place it in the top 1% of Zacks Ranked 
+	Industries. The industry with the worst average Zacks Rank (265 out of 265) 
+	would place in the bottom 1%. 
+'''
 
 

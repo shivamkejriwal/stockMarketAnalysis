@@ -32,7 +32,7 @@ def getStock(symbol, start, end):
     try:
         stock_data =  getStockFromQuandl(symbol, start, end)
     except:
-        print "Data Not Found in Quandl: Using Yahoo"
+        print "Data Not Found in Quandl: Trying Yahoo"
         try:
             stock_data = getStockFromYahoo(symbol, start, end)
         except:

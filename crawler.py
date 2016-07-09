@@ -47,4 +47,43 @@ def getZacksRank(symbol):
 
 	return rank, interpretation
 
+
+
+'''
+import concurrent.futures
+workers_data = None
+results = {}
+
+def worker(symbol):
+	print symbol+" : Started"
+	rank, rank_type = getZacksRank(symbol)
+	# print symbol, rank, rank_type
+	# row_index = workers_data[workers_data["Symbol"] == symbol].index
+	# print symbol, ": index:",row_index
+	global results
+	results[symbol] = {
+		'zacks_rank': rank,
+		'zacks_rank_type':rank_type
+	}
+	# workers_data.set_value(row_index, 'zacks_rank', rank)
+	# workers_data.set_value(row_index, 'zacks_rank_type', rank_type)
+	print symbol+" : Done"
+
+def getZacksRankInParallel(data):
+	global workers_data
+	workers_data = data
+	workers_data["zacks_rank"] = ""
+	workers_data["zacks_rank_type"] = ""
+	symbols = workers_data["Symbol"].tolist()
+	with concurrent.futures.ProcessPoolExecutor(max_workers=len(symbols)) as executor:
+		for symbol in symbols:
+			executor.submit(worker, symbol)
+	print results
+	return workers_data
+'''
+
+
+
+
+
 # print getZacksRank("thld")

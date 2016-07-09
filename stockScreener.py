@@ -35,6 +35,24 @@ def printData(data):
         # print('{Symbol:4}\t{LastSale:10}\t{Name:20}\t{Sector:20}\t{industry:20}'.format(row['Symbol'], row['LastSale'], row['Name'], row['Sector'], row['industry']))
         print row['Symbol'], row['LastSale'], row['MarketCap'], row['Name'], row['Sector'], row['industry']
 
+
+
+def populateZacksResearch(data, max_rank=2):
+    symbols = data["Symbol"].tolist()
+    data["zacks_rank"] = ""
+    data["zacks_rank_type"] = ""
+    for symbol in symbols:
+        rank, rank_type = crawler.getZacksRank(symbol)
+        row_index = data[data["Symbol"] == symbol].index
+        if rank == None or rank>max_rank:
+            data = data.drop(row_index)
+        else :
+            print symbol, rank, rank_type
+            data.set_value(row_index, 'zacks_rank', rank)
+            data.set_value(row_index, 'zacks_rank_type', rank_type)
+    return data
+
+
 def generateIndicators(symbol):
     start = datetime.now() - timedelta(days=60)
     end = datetime.now()
@@ -69,20 +87,23 @@ def generateIndicators(symbol):
 def getShortList():
     data = dataETL.getExchangeData(convert=True)
     filters = {
-        'min_MarketCap':1000000000, # $1,000,000,000 Bil
-        'max_LastSale':1
+        'min_MarketCap':1000000, # $1,000,000 Mil
+        'max_LastSale':1,
+        'min_LastSale':.05,
     }
+    #100,000 as the minimum average volume amount.
+    #Enter positive growth and sales qualifiers to find companies that are earning income
+    #Check to see that the growth and sales are increasing, and that the earnings per share are positive. 
+    #Make sure the company has enough cash to conduct its daily operations and is not swimming in debt.
+    #If you are interested in buying stocks that technically are not penny stocks but are trading below $1, here are two options:
+    #These two stocks sport favorable Zacks Rank, have market capitalization of at least $1 billion and are also seeing positive earnings estimate revision of late.
     print data.shape
     data = dataETL.filterData(filters=filters, data=data)
-    symbols = data["Symbol"].tolist()
-    print data.index.values
-    for symbol in symbols:
-        rank, meaning = crawler.getZacksRank(symbol)
-        print symbol, rank, meaning
-        if rank == None:
-            data = data.drop(data[data["Symbol"] == symbol].index)
-    print data.shape
-
+    print "Filtered:", data.shape
+    # data = crawler.getZacksRankInParallel(data)
+    data = populateZacksResearch(data)
+    print "With Zacks Rank:",  data.shape
+    print data.sort(['MarketCap','LastSale'], ascending=[0, 0])
     # printData(data)
 
 getShortList()
