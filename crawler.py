@@ -1,8 +1,16 @@
 from lxml import html
 import requests
-# import sys
-# reload(sys)
-# sys.setdefaultencoding('utf-8')
+
+def getSuggestion(rank):
+	suggestion_mapping = {
+		None:None,
+		1:"Strong Buy",
+		2:"Buy",
+		3:"Hold",
+		4:"Sell",
+		5:"Strong Sell"
+	}
+	return suggestion_mapping[rank]
 
 
 def isInteger(s):
@@ -22,30 +30,18 @@ def getZacksRank(symbol):
 	Buy ==> 18.12 percent Annualized Return
 	'''
 	rank = None
-	interpretation = None
+	suggestion = None
 
 	symbol = symbol.upper()
 	page = requests.get('https://www.zacks.com/stock/quote/'+symbol)
 	tree = html.fromstring(page.content)
-	rankbox = tree.xpath('//div[@class="zr_rankbox"]/span/text()')
 
-	for item in rankbox:
-		value = str(item.encode('utf-8').strip())
-		if isInteger(value):
-			rank = int(value)
+	rankbox = tree.xpath('//div[@class="zr_rankbox"]/span')
+	if len(rankbox) > 1:
+		rank = int(rankbox[0].text)
+		suggestion = getSuggestion(rank)
 
-	interpretation_mapping = {
-		1:"Strong Buy",
-		2:"Buy",
-		3:"Hold",
-		4:"Sell",
-		5:"Strong Sell"
-	}
-
-	if rank != None:
-		interpretation = interpretation_mapping[rank]
-
-	return rank, interpretation
+	return rank, suggestion
 
 def getZacksStyleScore(symbol):
 	symbol = symbol.upper()
@@ -55,6 +51,7 @@ def getZacksStyleScore(symbol):
 		"Momentum":None,
 		"VGM":None,
 	}
+
 
 	symbol = symbol.upper()
 	page = requests.get('https://www.zacks.com/stock/quote/'+symbol)
@@ -68,6 +65,37 @@ def getZacksStyleScore(symbol):
 			"VGM":stylebox[4].text,
 		}
 	return style_score
+
+
+def getZacksOpinion(symbol):
+	rank = {
+		"Rank": None,
+		"Suggestion":None
+	}
+	style_score  = {
+		"Value":None,
+		"Growth":None,
+		"Momentum":None,
+		"VGM":None,
+	}
+	symbol = symbol.upper()
+	page = requests.get('https://www.zacks.com/stock/quote/'+symbol)
+	tree = html.fromstring(page.content)
+	rankbox = tree.xpath('//div[@class="zr_rankbox"]/span')
+	stylebox = tree.xpath('//div[@class="composite_group"]/p/span')
+	if len(rankbox) > 1:
+		rank["Rank"] = int(rankbox[0].text)
+		rank["Suggestion"] = getSuggestion(rank["Rank"])
+
+	if len(stylebox) > 1:
+		style_score  = {
+			"Value":stylebox[1].text,
+			"Growth":stylebox[2].text,
+			"Momentum":stylebox[3].text,
+			"VGM":stylebox[4].text,
+		}
+	return rank, style_score
+
 
 '''
 import concurrent.futures
@@ -104,8 +132,7 @@ def getZacksRankInParallel(data):
 
 
 
-
-
-# print getZacksRank("thld")
-
-# print getZacksStyleScore("scon")
+# ticker = 'scon'
+# print getZacksOpinion(ticker)
+# print getZacksRank(ticker)
+# print getZacksStyleScore(ticker)
