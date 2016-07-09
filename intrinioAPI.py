@@ -10,7 +10,6 @@ def getAuthorizedURL(url):
 	AuthorizedURL = 'https://'+intrinio_API_USERNAME+':'+intrinio_API_PASSWORD+'@'+url
 	return AuthorizedURL
 
-
 def getData(url):
 	print "url:",getAuthorizedURL(url)
 	response = requests.get(getAuthorizedURL(url))
@@ -23,12 +22,13 @@ def getData(url):
 	data = json.loads(json_data)
 	return data
 
+
+
 def getCompanyData(ticker):
 	ticker = ticker.upper()
 	url = 'www.intrinio.com/api/companies?ticker='+ticker
 	data = getData(url)
 	return data
-
 
 def getCompanyNews(ticker):
 	#can use ticker=AAPL,AMZN up to 10 tickers
@@ -37,19 +37,7 @@ def getCompanyNews(ticker):
 	data = getData(url)
 	return data
 
-
-'''
-===================
-Reported Financials
-===================
-statement = income_statement | balance_sheet | cash_flow_statement
-fiscal_year = YYYY (otherwise, must specify a date)
-fiscal_period = FY | Q1 | Q2 | Q3 (otherwise, must specify a date)
-date = latest as of YYYY-MM-DD
-url = https://www.intrinio.com/api/financials/reported?ticker=AAPL&statement=income_statement&fiscal_year=2014&fiscal_period=FY
-'''
-
-def getFinancials_url(ticker,statement_type,year_str,fiscal_period_type):
+def create_financials_url(ticker,statement_type,year_str,fiscal_period_type):
 	url = 'www.intrinio.com/api/financials/reported?'
 	ticker = 'ticker='+ticker
 	statement = '&statement='+statement_type
@@ -66,7 +54,7 @@ def getFinancials(ticker,year_str):
 	for statement_type in statement_types:
 		result[statement_type] = {}
 		for period in fiscal_periods:
-			url = getFinancials_url(ticker,statement_type,year_str,period)
+			url = create_financials_url(ticker,statement_type,year_str,period)
 			data = getData(url)
 			result[statement_type][period] = data['data']
 	return result
