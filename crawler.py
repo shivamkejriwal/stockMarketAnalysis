@@ -137,7 +137,7 @@ def getZacksRankInParallel(data):
 
 
 
-ticker = 'scon'
-print getZacksOpinion(ticker)
+# ticker = 'scon'
+# print getZacksOpinion(ticker)
 # print getZacksRank(ticker)
 # print getZacksStyleScore(ticker)

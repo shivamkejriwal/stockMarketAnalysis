@@ -117,15 +117,15 @@ def getFairValue_estimates(data):
 # 	earnings_estimate = fixDecimal(earnings_estimate)
 # 	return earnings_estimate
 
-ticker = "scon"
+# ticker = "scon"
 # data_arr = ['a','b','o','e','e7','e8','e9','r','r5','r6','r7','t8','p']
-data_arr = mapping.keys()
-url = createURL(ticker,data_arr)
-data = getData(url,data_arr)
+# data_arr = mapping.keys()
+# url = createURL(ticker,data_arr)
+# data = getData(url,data_arr)
 # data['PE_ratio'] = getPE_ratio(data)
 # data["fair_value"] = getFairValue(data)
 
-pp(data)
+# pp(data)
 # pp(getFairValue_estimates(data))
 
 
