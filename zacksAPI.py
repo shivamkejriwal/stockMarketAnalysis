@@ -13,6 +13,14 @@ def getSuggestion(rank):
 	}
 	return suggestion_mapping[rank]
 
+def isInteger(s):
+	if s==None:
+		return False
+	try: 
+		int(s)
+		return True
+	except ValueError:
+		return False
 
 def getZacksRank(symbol):
 	rank = {
@@ -25,9 +33,10 @@ def getZacksRank(symbol):
 	tree = html.fromstring(page.content)
 
 	rankbox = tree.xpath('//div[@class="zr_rankbox"]/span')
-	if len(rankbox) > 1:
-		rank["Rank"] = int(rankbox[0].text)
-		rank["Suggestion"] = getSuggestion(rank["Rank"])
+	for value in rankbox:
+		if isInteger(value.text):
+			rank["Rank"] = int(value.text)
+			rank["Suggestion"] = getSuggestion(rank["Rank"])
 
 	return rank
 
@@ -71,9 +80,10 @@ def getZacksOpinion(symbol):
 	tree = html.fromstring(page.content)
 	rankbox = tree.xpath('//div[@class="zr_rankbox"]/span')
 	stylebox = tree.xpath('//div[@class="composite_group"]/p/span')
-	if len(rankbox) > 1:
-		opinon["Rank"] = int(rankbox[0].text)
-		opinon["Suggestion"] = getSuggestion(opinon["Rank"])
+	for value in rankbox:
+		if isInteger(value.text):
+			opinon["Rank"] = int(value.text)
+			opinon["Suggestion"] = getSuggestion(opinon["Rank"])
 
 	if len(stylebox) > 1:
 		opinon["Style_Score"]  = {
@@ -87,7 +97,7 @@ def getZacksOpinion(symbol):
 # ========
 # 	Main
 # ========
-# ticker = 'scon'
+# ticker = 'thld'
 # print getZacksOpinion(ticker)
 # print getZacksRank(ticker)
 # print getZacksStyleScore(ticker)

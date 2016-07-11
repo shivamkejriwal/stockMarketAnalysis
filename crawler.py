@@ -14,11 +14,13 @@ def getSuggestion(rank):
 
 
 def isInteger(s):
-    try: 
-        int(s)
-        return True
-    except ValueError:
-        return False
+	if s==None:
+		return False
+	try: 
+		int(s)
+		return True
+	except ValueError:
+		return False
 
 
 def getZacksRank(symbol):
@@ -37,9 +39,11 @@ def getZacksRank(symbol):
 	tree = html.fromstring(page.content)
 
 	rankbox = tree.xpath('//div[@class="zr_rankbox"]/span')
-	if len(rankbox) > 1:
-		rank = int(rankbox[0].text)
-		suggestion = getSuggestion(rank)
+	for value in rankbox:
+		if isInteger(value.text):
+			rank = int(value.text)
+			suggestion = getSuggestion(rank)
+		
 
 	return rank, suggestion
 
@@ -83,9 +87,10 @@ def getZacksOpinion(symbol):
 	tree = html.fromstring(page.content)
 	rankbox = tree.xpath('//div[@class="zr_rankbox"]/span')
 	stylebox = tree.xpath('//div[@class="composite_group"]/p/span')
-	if len(rankbox) > 1:
-		rank["Rank"] = int(rankbox[0].text)
-		rank["Suggestion"] = getSuggestion(rank["Rank"])
+	for value in rankbox:
+		if isInteger(value.text):
+			rank["Rank"] = int(value.text)
+			rank["Suggestion"] = getSuggestion(rank["Rank"])
 
 	if len(stylebox) > 1:
 		style_score  = {
@@ -132,7 +137,7 @@ def getZacksRankInParallel(data):
 
 
 
-# ticker = 'scon'
-# print getZacksOpinion(ticker)
+ticker = 'scon'
+print getZacksOpinion(ticker)
 # print getZacksRank(ticker)
 # print getZacksStyleScore(ticker)
