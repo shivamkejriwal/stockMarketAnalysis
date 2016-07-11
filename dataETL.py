@@ -61,6 +61,7 @@ def getExchangeData(convert=False):
     dataset = []
     for exchange in exchange_list:
         url = "http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange="+exchange+"&render=download"
+        # print url
         data = pd.read_csv(url)
         print exchange, "shape:",data.shape
         dataset.append(data)

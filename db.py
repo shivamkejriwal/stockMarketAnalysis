@@ -55,8 +55,8 @@ def getStocks(ticker,date):
 	print "Getting Stocks"
 
 
-# ticker = 'scon'
-# year = '2015'
+# ticker = 'otiv'
+# # year = '2015'
 # years = ['2013','2014','2015','2016']
 # for year in years:
 # 	data = intrinio.getFinancials(ticker, year)
