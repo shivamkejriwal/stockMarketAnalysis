@@ -7,7 +7,7 @@ import config as config
 quandl.ApiConfig.api_key = config.quandl_api_key
 
 
-def getStockFromYahoo(symbol, start, end):
+def getStockFromYahoo(symbol, start, end=None):
     """
     Downloads Stock from Yahoo Finance.
     Computes daily Returns based on Adj Close.
@@ -17,7 +17,7 @@ def getStockFromYahoo(symbol, start, end):
     df =  pd_data.DataReader(symbol, 'yahoo', start, end)
     return df
 
-def getStockFromQuandl(symbol, start, end):
+def getStockFromQuandl(symbol, start, end=None):
     """
     Downloads Stock from Quandl.
     Computes daily Returns based on Adj Close.
@@ -27,7 +27,7 @@ def getStockFromQuandl(symbol, start, end):
     df =  quandl.get("WIKI/"+symbol, trim_start=start, trim_end=end)
     return df
 
-def getStock(symbol, start, end):
+def getStock(symbol, start, end=None):
     stock_data = None
     try:
         stock_data =  getStockFromQuandl(symbol, start, end)

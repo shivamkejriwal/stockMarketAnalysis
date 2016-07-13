@@ -20,6 +20,7 @@ mapping = {
 	's1':'shares_owned',
 	'j1':'market_capitalization',
 	'j2':'shares_outstanding',
+	'j3':'market_capitalization_realtime',
 	'r':'PE_ratio',
 	'r2':'PE_ratio_realtime',
 	'r5':'PEG_ratio',
@@ -71,6 +72,8 @@ def getData(url,data_arr):
 		result[key]=value
 	return result
 
+
+
 def getPE_ratio(data):
 	eps = data['eps']
 	pe = data['PE_ratio']
@@ -103,12 +106,20 @@ def getFairValue_estimates(data):
 		fair_value['fair_value'+key] = value
 	return fair_value
 
-# def getMarketValue(data):
-# 	m_cap = data['market_capitalization']
-# 	shares = data['shares_outstanding']
-# 	market_value = m_cap/shares
-# 	market_value = fixDecimal(market_value)
-# 	return market_value
+def getMarketValue(data):
+	m_cap = data['market_capitalization']
+	shares = data['shares_outstanding']
+	market_value = m_cap/shares
+	market_value = fixDecimal(market_value)
+	return market_value
+
+def getStockData(ticker):
+	data_arr = ['a','b','o','p','j1','j2']
+	url = createURL(ticker,data_arr)
+	data = getData(url,data_arr)
+	data["market_value"] = getMarketValue(data)
+	return data
+
 
 # def getEarningsEstimate(data):
 # 	eps = data['eps']
@@ -118,7 +129,6 @@ def getFairValue_estimates(data):
 # 	return earnings_estimate
 
 # ticker = "scon"
-# data_arr = ['a','b','o','e','e7','e8','e9','r','r5','r6','r7','t8','p']
 # data_arr = mapping.keys()
 # url = createURL(ticker,data_arr)
 # data = getData(url,data_arr)
