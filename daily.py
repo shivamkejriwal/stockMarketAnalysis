@@ -11,8 +11,8 @@ import portfolio as portfolio
 def printData(data):
 	print('IPOyear\tSymbol\tLastSale\tZacks_Score(V,G,M)\tMarketCap\tSector\t\t\tIndustry')
 	# print "Headers:", data.columns.values
-	template_small = '{0:7}\t{1:4}\t{2:6}\t\t{3}-{4}({5},{6},{7})\t\t{8:10}\t{9:10}\t\t{10:<}'
-	template_big = '{0:7}\t{1:4}\t{2:6}\t\t{3}-{4}({5},{6},{7})\t{8:10}\t{9:10}\t\t{10:<}'
+	template_small = '{0:7}\t{1:4}\t{2:6}\t\t{3}-{4}({5},{6},{7})\t\t{8:10}\t{9:20}\t\t{10:<}'
+	template_big = '{0:7}\t{1:4}\t{2:6}\t\t{3}-{4}({5},{6},{7})\t{8:10}\t{9:20}\t\t{10:<}'
 	for index, row in data.iterrows():
 		template = template_small
 		if row['zacks_rank']==1 or row['zacks_rank']==5:
