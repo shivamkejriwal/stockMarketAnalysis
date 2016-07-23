@@ -4,7 +4,7 @@ from pprint import pprint as pp
 from datetime import datetime, timedelta
 import dataETL as dataETL
 import technicalIndicators as tech_indicators
-import zacksAPI as zacks
+import apis.zacksAPI as zacks
 import config as config
 import portfolio as portfolio
 
@@ -47,8 +47,8 @@ def getShortList():
 	data = dataETL.getExchangeData(convert=True)
 	filters = {
 		'min_MarketCap':1000000, # $1,000,000 Mil
-		'max_LastSale':1,
-		'min_LastSale':.05,
+		'max_LastSale':2.0,
+		'min_LastSale':.60,
 	}
 	print data.shape
 	data = dataETL.filterData(filters=filters, data=data)
@@ -60,4 +60,4 @@ def getShortList():
 
 current_portfolio = portfolio.getCurrentPortfolio(config.portfolio)
 portfolio.printPortfolio(current_portfolio)
-getShortList()
+# getShortList()

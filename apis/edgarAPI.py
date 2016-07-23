@@ -56,9 +56,10 @@ def getInsiderSignal(ticker):
 	}
 	past_date = datetime.now() - timedelta(days=31*4)
 	for row in data:
+		print row
 		date_object = datetime.strptime(row['transactiondate'], '%m/%d/%Y')
 		if date_object > past_date:
-			# print row['filername'],row['transactiondate'],row['relationship'],row['transactiontype'],row['price']#,row['transactionpricefrom']
+			print row['filername'],row['transactiondate'],row['relationship'],row['transactiontype'],row['price']#,row['transactionpricefrom']
 			# pp(row)
 			if row['transactiontype'] in ['Buy', 'Acquisition (Non Open Market)', 'Automatic Buy']:
 				buy_signals['raw']+=1
@@ -73,12 +74,13 @@ def getInsiderSignal(ticker):
 	}
 	signal = {
 		'raw': float(buy_signals['raw'] - sell_signals['raw'])/float(total['raw']),
-		'weighted': float(buy_signals['weighted'] - sell_signals['weighted'])/float(total['weighted'])
+		'weighted': float(buy_signals['weighted'] - sell_signals['weighted'])/float(total['weighted']),
+		'count': buy_signals['raw']+sell_signals['raw']
 	}
 	return signal
 
 # start = datetime.now()
-# print getInsiderSignal("amzn")
+# print getInsiderSignal("CYTR")
 # end = datetime.now()
 # print end - start
 

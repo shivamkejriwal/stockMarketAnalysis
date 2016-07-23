@@ -1,7 +1,7 @@
 from pprint import pprint as pp
 import dataETL as dataETL
-import yahooFinanceAPI as yahoo
-import zacksAPI as zacks
+import apis.yahooFinanceAPI as yahoo
+import apis.zacksAPI as zacks
 from datetime import datetime
 import decimal
 
@@ -66,6 +66,6 @@ def printPortfolio(myPortfolio):
 	print "Total Value:",myPortfolio["total_value"]
 	print "Total Gains:",myPortfolio["total_gains"]
 
-# import config as config
-# portfolio = getCurrentPortfolio(config.portfolio)
-# pp(portfolio)
+import config as config
+portfolio = getCurrentPortfolio(config.portfolio)
+pp(portfolio)
