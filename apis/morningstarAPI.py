@@ -18,7 +18,6 @@ def getData(url):
 		return {'Error':'Bad Request'}
 	return content
 
-
 def fixValues(values):
 	result = []
 	for value in values:
@@ -98,7 +97,6 @@ def getFinancials(symbol,period=12):
 		report['periods'] = periods
 		financials[reportTypes[reportType]] = report
 	return financials
-
 
 def create_dict(obj, key_str):
 	# obj = {}
