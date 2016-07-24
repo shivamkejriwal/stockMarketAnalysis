@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-import apis.intrinioAPI as intrinio
+from apis import intrinioAPI as intrinio
 from pprint import pprint as pp
 import config as config
 

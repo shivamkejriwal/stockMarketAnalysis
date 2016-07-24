@@ -1,5 +1,5 @@
 import config as config
-import apis.zacksAPI as zacks
+from apis import zacksAPI as zacks
 from services import dataETL as dataETL
 from models import portfolioModel as portfolio
 
