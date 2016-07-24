@@ -98,7 +98,7 @@ def cleanFinacials(dataList):
 # 	data = intrinio.getFinancials(ticker, year)
 # 	saveFinacials(ticker, year, data)
 
-refreshDBCompanyList()
+# refreshDBCompanyList()
 # print gerReportsAvailable(ticker)
 # print getCompanyList()
 

@@ -1,12 +1,11 @@
-import numpy as np
-import pandas as pd
-from pprint import pprint as pp
-import cPickle
 from datetime import datetime, timedelta
+
 import matplotlib.pyplot as plt
-import dataETL as dataETL
-import technicalIndicators as tech_indicators
+import numpy as np
+
 import crawler as crawler
+import services.technicalIndicators as tech_indicators
+from services import dataETL as dataETL
 
 
 def getDays(days, length = 0):

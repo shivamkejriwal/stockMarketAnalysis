@@ -1,8 +1,6 @@
 import numpy as np
-import pandas as pd
-import cPickle
-from datetime import datetime, timedelta
-import technicalIndicators as tech_indicators
+
+from services import technicalIndicators as tech_indicators
 
 '''
 To-Do

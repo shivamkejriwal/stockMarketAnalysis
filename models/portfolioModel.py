@@ -1,10 +1,10 @@
-from pprint import pprint as pp
-import dataETL as dataETL
-import apis.yahooFinanceAPI as yahoo
-import apis.zacksAPI as zacks
-from datetime import datetime
+# import sys
+# sys.path.append("../")
 import decimal
+from pprint import pprint as pp
 
+from apis import yahooFinanceAPI as yahoo
+from apis import zacksAPI as zacks
 
 def fixDecimal(value):
 	result = decimal.Decimal(value)
@@ -66,6 +66,6 @@ def printPortfolio(myPortfolio):
 	print "Total Value:",myPortfolio["total_value"]
 	print "Total Gains:",myPortfolio["total_gains"]
 
-import config as config
-portfolio = getCurrentPortfolio(config.portfolio)
-pp(portfolio)
+# import config as config
+# portfolio = getCurrentPortfolio(config.portfolio)
+# pp(portfolio)

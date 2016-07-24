@@ -1,12 +1,8 @@
-import numpy as np
-import pandas as pd
-from pprint import pprint as pp
-from datetime import datetime, timedelta
-import dataETL as dataETL
-import technicalIndicators as tech_indicators
-import apis.zacksAPI as zacks
 import config as config
-import portfolio as portfolio
+import apis.zacksAPI as zacks
+from services import dataETL as dataETL
+from models import portfolioModel as portfolio
+
 
 def printData(data):
 	print('IPOyear\tSymbol\tLastSale\tZacks_Score(V,G,M)\tMarketCap\tSector\t\t\tIndustry')
