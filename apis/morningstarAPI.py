@@ -3,8 +3,6 @@ import requests
 import decimal
 from pprint import pprint as pp
 # https://gist.github.com/hahnicity/45323026693cdde6a116
-# "http://financials.morningstar.com/ajax/exportKR2CSV.html?t=FB"
-# "http://financials.morningstar.com/ajax/ReportProcess4CSV.html?t=TWTR&reportType=is&period=12&dataType=A&order=asc&columnYear=5&number=3"
 
 def fixDecimal(value):
 	result = decimal.Decimal(value)
