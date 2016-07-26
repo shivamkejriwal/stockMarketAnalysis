@@ -44,7 +44,7 @@ def getShortList():
 	filters = {
 		'min_MarketCap':1000000, # $1,000,000 Mil
 		'max_LastSale':2.0,
-		'min_LastSale':.60,
+		# 'min_LastSale':.60,
 	}
 	print data.shape
 	data = dataETL.filterData(filters=filters, data=data)

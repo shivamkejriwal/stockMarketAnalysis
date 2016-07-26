@@ -37,6 +37,7 @@ def getCurrentPortfolio(myPortfolio):
 		stock = {
 			"ticker":symbol,
 			"number_of_shares":shares,
+			"orig_cost":price,
 			"market_value":lastPrice,
 			"zacks_rank":zacks_opinion["Rank"],
 			"zacks_suggestion":zacks_opinion["Suggestion"],
@@ -54,10 +55,10 @@ def getCurrentPortfolio(myPortfolio):
 	return current_portfolio
 
 def printPortfolio(myPortfolio):
-	print "Symbol\tCount\tMarket Value\tZacks_Score(V,G,M:VGM)"
-	template = '{0:5}\t{1:4}\t{2:10}\t{3:1}-{4}({5},{6},{7}:{8})'
+	print "Symbol\tCount\tOrig Cost\tMarket Value\tZacks_Score(V,G,M:VGM)"
+	template = '{0:5}\t{1:4}\t{2:8}\t{3:10}\t{4:1}-{5}({6},{7},{8}:{9})'
 	for stock in myPortfolio["stocks"]:
-		print template.format(stock["ticker"],stock["number_of_shares"],stock["market_value"]
+		print template.format(stock["ticker"],stock["number_of_shares"],stock["orig_cost"],stock["market_value"]
 			,stock["zacks_rank"],stock["zacks_suggestion"],stock["zacks_score"]["Value"]
 			,stock["zacks_score"]["Growth"],stock["zacks_score"]["Momentum"],stock["zacks_score"]["VGM"])
 	print "Total Cost:",myPortfolio["total_cost"]
