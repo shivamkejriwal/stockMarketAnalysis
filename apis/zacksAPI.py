@@ -80,6 +80,7 @@ def getZacksOpinion(symbol):
 	tree = html.fromstring(page.content)
 	rankbox = tree.xpath('//div[@class="zr_rankbox"]/span')
 	stylebox = tree.xpath('//div[@class="composite_group"]/p/span')
+
 	for value in rankbox:
 		if isInteger(value.text):
 			opinon["Rank"] = int(value.text)
@@ -87,17 +88,22 @@ def getZacksOpinion(symbol):
 
 	if len(stylebox) > 1:
 		opinon["Style_Score"]  = {
-			"Value":stylebox[1].text,
-			"Growth":stylebox[2].text,
-			"Momentum":stylebox[3].text,
-			"VGM":stylebox[4].text,
+			"Value":'',
+			"Growth":'',
+			"Momentum":'',
+			"VGM":'',
 		}
+		if len(stylebox)>=2 : opinon["Style_Score"]["Value"] = stylebox[1].text
+		if len(stylebox)>=3 : opinon["Style_Score"]["Growth"] = stylebox[2].text
+		if len(stylebox)>=4 : opinon["Style_Score"]["Momentum"] = stylebox[3].text
+		if len(stylebox)>=5 : opinon["Style_Score"]["VGM"] = stylebox[4].text
+
 	return opinon
 
 # ========
 # 	Main
 # ========
-# ticker = 'thld'
+# ticker = 'FELP'
 # print getZacksOpinion(ticker)
 # print getZacksRank(ticker)
 # print getZacksStyleScore(ticker)

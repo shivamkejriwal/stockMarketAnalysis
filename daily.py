@@ -56,4 +56,4 @@ def getShortList():
 
 current_portfolio = portfolio.getCurrentPortfolio(config.portfolio)
 portfolio.printPortfolio(current_portfolio)
-# getShortList()
+getShortList()
