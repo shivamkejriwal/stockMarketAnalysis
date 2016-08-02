@@ -18,7 +18,21 @@ def printData(data):
 			,row['zacks_score_Value'],row['zacks_score_Growth'],row['zacks_score_Momentum']
 			,row['MarketCap'],row['Sector'],row['industry']))
 
-def populateZacksResearch(data, max_rank=2):
+def isValidStock(zacks_opinion):
+	rank = zacks_opinion["Rank"]
+	valueScore = zacks_opinion["Style_Score"]["Value"]
+	growthScore = zacks_opinion["Style_Score"]["Growth"]
+	validRanks = [1, 2, 3]
+	validScores = ['A', 'B']
+	if rank not in  validRanks:
+		return  False
+	if valueScore not in  validScores:
+		return  False
+	if growthScore not in  validScores: 
+		return  False
+	return True
+
+def populateZacksResearch(data, max_rank=3):
     symbols = data["Symbol"].tolist()
     data["zacks_rank"] = ""
     data["zacks_suggestion"] = ""
@@ -27,7 +41,7 @@ def populateZacksResearch(data, max_rank=2):
         zacks_opinion = zacks.getZacksOpinion(symbol)
         rank = zacks_opinion["Rank"]
         row_index = data[data["Symbol"] == symbol].index
-        if rank == None or rank>max_rank:
+        if not isValidStock(zacks_opinion):
             data = data.drop(row_index)
         else :
             print symbol, rank, zacks_opinion["Suggestion"]
@@ -43,8 +57,8 @@ def getShortList():
 	data = dataETL.getExchangeData(convert=True)
 	filters = {
 		'min_MarketCap':1000000, # $1,000,000 Mil
-		'max_LastSale':2.0,
-		# 'min_LastSale':.60,
+		'max_LastSale':1.50,
+		'min_LastSale':.30,
 	}
 	print data.shape
 	data = dataETL.filterData(filters=filters, data=data)
@@ -54,6 +68,6 @@ def getShortList():
 	data.sort(['MarketCap','LastSale'], ascending=[0, 0])
 	printData(data)
 
-current_portfolio = portfolio.getCurrentPortfolio(config.portfolio)
-portfolio.printPortfolio(current_portfolio)
+# current_portfolio = portfolio.getCurrentPortfolio(config.portfolio)
+# portfolio.printPortfolio(current_portfolio)
 getShortList()

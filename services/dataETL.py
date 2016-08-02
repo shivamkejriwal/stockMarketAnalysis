@@ -56,7 +56,7 @@ def getWorldExchangeData(start, end):
     return exchanges
 
 def getExchangeData(convert=False):
-    exchange_list = ["nasdaq", "nyse" ] #+ ["amex"]
+    exchange_list = ["nasdaq", "nyse" , "amex"]
 
     dataset = []
     for exchange in exchange_list:
