@@ -1,5 +1,8 @@
 from lxml import html
 import requests
+import json
+import decimal
+from pprint import pprint as pp
 
 
 def getSuggestion(rank):
@@ -12,6 +15,11 @@ def getSuggestion(rank):
 		5:"Strong Sell"
 	}
 	return suggestion_mapping[rank]
+
+def fixDecimal(value,limit):
+	result = decimal.Decimal(value)
+	result = round(result,limit)
+	return result
 
 def isInteger(s):
 	if s==None:
@@ -100,6 +108,95 @@ def getZacksOpinion(symbol):
 
 	return opinon
 
+
+def getPriceConsensus(symbol):
+	symbol = symbol.upper()
+	page = requests.get('https://www.zacks.com/stock/chart/'+symbol+'/price-consensus-chart')
+	print page.content
+	# tree = html.fromstring(page.content)
+
+def cleanEarningsData(data):
+
+	# valid_tables = ['earnings_announcements_earnings_table','earnings_announcements_revisions_table']
+	earnings_table = data['earnings_announcements_earnings_table']
+	revisions_table = data['earnings_announcements_revisions_table']
+
+	# earnings_data
+	# =============
+	earnings_data = []
+	for value in earnings_table:
+		estimate = fixDecimal(value[2].replace("$", ""),2)
+		reported = fixDecimal(value[3].replace("$", ""),2)
+		surprise = (reported-estimate)/abs(estimate) if estimate!=0 else 0
+		surprise = fixDecimal(surprise*100,2)
+		obj = {
+			'Date':str(value[0]),
+			'Period_Ending':value[1],
+			'Estimate':estimate,
+			'Reported':reported,
+			'Surprise':surprise,
+		}
+		earnings_data.append(obj)
+
+	# revisions_data
+	# =============
+	revisions_data = []
+	for value in revisions_table:
+		date = value[0]
+		period_ending = value[1]
+		if period_ending !=None:
+			start_index = period_ending.find('>')
+			end_index = period_ending.find('<',start_index)
+			period_ending = period_ending[start_index+1:end_index-1]
+		orig = fixDecimal(value[2].replace("$", ""),2) if '--'not in value[2] else None
+		revision = value[3] if '--'not in value[2] else None
+		if revision !=None:
+			start_index = revision.find('>')
+			end_index = revision.find('<',start_index)
+			revision = revision[start_index+1:end_index-1]
+			revision = fixDecimal(revision.replace("$", ""),2) if '--'not in revision else None
+		obj = {
+			'Date':str(date),
+			'Period_Ending':str(period_ending),
+			'Previous':orig,
+			'Current':revision
+		}
+		revisions_data.append(obj)
+
+	return earnings_data, revisions_data
+
+def getEarnings(symbol):
+	symbol = symbol.upper()
+	page = requests.get('https://www.zacks.com/stock/research/'+symbol+'/earnings-announcements?')
+	tree = html.fromstring(page.content)
+	table = tree.xpath('//script')
+	start_text = 'var obj = {'
+	end_text = '};'
+	# print table[2].text
+	result = {
+		'earnings_data': None,
+		'revisions_data': None
+	}
+	for value in table:
+		script_text = str(value.text)
+		if 'earnings_announcements_earnings_table' in script_text:
+			start_index = script_text.find(start_text)
+			end_index = script_text.find(end_text,start_index)
+			start_index+=len(start_text)-1
+			end_index+=len(end_text)-1
+			# print start_index, end_index
+			json_data = script_text[start_index:end_index]
+			# json_data = json_data.replace(" ", "").replace("\n", "")#json_data.strip(' \t\n\r')
+			data = json.loads(json_data)
+			result['earnings_data'], result['revisions_data'] =  cleanEarningsData(data)
+			return result
+	return result
+
+
+
+getPriceConsensus('gss')
+# data = getEarnings('gale')
+# pp(data)
 # ========
 # 	Main
 # ========

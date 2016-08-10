@@ -14,6 +14,8 @@ def getData(url):
 	return data
 
 def getRecentSentiment(data):
+	if "messages" not in data:
+		return None
 	messages = data["messages"]
 	sentiment = {}
 	sentiment['Bullish'] = 0
@@ -23,15 +25,16 @@ def getRecentSentiment(data):
 		current = message['entities']['sentiment']
 		if current != None:
 			current = current['basic']
-		print current
+		# print '{0:10}\t{1}'.format(current,message['body'])
 		if current == 'Bullish':
-			sentiment['Bearish']+=1
+			sentiment['Bullish']+=1
 		if current == 'Bearish':
 			sentiment['Bearish']+=1
 		sentiment['total']+=1
-	print sentiment
+	return sentiment
 
-url = createURL("scon")
-data = getData(url)
-getRecentSentiment(data)
-# pp(data)
+def getSentiment(symbol):
+	url = createURL(symbol.upper())
+	data = getData(url)
+	sentiment = getRecentSentiment(data)
+	return sentiment

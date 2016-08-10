@@ -1,5 +1,6 @@
 import config as config
 from apis import zacksAPI as zacks
+from apis import stockTwitsAPI as stockTwits
 from services import dataETL as dataETL
 from models import portfolioModel as portfolio
 
@@ -44,12 +45,16 @@ def populateZacksResearch(data, max_rank=3):
         if not isValidStock(zacks_opinion):
             data = data.drop(row_index)
         else :
-            print symbol, rank, zacks_opinion["Suggestion"]
             data.set_value(row_index, 'zacks_rank', zacks_opinion["Rank"])
             data.set_value(row_index, 'zacks_suggestion', zacks_opinion["Suggestion"])
             data.set_value(row_index, 'zacks_score_Value', zacks_opinion["Style_Score"]["Value"])
             data.set_value(row_index, 'zacks_score_Growth', zacks_opinion["Style_Score"]["Growth"])
             data.set_value(row_index, 'zacks_score_Momentum', zacks_opinion["Style_Score"]["Momentum"])
+            sentiment = stockTwits.getSentiment(symbol)
+            if sentiment != None:
+            	sentiment_value = (sentiment["Bullish"]-sentiment["Bearish"])/ (sentiment["Bullish"]+sentiment["Bearish"])
+            	data.set_value(row_index, 'sentiment', sentiment_value)
+            print symbol, rank, zacks_opinion["Suggestion"], sentiment
     return data
 
 def getShortList():
@@ -68,6 +73,6 @@ def getShortList():
 	data.sort(['MarketCap','LastSale'], ascending=[0, 0])
 	printData(data)
 
-# current_portfolio = portfolio.getCurrentPortfolio(config.portfolio)
-# portfolio.printPortfolio(current_portfolio)
+current_portfolio = portfolio.getCurrentPortfolio(config.portfolio)
+portfolio.printPortfolio(current_portfolio)
 getShortList()
