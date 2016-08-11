@@ -192,9 +192,87 @@ def getEarnings(symbol):
 			return result
 	return result
 
+def getInsiderTransactions(symbol):
+	symbol = symbol.upper()
+	page = requests.get('https://www.zacks.com/stock/research/'+symbol+'/insider-transactions')
+	# print page.content
+	tree = html.fromstring(page.content)
+	scripts = tree.xpath('//script')
+	trades = {
+	'all':{},
+	'buys':{},
+	'sells':{},
+	'options':{}
+	}
+	for script in scripts:
+		script_text = str(script.text)
+		if 'window.app_data_all =' in script_text:
+			trades_all_text = script_text.replace(" ", "")
+			start_text = 'window.app_data_all='
+			end_text = '};'
+			start_index = trades_all_text.find(start_text)
+			end_index = trades_all_text.find(end_text,start_index)
+			start_index+=len(start_text)+2
+			end_index+=len(end_text)-1
+			json_data = trades_all_text[start_index:end_index]
+			json_data = json_data.replace('\r\n', "").replace("columns:","\"columns\":")
+			# print json_data
+			data = json.loads(json_data)
+			trades['all']=data
+			# pp(data)
+		if 'window.app_data_buy =' in script_text:
+			trades_buys_text = script_text.replace(" ", "")
+			start_text = 'window.app_data_buy='
+			end_text = '};'
+			start_index = trades_buys_text.find(start_text)
+			end_index = trades_buys_text.find(end_text,start_index)
+			start_index+=len(start_text)+2
+			end_index+=len(end_text)-1
+			json_data = trades_buys_text[start_index:end_index]
+			json_data = json_data.replace('\r\n', "").replace("columns:","\"columns\":")
+			# print json_data
+			data = json.loads(json_data)
+			trades['buys']=data
+			# pp(data)
+		if 'window.app_data_sell =' in script_text:
+			trades_sells_text = script_text.replace(" ", "")
+			start_text = 'window.app_data_sell='
+			end_text = '};'
+			start_index = trades_sells_text.find(start_text)
+			end_index = trades_sells_text.find(end_text,start_index)
+			start_index+=len(start_text)+2
+			end_index+=len(end_text)-1
+			json_data = trades_sells_text[start_index:end_index]
+			json_data = json_data.replace('\r\n', "").replace("columns:","\"columns\":")
+			# print json_data
+			data = json.loads(json_data)
+			trades['sells']=data
+			# pp(data)
+		if 'window.app_data_option =' in script_text:
+			trades_option_text = script_text.replace(" ", "")
+			start_text = 'window.app_data_option='
+			end_text = '};'
+			start_index = trades_option_text.find(start_text)
+			end_index = trades_option_text.find(end_text,start_index)
+			start_index+=len(start_text)+2
+			end_index+=len(end_text)-1
+			json_data = trades_option_text[start_index:end_index]
+			json_data = json_data.replace('\r\n', "").replace("columns:","\"columns\":")
+			# print json_data
+			data = json.loads(json_data)
+			trades['options']=data
+			# pp(data)
+	# pp(trades)
+	print len(trades['all']['data'])
+	print len(trades['buys']['data'])
+	print len(trades['sells']['data'])
+	print len(trades['options']['data'])
+	# pp(trades['sells']['data'])
+	return trades
 
 
-getPriceConsensus('gss')
+getInsiderTransactions('gale')
+# getPriceConsensus('gss')
 # data = getEarnings('gale')
 # pp(data)
 # ========
