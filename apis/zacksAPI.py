@@ -263,15 +263,15 @@ def getInsiderTransactions(symbol):
 			trades['options']=data
 			# pp(data)
 	# pp(trades)
-	print len(trades['all']['data'])
-	print len(trades['buys']['data'])
-	print len(trades['sells']['data'])
-	print len(trades['options']['data'])
+	# print len(trades['all']['data'])
+	# print len(trades['buys']['data'])
+	# print len(trades['sells']['data'])
+	# print len(trades['options']['data'])
 	# pp(trades['sells']['data'])
 	return trades
 
 
-getInsiderTransactions('gale')
+# getInsiderTransactions('gale')
 # getPriceConsensus('gss')
 # data = getEarnings('gale')
 # pp(data)
