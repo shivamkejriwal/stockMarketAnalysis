@@ -9,35 +9,64 @@ class Stock:
 	'A basic model for stock data'
 	stocksCount = 0
 
-	def __init__(self, symbol):
+	def __init__(self, symbol, sector = '', industry = ''):
 		self.symbol = symbol.upper()
-		self.currentPrice = 0
-		self.Sector = ''
-		self.Industry = ''
-		self.zacksOpinion = {}
+		self.Sector = sector
+		self.Industry = industry
+		self.basicData = {}
 		self.Fundamentals = {}
+		self.Technicals = {}
+		self.zacksOpinion = {}
 		self.earningsData = {}
 		self.insiderTransactions = {}
 		self.recentSentiment = {}
-		self.currentDate = datetime.now()
+		self.currentDate = datetime.now().strftime("%Y-%m-%d")
+		self.currentTime = datetime.now().strftime("%H-%M")
 
 		Stock.stocksCount += 1
-   
-	def getCurrentPrice(self):
-		self.currentDate = datetime.now()
-		print "CurrentPrice : ", self.currentPrice
+
+	def getYahooData(self):
+		stockData = yahoo.getStockData(self.symbol)
+		print stockData
+		self.basicData['price'] = stockData['market_value']
+		self.basicData['volume'] = stockData['volume']
+		self.basicData['shares_outstanding'] = stockData['shares_outstanding']
+		self.basicData['market_capitalization'] = stockData['market_capitalization']
+		self.basicData['EBITDA'] = stockData['EBITDA']
+
+		print "basicData : ", self.basicData
 
 	def getFundamentals(self):
 		print "Fundamentals  : ", self.Fundamentals
 
+	def getTechnicals(self):
+		stockData = yahoo.getStockData(self.symbol)
+		self.Technicals['ave_daily_volume'] = stockData['ave_daily_volume']
+		self.Technicals['macd_200'] = stockData['macd_200']
+		self.Technicals['macd_50'] = stockData['macd_50']
+
+		print "Technicals  : ", self.Technicals
+
 	def getZacksOpinion(self):
+		self.zacksOpinion = zacks.getZacksOpinion(self.symbol)
 		print "zacksOpinion : ", self.zacksOpinion
 
 	def getEarnings(self):
-		print "earningsData  : ", self.earningsData 
+		self.earningsData = zacks.getEarnings(self.symbol)
+		print "earningsData  : ", self.earningsData
 
 	def getInsiderTransactions(self):
-		print "insiderTransactions  : ", self.insiderTransactions 
+		self.insiderTransactions = zacks.getInsiderTransactions(self.symbol)
+		print "insiderTransactions  : ", self.insiderTransactions
 
 	def getRecentSentiment(self):
-		print "insiderTransactions  : ", self.recentSentiment 
+		self.recentSentiment = stockTwits.getSentiment(self.symbol)
+		print "recentSentiment  : ", self.recentSentiment
+
+stock  = Stock('GSS')
+print stock.symbol
+# stock.getZacksOpinion()
+# stock.getEarnings()
+# stock.getInsiderTransactions()
+# stock.getRecentSentiment()
+stock.getBasicData()

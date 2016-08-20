@@ -114,7 +114,7 @@ def getMarketValue(data):
 	return market_value
 
 def getStockData(ticker):
-	data_arr = ['a','b','o','p','j1','j2']
+	data_arr = ['a','b','o','p','j1','j2','v','a2','m3', 'm4','b4','j4']
 	url = createURL(ticker,data_arr)
 	data = getData(url,data_arr)
 	data["market_value"] = getMarketValue(data)

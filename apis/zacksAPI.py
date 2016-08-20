@@ -1,3 +1,4 @@
+import sys
 from lxml import html
 import requests
 import json
@@ -24,7 +25,7 @@ def fixDecimal(value,limit):
 def isInteger(s):
 	if s==None:
 		return False
-	try: 
+	try:
 		int(s)
 		return True
 	except ValueError:
@@ -76,6 +77,7 @@ def getZacksOpinion(symbol):
 	opinon = {
 		"Rank": None,
 		"Suggestion":None,
+		"Industry":None,
 		"Style_Score": {
 			"Value":None,
 			"Growth":None,
@@ -89,6 +91,9 @@ def getZacksOpinion(symbol):
 	rankbox = tree.xpath('//div[@class="zr_rankbox"]/span')
 	stylebox = tree.xpath('//div[@class="composite_group"]/p/span')
 
+	industrybox = tree.xpath('//section[@id="stock_industry_analysis"]/p[@class="premium"]/a')
+	industry = industrybox[0].text[len('See all '):-len(' Peers>> ')]
+	opinon["Industry"] = industry
 	for value in rankbox:
 		if isInteger(value.text):
 			opinon["Rank"] = int(value.text)
@@ -270,7 +275,123 @@ def getInsiderTransactions(symbol):
 	# pp(trades['sells']['data'])
 	return trades
 
+def getDivData(string):
+	# print string
+	start_index = string.find('>')
+	end_index = string.find('<',start_index)
+	# print string[start_index+1:end_index]
+	return string[start_index+1:end_index]
 
+def getIndustryDetails():
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36',
+		'referer':'https://www.zacks.com/stocks/industry-rank?icid=zpiq-pb-irm'
+	}
+	page = requests.get('https://www.zacks.com/zrank/zrank_industry_data_handler.php?premium_string=0',headers=headers)
+	content = json.loads(page.content);
+	industryRanks = []
+	for industry in content['data']:
+		obj = {}
+		name  = getDivData(str(industry[2]))
+
+		start_index = name.find('(')
+		if name.find('(',start_index+1) > 0:
+			start_index = name.find('(',start_index+1)
+		end_index = name.find(')',start_index)
+		numberOfCompanies = fixDecimal(name[start_index+1:end_index],3)
+		name = name[:start_index]
+
+		obj['1_week_change'] = fixDecimal(getDivData(industry[1]),3)
+		obj['name'] = name
+		obj['number_of_companies'] = numberOfCompanies
+		obj['%_pos_rev'] = fixDecimal(getDivData(industry[5])[:-1],3)
+		obj['pos_rev'] = fixDecimal(industry[6],3)
+		obj['neg_rev'] = fixDecimal(industry[7],3)
+		industryRanks.append(obj)
+
+	return industryRanks
+
+
+def rankByGenralSentiment(obj):
+	total = obj['pos_rev']+obj['neg_rev']
+	if total == 0:
+		return -1 * sys.maxint
+
+	score = obj['pos_rev']-obj['neg_rev']
+	sentiment = score / total
+	genralSentiment = sentiment * obj['number_of_companies']
+	return genralSentiment
+
+def rankBySentiment(obj):
+	total = obj['pos_rev']+obj['neg_rev']
+	if total == 0:
+		return -1 * sys.maxint
+
+	score = obj['pos_rev']-obj['neg_rev']
+	sentiment = score / total
+	return sentiment
+
+def rankByOptimism(obj):
+	return obj['pos_rev']
+
+def rankByPositiveRevisions(obj):
+	pos_rev = obj['%_pos_rev']/100
+	count = obj['number_of_companies']
+	return pos_rev * count
+
+def getRank(sorted_data):
+	ranks = {}
+	for index in range(len(sorted_data)):
+		obj = sorted_data[index]
+		name = obj['name']
+		ranks[name] = index+1
+	return ranks
+
+def getIndustryRanks():
+	industryRanks = {}
+	ranks = {}
+	data = getIndustryDetails()
+	sortedBySentiment= sorted(data, key=lambda obj: rankBySentiment(obj), reverse=True)
+	sortedByGenralSentiment= sorted(data, key=lambda obj: rankByGenralSentiment(obj), reverse=True)
+	sortedByOptimism = sorted(data, key=lambda obj: rankByOptimism(obj), reverse=True)
+	sortedByPositiveRevisions = sorted(data, key=lambda obj: rankByPositiveRevisions(obj), reverse=True)
+	ranks['BySentiment'] = getRank(sortedBySentiment)
+	ranks['ByGenralSentiment'] = getRank(sortedByGenralSentiment)
+	ranks['ByOptimism'] = getRank(sortedByOptimism)
+	ranks['ByPositiveRevisions'] = getRank(sortedByPositiveRevisions)
+
+	for rank_type, rank_list in ranks.items():
+		for industry, rank in rank_list.items():
+			if industry not in industryRanks:
+				industryRanks[industry] = {}
+				industryRanks[industry]['rank'] = {}
+			industryRanks[industry]['rank'][rank_type] = rank
+
+	for industry, rank_obj in industryRanks.items():
+		total = sum(rank_obj['rank'].values())
+		industryRanks[industry]['rank']['average'] = total/len(rank_obj['rank'].values())
+
+	for industry in data:
+		name = industry['name']
+		industryRanks[name]['number_of_companies'] = industry['number_of_companies']
+		industryRanks[name]['1_week_change'] = industry['1_week_change']
+		industryRanks[name]['%_pos_rev'] = industry['%_pos_rev']
+		industryRanks[name]['pos_rev'] = industry['pos_rev']
+		industryRanks[name]['neg_rev'] = industry['neg_rev']
+
+
+	return industryRanks
+
+
+# pp(getIndustryDetails())
+# ranks = getIndustryRanks()
+# pp(ranks)
+
+# def getSortValue(obj,key):
+# 	return obj[1][key]
+
+# sortedRanks= sorted(ranks.items(), key=lambda obj: getSortValue(obj,'average'))[:10]
+# pp(sortedRanks)
 # getInsiderTransactions('gale')
 # getPriceConsensus('gss')
 # data = getEarnings('gale')
@@ -278,7 +399,7 @@ def getInsiderTransactions(symbol):
 # ========
 # 	Main
 # ========
-# ticker = 'FELP'
+# ticker = 'GSS'
 # print getZacksOpinion(ticker)
 # print getZacksRank(ticker)
 # print getZacksStyleScore(ticker)
