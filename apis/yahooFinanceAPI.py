@@ -21,6 +21,7 @@ mapping = {
 	'j1':'market_capitalization',
 	'j2':'shares_outstanding',
 	'j3':'market_capitalization_realtime',
+	'f6':'float_shares',
 	'r':'PE_ratio',
 	'r2':'PE_ratio_realtime',
 	'r5':'PEG_ratio',
@@ -31,7 +32,10 @@ mapping = {
 	'm4':'macd_200',
 	'p5':'price_to_sales',
 	'p6':'price_to_book',
-	's6':'revenue'
+	's6':'revenue',
+	't8': 'yr_target_price',
+	'x': 'stock_exchange'
+
 }
 
 def fixDecimal(value):
@@ -107,17 +111,32 @@ def getFairValue_estimates(data):
 	return fair_value
 
 def getMarketValue(data):
+	if 'market_capitalization' not in data or 'shares_outstanding' not in data:
+		return None
 	m_cap = data['market_capitalization']
 	shares = data['shares_outstanding']
 	market_value = m_cap/shares
 	market_value = fixDecimal(market_value)
 	return market_value
 
-def getStockData(ticker):
-	data_arr = ['a','b','o','p','j1','j2','v','a2','m3', 'm4','b4','j4']
+def getPriceToBook(data):
+	if 'market_value' not in data or 'book_value' not in data:
+		return None
+	market_value = data['market_value']
+	book_value = data['book_value']
+	priceToBook = market_value/book_value
+	priceToBook = fixDecimal(priceToBook)
+	return priceToBook
+
+def getStockData(ticker, data_arr=None):
+	if data_arr == None:
+		data_arr = ['a','b','o','p','j1','j2','v','a2','m3', 'm4','b4','j4']
 	url = createURL(ticker,data_arr)
 	data = getData(url,data_arr)
-	data["market_value"] = getMarketValue(data)
+	if 'j1' in data_arr and 'j2' in data_arr:
+		data["market_value"] = getMarketValue(data)
+	if 'price_to_book' in data and data['price_to_book'] == None:
+		data['price_to_book'] = getPriceToBook(data)
 	return data
 
 

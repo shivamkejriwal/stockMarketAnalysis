@@ -175,5 +175,5 @@ def getKeyRatios(symbol):
 
 # keyRatios = getKeyRatios('gss')
 # pp(keyRatios)
-# financials = getFinancials('gss')
+# financials = getFinancials('gss',3)
 # pp(financials)

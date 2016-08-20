@@ -4,6 +4,7 @@ from pprint import pprint as pp
 from apis import yahooFinanceAPI as yahoo
 from apis import zacksAPI as zacks
 from apis import stockTwitsAPI as stockTwits
+from apis import morningstarAPI as morningstar
 
 class Stock:
 	'A basic model for stock data'
@@ -25,22 +26,34 @@ class Stock:
 
 		Stock.stocksCount += 1
 
-	def getYahooData(self):
-		stockData = yahoo.getStockData(self.symbol)
-		print stockData
+	def getBasicData(self):
+		data_request_arr = ['p','j1','j2','v','j4','p5','p6','t8']
+		stockData = yahoo.getStockData(self.symbol,data_request_arr)
+		# print stockData
 		self.basicData['price'] = stockData['market_value']
 		self.basicData['volume'] = stockData['volume']
 		self.basicData['shares_outstanding'] = stockData['shares_outstanding']
 		self.basicData['market_capitalization'] = stockData['market_capitalization']
-		self.basicData['EBITDA'] = stockData['EBITDA']
+		self.basicData['yr_target_price'] = stockData['yr_target_price']
 
 		print "basicData : ", self.basicData
 
 	def getFundamentals(self):
+		# data_request_arr = ['j4','b4']
+		# stockData = yahoo.getStockData(self.symbol,data_request_arr)
+		# self.Fundamentals['EBITDA'] = stockData['EBITDA']
+		# self.Fundamentals['book_value'] = stockData['book_value']
+		self.Fundamentals['keyRatios_yearly'] = morningstar.getKeyRatios(self.symbol)
+		self.Fundamentals['financials_yearly'] = morningstar.getFinancials(self.symbol,12)
+		self.Fundamentals['financials_quaterly'] = morningstar.getFinancials(self.symbol,3)
+
 		print "Fundamentals  : ", self.Fundamentals
 
 	def getTechnicals(self):
+		data_request_arr = ['j1','j2','v','a2','m3', 'm4','b4','p5','p6']
 		stockData = yahoo.getStockData(self.symbol)
+		self.Technicals['price_to_book'] = stockData['price_to_book']
+		self.Technicals['price_to_sales'] = stockData['price_to_sales']
 		self.Technicals['ave_daily_volume'] = stockData['ave_daily_volume']
 		self.Technicals['macd_200'] = stockData['macd_200']
 		self.Technicals['macd_50'] = stockData['macd_50']
