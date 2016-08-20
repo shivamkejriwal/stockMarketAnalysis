@@ -1,0 +1,29 @@
+Value investors and traders favor good stocks at great prices. This does not mean they have to be cheap in price though.
+The key is the belief that they are undervalued. That they are, for some reason, trading under what their true value or potential really is. And the value investor hopes to get in before the market 'discovers' this and moves higher.
+Value investing became famous from legendary investor Benjamin Graham, and more recently Warren Buffett. Obviously, they know something. And they do.
+In fact, value investing has proven to be one of the most successful forms of investing over time.
+Let's take a look at our 'Value Method 1' screen (which is our top performing screen so far this year) and how you too can benefit from value investing.
+
+Parameters
+• Zacks Rank less than or equal to 2 
+(Only Zacks Rank #1 Strong Buys and #2 Buys will get through. This immediately tilts the odds of success in our favor as they've handily beaten the market by nearly 3 times and 2 times as much, respectively.)
+• % Change Actual EPS (Q0/Q-1) greater than X Industry Median 
+(EPS growth above the median for their expanded industry. Too many value stocks are cheap because there's no real growth to speak of. This item selects stocks with growth rates above the median for their industry, and specifically excludes those below it.)
+• P/E Ratio Using 12 Month EPS less than X Industry Median
+(P/E ratio below the median for its industry. Certain items have averages or medians that vary from industry to industry. This identifies only those trading at a discount to the median to their peers.)
+• Price/Sales Ratio less than X Industry Median 
+(This is my favorite valuation metric. The P/S ratio is calculated as price divided by sales. If a stock is trading at a P/S ratio of 1, that means you're paying $1 for every $1 of sales the company makes. If a stock has a P/S ratio of 2, that means you're paying $2 for every $1 of sales the company makes. As you can see, the lower the number, the better. If a stock has a P/S ratio of .5, that means you're paying 50 cents for every $1 of sales the company makes. Like the P/E ratio, different industries have different P/S ratios that are considered normal. So we'll be focusing on stocks with a P/S ratio less than the median for its industry.)
+(% Rating Change over 1 Week) + (% Change Q1 Estimate over 4 Weeks) + (% Change F1 Estimate over 4 Weeks) = Top # 7 
+(This calculated expression combines three items together because of their predictive performance. Stocks with positive broker rating changes (broker rating upgrades) outperform those with broker rating downgrades, and those with no broker rating change at all. And stocks with upward earnings estimate revisions tend to receive more upward earnings estimate revisions, which often leads to higher prices. Using the current quarter and the current year shows increased optimism for both the short-term and the longer-term. Only the 7 stocks with the highest scores for all three items combined get picked.)
+
+Results
+Over the last 16 years (2000 thru 2015), using a one-week holding period, this strategy has shown an average annual return of 49.8% vs. the S&P's 3.8%.
+And so far in 2016 (thru 8/5/16), it's up 70.0% vs. the market's 8.4%.
+It was designed to hold 7 stocks in its portfolio at a time. It's rebalanced weekly. And it trades on average of 4 stocks a week.
+
+One of the potential drawbacks with some value screens is that you often have to wait awhile before the market recognizes that it has mispriced (undervalued) a certain stock and starts to move higher. Some value stocks, for whatever reason, have been ignored by the market. Hence the typically longer-time horizon while you wait for the market to take notice.
+But there's no better catalyst to get a stock moving than a series of upward earnings estimate revisions. Throw in a broker rating upgrade, and the timeliness of the Zacks Rank, and you have a list of stocks with virtually every reason to move up - and fast.
+
+
+
+https://www.zacks.com/commentary/88461/this-value-screen-is-our-top-performer-this-year

@@ -1,0 +1,37 @@
+In good markets or bad, stocks with a Zacks Rank of #1 continue to outperform.
+But, since there are over 200 stocks with a Zacks Rank #1 at any time, it's important to know what other filters to apply to the Zacks Rank to generate a smaller, more tradable list of stocks.
+Two filters in particular, when added to the Zacks Rank of #1, not only narrows down the number of qualified stocks to a more practical portfolio size, it often times increases its performance as well.
+
+Parameters
+There are only three items to this screen. But together, they make for a powerful combination.
+• Zacks Rank equal to 1 
+With an average annual return of over 26% per year over the last 26 years, there's no better way to start off a screen.
+• % Change (Q1) Est. over 4 Weeks greater than 0 
+Positive current quarter estimate revisions over the last four weeks.
+The Zacks Rank already looks at earnings estimate revisions for the current year (F1) and the next year (F2). But this added component looks at the more immediate future, which is the current quarter (Q1).
+If a company's current quarter is seeing downward revisions, this is a potential warning sign that more downward revisions could follow. On the other hand, a company receiving upward earnings estimate revisions should see even more upward earnings estimate revisions, making it an attractive stock to buy.)
+• % Broker Rating Change over 4 Week equal to Top # 5 
+Top 5 stocks with the best average broker rating changes over the last four weeks.
+We're looking for positive broker rating changes or upgrades over the last four weeks. And to limit the number of stocks that come through, we've constructed the screen to select the top 5 stocks with the best broker rating upgrade.
+Since broker ratings are typically skewed to the upside, this makes sure that the brokers are getting more bullish or, at the very least, not getting less bullish (or even bearish) on the stock.
+And while I don't care so much for the actual broker rating per se', I do care about the change. And stocks with broker rating upgrades have proven to outperform those with no broker rating changes and downgrades.
+These two items added to the Zacks #1 Rank produce powerful results!
+
+Results
+Over the last 16 years (2000 thru 2016) using a 1-week rebalance, it showed an average annual return of 54.7% vs. the S&P's 3.8%.
+And it's already up 27.1% this year vs. the S&P's 3.7%.
+
+
+
+
+You can also successfully trade this strategy using a 2-week or 4-week rebalance as well. Regardless of how often you trade it (once a week, every two weeks, or four weeks, etc.), trading 5 stocks at a time is a lot easier than 200 stocks.
+So for a great and reliable way to trade some of the best Zacks #1 Ranked stocks, try the Filtered Zacks Rank 5 strategy and trade fewer stocks for even bigger returns.
+This strategy comes loaded with the Research Wizard and is called bt_sow_filtered zacks rank5. It can be found in the SoW (Screen of the Week) folder.
+Here are three of the five stocks that qualified for the Filtered Zacks Rank5 strategy:
+(CVGI - Snapshot Report)	Commercial Vehicle Group 
+(NEO - Snapshot Report)	Neogenomics 
+(NTES - Snapshot Report)	NetEase
+Get the rest of the stocks on this list and start trading the Filtered Zacks Rank5 (or any of our other strategies) in your own account. Remember, the key to successful screening is in discovering those screens that have produced profitable results in the past. That's exactly what you get with the Research Wizard stock picking and backtesting program.
+
+
+https://www.zacks.com/commentary/82501/explosive-returns-with-the-filtered-zacks-rank-5-strategy

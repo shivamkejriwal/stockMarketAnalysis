@@ -1,0 +1,46 @@
+Fundamental analysis (FA) looks at the value and growth outlook for a stock.
+Technical analysis (TA) essentially shows the demand for a stock and how the market perceives those fundamentals.
+Some die-hard fundamentalists disregard TA, while some technical guys do the same for FA. But nowadays, most people give both techniques the respect they deserve.
+I have a long history of using fundamental analysis to pick winning stocks. But my experience using TA goes back just as far.
+Some prefer to look at TA more as a confirming indicator if TA is used first. In other words, once their fundamental criterion is met, they then look at the charts.
+But if TA is used first, it can act as a spotting indicator, helping to put stocks with certain technical analysis characteristics on their radar so they can then layer their fundamental analysis on top.
+You can also do both at the same time. And that's the screen we're going to look at today.
+
+Parameters and Methodology
+The screen below is called TA and FA Winners, and it comes loaded with the Research Wizard.
+• Zacks Rank less than or equal to 2 
+Only Strong Buys and Buys from Zacks.
+• Price to Sales less than Median for its X (Expanded) Industry 
+The P/S ratio is my favorite valuation metric. And the way we're using it here is by demanding that the stocks coming thru are trading at valuations better than the median for their respective industries.
+• Estimate One Year EPS Growth > Median for its X (Expanded) Industry 
+We want growth rates that are greater than the median for their respective industries as well. Without growth, there's little reason to move.
+• Price x Volume >= $500,000 
+This item, also known as 'dollar volume', calculates the average total dollar amount trading in this stock on a daily basis. The threshold above represents the bare minimum of dollar volume traded to qualify this screen.
+• Recent Week's Volume > Volume from 1 Week Ago 
+Rising prices and increasing volume can be a sign that new buyers are coming in and short sellers may be giving up.
+• Volume from 1 Week Ago > Volume from 2 Weeks Ago 
+The second week of increasing volume eliminates the instances where there's a only a one-week volume spike, which can often times be meaningless. The addition of the second week helps to see true increasing demand.
+• Volume from 2 Weeks Ago > Volume from 3 Weeks Ago 
+The third week, I have found, helps to spot institutional buying. Big institutions don't get in all at once given their size. So they plan their trades accordingly over periods of weeks and even months. The appearance of a third week of increasing volume could be spotting institutional buying, which is a bullish sign.
+• % Change in Price over the last 24 Weeks = Top # 30 
+This item, after meeting all of the aforementioned criteria, selects the top 30 stocks with the best percentage price change over the last 24 weeks.
+• % Change in Price over the last 12 Weeks = Top # 20 
+From those 30 stocks, it then narrows it down to 20 stocks with the best percentage price change over the last 12 weeks.
+• % Change in Price over the last 4 Weeks = Top # 7
+And lastly, from those 20 stocks, it picks the 7 stocks with the best percentage price change over the last 4 weeks. These last 3 price change items establish the stock's long-term, medium-term, and short-term momentum.
+
+Results
+Over the last 16 years and nearly 4 months (2000 thru April 22nd 2016), using a one-week rebalancing period, this strategy produced a compounded annual growth rate of 52.8% vs. the S&P's 3.9%.
+And so far this year, it's up 27.6% vs. the market's 3.2%. That's an impressive outperformance, especially given one of the worst starts for the market in years!
+
+Stocks
+Here are 5 of recent 7 picks:
+(DST - Analyst Report)	DST Systems 
+(KCG - Snapshot Report)	KCG Holdings 
+(MCEP - Snapshot Report)	Mid-Con Energy Partners 
+(OMN - Snapshot Report)	Omnova Solutions 
+(SBS - Analyst Report)	SABESP
+Get the rest of the stocks on this list and start trading 'TA and FA Winners' (or any of our other strategies) in your own account. Remember, the key to successful screening is in discovering those screens that have produced profitable results in the past. That's exactly what you get with the Research Wizard stock picking and backtesting program.
+
+
+https://www.zacks.com/commentary/79297/technical-analysis-and-fundamental-analysis-combined

@@ -1,0 +1,48 @@
+Which valuation metric is better: the PEG ratio or the P/E ratio?
+Before we answer that question, let's first start with some basics.
+
+Definitions
+The P/E ratio is simply: Price / Earnings
+Essentially, this tells you how much an investor is willing to pay for each unit (year) of earnings. If a stock is trading at a P/E ratio of 30, it is said to be trading at 30x times its annual earnings.
+In general, the lower the P/E ratio the better. A common threshold for many investors is a P/E of 20 or less. (For the record, at the time of this writing, the S&P 500 Index was trading at a P/E (using F1 Estimates) of 15.33.)
+A PEG ratio is the: P/E Ratio divided by the Growth Rate
+Conventional wisdom says a value of 1 or less is considered good (at par or undervalued to its growth rate), while a value of greater than 1, in general, is not as good (overvalued to its growth rate).
+Many believe the PEG ratio tells a more complete story than just the P/E ratio. (The S&P at the time of this writing had a PEG ratio of 1.93.)
+
+Comparison
+Let's take a look at both of these in action.
+For example: a company with a P/E Ratio of 25 and a Growth Rate of 20% would have a PEG ratio of 1.25 (25 / 20= 1.25).
+While a company with a P/E Ratio of 40 and a Growth Rate of 50% would have a PEG Ratio of 0.80 (40 / 50= 0.80).
+Traditionally, investors would look at the stock with the lower P/E ratio and deem it a bargain (undervalued). But looking at it closer, you can see it doesn't have the growth rate to justify its P/E.
+The stock with the P/E of 40, however, is actually the better bargain since its PEG ratio is lower (0.80) and is trading at a discount to its growth rate.
+In other words, the lower the PEG ratio, the better the value. That's because the investor would be paying less for each unit of earnings growth.
+So which one is better?
+They both have their usefulness. I do like how the PEG positions the P/E ratio in relation to its growth rate to put everything into perspective.
+Quite frankly, I use both, so I'm going to say it's a tie. Plus, you couldn't even create the PEG ratio without the P/E.
+But, you don't have to choose one or the other. You can use both. And that's how we're using it in this week's screen.
+
+Screen Parameters
+Let's first start with:
+• Zacks Rank equal to 1
+(Only stocks with a Zacks Rank #1 Strong Buy can get thru.)
+• Projected One Year Growth Rate greater than S&P 500
+(Market outperformers are what we're looking for. The 1 year projected growth rate for the S&P is currently 7.94%. So only those above that will qualify.)
+• P/E Ratio (using F1) less than or equal to 20 AND less than or equal to X Industry Median 
+(Not only do we want our P/Es to be below their classic valuation threshold, but we want them to be below the median for their industry as well.)
+• PEG Ratio less than or equal to 1 AND less than or equal to X Industry Median 
+(P/E divided by its (F1) projected growth rate. This one also has to be below its classic valuation marker and have a PEG ratio below the median for its industry. This ensures that they are considered undervalued on an absolute basis as well as undervalued relative to its group of peers.)
+• Price greater than or equal to $5
+• Avg. 20 Day Volume greater than or equal to 100,000
+This screen will find stocks with market beating growth rates, yet still be considered undervalued on two of the most effective valuation markers. And of course, with the Zacks Rank added to it, each one of these picks will be experiencing upward earnings estimate revisions, which provides a timely catalyst for the stock to move.
+
+Results
+Here are 4 stocks from this week's list, along with their P/E ratio (using F1 Estimates) and their PEG ratio (using F1 Projected Growth Rates):
+(HMST - Snapshot Report)	HomeStreet 
+(P/E: 9.09, PEG: 0.91)
+(KBH - Analyst Report)	KB Home 
+(P/E: 11.67, PEG: 0.42)
+(SIMO - Analyst Report)	Silicon Motion Technology 
+(P/E: 19.04, PEG: 0.95)
+(TPRE - Snapshot Report)	Third Point Reinsurance 
+(P/E: 11.00, PEG: 0.73)
+Sign up now for your 2 week free trial to the Research Wizard and get the rest of the stocks on this list and start using this screen in your own trading. Or create your own strategies and test them first before you invest. Know what to buy and when to sell. You can do it.
