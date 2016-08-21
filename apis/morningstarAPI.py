@@ -18,7 +18,9 @@ def getData(url):
 
 def fixValues(values):
 	result = []
+
 	for value in values:
+		value = str(value.replace('"',''))
 		if value == '':
 			result.append(None)
 		else:
@@ -166,14 +168,14 @@ def clean_key_ratios_data(rows):
 
 def getKeyRatios(symbol):
 	url = create_key_ratios_URL(symbol)
-	print url
+	# print url
 	data = getData(url)
 	rows = data.splitlines()[1:]
 	rows = ['']+rows
 	result = clean_key_ratios_data(rows)
 	return result
 
-# keyRatios = getKeyRatios('gss')
+# keyRatios = getKeyRatios('ORIG')
 # pp(keyRatios)
 # financials = getFinancials('gss',3)
 # pp(financials)

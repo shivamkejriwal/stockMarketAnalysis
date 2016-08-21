@@ -113,6 +113,9 @@ def getFairValue_estimates(data):
 def getMarketValue(data):
 	if 'market_capitalization' not in data or 'shares_outstanding' not in data:
 		return None
+
+	if data['market_capitalization'] == None or data['shares_outstanding'] == None:
+		return None
 	m_cap = data['market_capitalization']
 	shares = data['shares_outstanding']
 	market_value = m_cap/shares
@@ -122,6 +125,10 @@ def getMarketValue(data):
 def getPriceToBook(data):
 	if 'market_value' not in data or 'book_value' not in data:
 		return None
+
+	if data['market_value'] == None or data['book_value'] == None:
+		return None
+
 	market_value = data['market_value']
 	book_value = data['book_value']
 	priceToBook = market_value/book_value
@@ -133,6 +140,7 @@ def getStockData(ticker, data_arr=None):
 		data_arr = ['a','b','o','p','j1','j2','v','a2','m3', 'm4','b4','j4']
 	url = createURL(ticker,data_arr)
 	data = getData(url,data_arr)
+	# print data
 	if 'j1' in data_arr and 'j2' in data_arr:
 		data["market_value"] = getMarketValue(data)
 	if 'price_to_book' in data and data['price_to_book'] == None:

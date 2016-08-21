@@ -92,8 +92,9 @@ def getZacksOpinion(symbol):
 	stylebox = tree.xpath('//div[@class="composite_group"]/p/span')
 
 	industrybox = tree.xpath('//section[@id="stock_industry_analysis"]/p[@class="premium"]/a')
-	industry = industrybox[0].text[len('See all '):-len(' Peers>> ')]
-	opinon["Industry"] = industry
+	if len(industrybox)>0:
+		industry = industrybox[0].text[len('See all '):-len(' Peers>> ')]
+		opinon["Industry"] = industry
 	for value in rankbox:
 		if isInteger(value.text):
 			opinon["Rank"] = int(value.text)
@@ -130,17 +131,34 @@ def cleanEarningsData(data):
 	# =============
 	earnings_data = []
 	for value in earnings_table:
-		estimate = fixDecimal(value[2].replace("$", ""),2)
-		reported = fixDecimal(value[3].replace("$", ""),2)
-		surprise = (reported-estimate)/abs(estimate) if estimate!=0 else 0
-		surprise = fixDecimal(surprise*100,2)
+
 		obj = {
 			'Date':str(value[0]),
 			'Period_Ending':value[1],
-			'Estimate':estimate,
-			'Reported':reported,
-			'Surprise':surprise,
+			'Estimate':None,
+			'Reported':None,
+			'Surprise':None,
 		}
+
+		if '--' in value[2]:
+			estimate = None
+		else:
+			estimate = fixDecimal(value[2].replace("$", ""),2)
+
+		if '--' in value[3]:
+			reported = None
+		else:
+			reported = fixDecimal(value[3].replace("$", ""),2)
+
+		if estimate == None or reported == None:
+			surprise = None
+		else:
+			surprise = (reported-estimate)/abs(estimate) if estimate!=0 else 0
+			surprise = fixDecimal(surprise*100,2)
+
+		obj['Estimate'] = estimate
+		obj['Reported'] = reported
+		obj['Surprise'] = surprise
 		earnings_data.append(obj)
 
 	# revisions_data
@@ -214,43 +232,63 @@ def getInsiderTransactions(symbol):
 		if 'window.app_data_all =' in script_text:
 			trades_all_text = script_text.replace(" ", "")
 			start_text = 'window.app_data_all='
-			end_text = '};'
 			start_index = trades_all_text.find(start_text)
-			end_index = trades_all_text.find(end_text,start_index)
 			start_index+=len(start_text)+2
+
+			end_text = '};'
+			end_index = trades_all_text.find(end_text,start_index)
 			end_index+=len(end_text)-1
+
 			json_data = trades_all_text[start_index:end_index]
 			json_data = json_data.replace('\r\n', "").replace("columns:","\"columns\":")
 			# print json_data
-			data = json.loads(json_data)
+			data = None
+			if len(json_data)!=0:
+				data = json.loads(json_data)
 			trades['all']=data
 			# pp(data)
 		if 'window.app_data_buy =' in script_text:
 			trades_buys_text = script_text.replace(" ", "")
 			start_text = 'window.app_data_buy='
-			end_text = '};'
 			start_index = trades_buys_text.find(start_text)
-			end_index = trades_buys_text.find(end_text,start_index)
 			start_index+=len(start_text)+2
+
+			end_text = '};'
+			end_index = trades_buys_text.find(end_text,start_index)
 			end_index+=len(end_text)-1
+
 			json_data = trades_buys_text[start_index:end_index]
 			json_data = json_data.replace('\r\n', "").replace("columns:","\"columns\":")
 			# print json_data
-			data = json.loads(json_data)
+			data = None
+			if len(json_data)!=0:
+				data = json.loads(json_data)
 			trades['buys']=data
 			# pp(data)
 		if 'window.app_data_sell =' in script_text:
 			trades_sells_text = script_text.replace(" ", "")
+
 			start_text = 'window.app_data_sell='
-			end_text = '};'
 			start_index = trades_sells_text.find(start_text)
-			end_index = trades_sells_text.find(end_text,start_index)
 			start_index+=len(start_text)+2
+
+			end_text1 = '};'
+			end_text2 = 'window.app_data_option='
+			
+			end_index1 = trades_sells_text.find(end_text1,start_index)
+			end_index2 = trades_sells_text.find(end_text2,start_index)
+			end_index = end_index1
 			end_index+=len(end_text)-1
+			if end_index1>end_index2:
+				end_index = end_index2
+				end_index+=len(end_text)-2
+
 			json_data = trades_sells_text[start_index:end_index]
 			json_data = json_data.replace('\r\n', "").replace("columns:","\"columns\":")
 			# print json_data
-			data = json.loads(json_data)
+			data = None
+			if len(json_data)!=0:
+				data = json.loads(json_data)
 			trades['sells']=data
 			# pp(data)
 		if 'window.app_data_option =' in script_text:
@@ -263,9 +301,11 @@ def getInsiderTransactions(symbol):
 			end_index+=len(end_text)-1
 			json_data = trades_option_text[start_index:end_index]
 			json_data = json_data.replace('\r\n', "").replace("columns:","\"columns\":")
-			# print json_data
-			data = json.loads(json_data)
-			trades['options']=data
+			# if json_data
+			data = None
+			if len(json_data)!=0:
+				data = json.loads(json_data)
+			trades['options'] = data
 			# pp(data)
 	# pp(trades)
 	# print len(trades['all']['data'])
@@ -361,6 +401,10 @@ def getRank(sorted_data):
 		ranks[name] = index+1
 	return ranks
 
+def addRankToObj(industryRanks, rank_type, rank_list):
+	for industry, rank in rank_list.items():
+			industryRanks[industry]['rank'][rank_type] = rank
+
 def getIndustryRanks():
 	industryRanks = {}
 	ranks = {}
@@ -371,16 +415,16 @@ def getIndustryRanks():
 		industryRanks[name] = industry.copy()
 		industryRanks[name]['rank'] = {}
 		industryRanks[name]['rank']['ByZacks'] = int(industryRanks[name]['zRank'])
-		del industryRanks[name]['name']
+		# del industryRanks[name]['name']
 		del industryRanks[name]['zRank']
 
-	# sortedByZacks = sorted(data, key=lambda obj: rankByZacks(obj))
-	sortedByZacksScore = sorted(data, key=lambda obj: rankByZacksScore(obj),)
-	sortedByZacksScoreChange = sorted(data, key=lambda obj: rankByZacksScoreChange(obj), reverse=True)
-	sortedBySentiment = sorted(data, key=lambda obj: rankBySentiment(obj), reverse=True)
-	sortedByGenralSentiment = sorted(data, key=lambda obj: rankByGenralSentiment(obj), reverse=True)
-	sortedByOptimism = sorted(data, key=lambda obj: rankByOptimism(obj), reverse=True)
-	sortedByPositiveRevisions = sorted(data, key=lambda obj: rankByPositiveRevisions(obj), reverse=True)
+	# sortedByZacks = sorted(data, key=lambda obj: rankByZacks(obj)) # lower is better
+	sortedByZacksScore = sorted(data, key=lambda obj: rankByZacksScore(obj)) # lower is better
+	sortedByZacksScoreChange = sorted(data, key=lambda obj: rankByZacksScoreChange(obj)) # lower is better
+	sortedBySentiment = sorted(data, key=lambda obj: rankBySentiment(obj), reverse=True) # higher is better
+	sortedByGenralSentiment = sorted(data, key=lambda obj: rankByGenralSentiment(obj), reverse=True) # higher is better
+	sortedByOptimism = sorted(data, key=lambda obj: rankByOptimism(obj), reverse=True) # higher is better
+	sortedByPositiveRevisions = sorted(data, key=lambda obj: rankByPositiveRevisions(obj), reverse=True) # higher is better
 	# ranks['ByZacks'] = getRank(sortedByZacks)
 	ranks['ByZacksScore'] = getRank(sortedByZacksScore)
 	ranks['ByZacksScoreChange'] = getRank(sortedByZacksScoreChange)
@@ -390,12 +434,36 @@ def getIndustryRanks():
 	ranks['ByPositiveRevisions'] = getRank(sortedByPositiveRevisions)
 
 	for rank_type, rank_list in ranks.items():
-		for industry, rank in rank_list.items():
-			industryRanks[industry]['rank'][rank_type] = rank
+		addRankToObj(industryRanks, rank_type, rank_list)
+		# for industry, rank in rank_list.items():
+		# 	industryRanks[industry]['rank'][rank_type] = rank
+
+	weight = {
+		'ByZacks': .2 ,
+		'ByZacksScore': .0 ,
+		'ByZacksScoreChange': .2 ,
+		'BySentiment': .1 ,
+		'ByGenralSentiment': .2 ,
+		'ByOptimism': .1 ,
+		'ByPositiveRevisions': .2
+	}
 
 	for industry, rank_obj in industryRanks.items():
 		total = sum(rank_obj['rank'].values())
-		industryRanks[industry]['rank']['average'] = total/len(rank_obj['rank'].values())
+		size = len(rank_obj['rank'].values())
+		weighted_average = 0
+		for key, value in rank_obj['rank'].items():
+			weighted_average+=value*weight[key]
+
+		industryRanks[industry]['rank_average'] = total/size
+		industryRanks[industry]['rank_weighted_average'] = fixDecimal(weighted_average, 3)
+
+	sortedByAverage = sorted(industryRanks.values(), key=lambda obj: obj['rank_average'])
+	sortedByWeightedAverage = sorted(industryRanks.values(), key=lambda obj: obj['rank_weighted_average'])
+	ranks['ByAverage'] = getRank(sortedByAverage)
+	ranks['ByWeightedAverage'] = getRank(sortedByWeightedAverage)
+	addRankToObj(industryRanks, 'ByAverage', ranks['ByAverage'])
+	addRankToObj(industryRanks, 'ByWeightedAverage', ranks['ByWeightedAverage'])
 
 	return industryRanks
 
@@ -410,14 +478,14 @@ def getIndustryRanks():
 
 # sortedRanks= sorted(ranks.items(), key=lambda obj: getSortValue(obj,'average'))[:10]
 # pp(sortedRanks)
-# getInsiderTransactions('gale')
+# getInsiderTransactions('GNVC')
 # getPriceConsensus('gss')
-# data = getEarnings('gale')
+# data = getEarnings('PPHM')
 # pp(data)
 # ========
 # 	Main
 # ========
-# ticker = 'GSS'
+# ticker = 'AGFSW'
 # print getZacksOpinion(ticker)
 # print getZacksRank(ticker)
 # print getZacksStyleScore(ticker)
