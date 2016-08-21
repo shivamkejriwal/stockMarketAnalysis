@@ -76,10 +76,10 @@ class Stock:
 		self.recentSentiment = stockTwits.getSentiment(self.symbol)
 		print "recentSentiment  : ", self.recentSentiment
 
-stock  = Stock('GSS')
-print stock.symbol
+# stock  = Stock('GSS')
+# print stock.symbol
 # stock.getZacksOpinion()
 # stock.getEarnings()
 # stock.getInsiderTransactions()
 # stock.getRecentSentiment()
-stock.getBasicData()
+# stock.getBasicData()
