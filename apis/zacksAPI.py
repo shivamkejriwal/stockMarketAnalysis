@@ -18,6 +18,8 @@ def getSuggestion(rank):
 	return suggestion_mapping[rank]
 
 def fixDecimal(value,limit):
+	if value == None:
+		return None
 	result = decimal.Decimal(value)
 	result = round(result,limit)
 	return result
@@ -78,6 +80,7 @@ def getZacksOpinion(symbol):
 		"Rank": None,
 		"Suggestion":None,
 		"Industry":None,
+		"Beta":None,
 		"Style_Score": {
 			"Value":None,
 			"Growth":None,
@@ -95,6 +98,16 @@ def getZacksOpinion(symbol):
 	if len(industrybox)>0:
 		industry = industrybox[0].text[len('See all '):-len(' Peers>> ')]
 		opinon["Industry"] = industry
+	
+	stockActivityBox = tree.xpath('//section[@id="stock_activity"]/table/tbody/tr')
+	for row in stockActivityBox:
+		key = row[0].text
+		if key == 'Beta':
+			value = row[1][0].text
+			if value == 'NA': 
+				value = None
+			opinon["Beta"] = fixDecimal(value,3)
+
 	for value in rankbox:
 		if isInteger(value.text):
 			opinon["Rank"] = int(value.text)
@@ -485,7 +498,7 @@ def getIndustryRanks():
 # ========
 # 	Main
 # ========
-# ticker = 'AGFSW'
+# ticker = 'NSPR'
 # print getZacksOpinion(ticker)
 # print getZacksRank(ticker)
 # print getZacksStyleScore(ticker)

@@ -34,8 +34,9 @@ mapping = {
 	'p6':'price_to_book',
 	's6':'revenue',
 	't8': 'yr_target_price',
-	'x': 'stock_exchange'
-
+	'x': 'stock_exchange',
+	'k' : '52_week_high',
+	'j' : '52_week_low'
 }
 
 def fixDecimal(value):

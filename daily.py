@@ -8,19 +8,6 @@ from pprint import pprint as pp
 
 skipList = config.skipList
 
-def printData(data):
-	print('IPOyear\tSymbol\tLastSale\tZacks_Score(V,G,M)\tMarketCap\tSector\t\t\tIndustry')
-	# print "Headers:", data.columns.values
-	template_small = '{0:7}\t{1:4}\t{2:6}\t\t{3}-{4}({5},{6},{7})\t\t{8:10}\t{9:20}\t\t{10:<}'
-	template_big = '{0:7}\t{1:4}\t{2:6}\t\t{3}-{4}({5},{6},{7})\t{8:10}\t{9:20}\t\t{10:<}'
-	for index, row in data.iterrows():
-		template = template_small
-		if row['zacks_rank']==1 or row['zacks_rank']==5:
-			template = template_big 
-		print(template.format(row['IPOyear'],row['Symbol'],row['LastSale']
-			,row['zacks_rank'],row['zacks_suggestion']
-			,row['zacks_score_Value'],row['zacks_score_Growth'],row['zacks_score_Momentum']
-			,row['MarketCap'],row['Sector'],row['industry']))
 
 
 def isValidRank(zacks_opinion):
@@ -73,6 +60,21 @@ def isMomentumStock(zacks_opinion):
 		return  False
 	return True
 
+
+# def printData(data):
+# 	print('IPOyear\tSymbol\tLastSale\tZacks_Score(V,G,M)\tMarketCap\tSector\t\t\tIndustry')
+# 	# print "Headers:", data.columns.values
+# 	template_small = '{0:7}\t{1:4}\t{2:6}\t\t{3}-{4}({5},{6},{7})\t\t{8:10}\t{9:20}\t\t{10:<}'
+# 	template_big = '{0:7}\t{1:4}\t{2:6}\t\t{3}-{4}({5},{6},{7})\t{8:10}\t{9:20}\t\t{10:<}'
+# 	for index, row in data.iterrows():
+# 		template = template_small
+# 		if row['zacks_rank']==1 or row['zacks_rank']==5:
+# 			template = template_big 
+# 		print(template.format(row['IPOyear'],row['Symbol'],row['LastSale']
+# 			,row['zacks_rank'],row['zacks_suggestion']
+# 			,row['zacks_score_Value'],row['zacks_score_Growth'],row['zacks_score_Momentum']
+# 			,row['MarketCap'],row['Sector'],row['industry']))
+# 
 # def populateZacksResearch(data, max_rank=3):
 #     symbols = data["Symbol"].tolist()
 #     data["zacks_rank"] = ""
@@ -96,7 +98,7 @@ def isMomentumStock(zacks_opinion):
 #             	data.set_value(row_index, 'sentiment', sentiment_value)
 #             print symbol, rank, zacks_opinion["Suggestion"], sentiment
 #     return data
-
+#
 # def getShortList():
 # 	print "\n=================\nBuying Short List\n=================\n"
 # 	data = dataETL.getExchangeData(convert=True)
@@ -114,23 +116,23 @@ def isMomentumStock(zacks_opinion):
 # 	printData(data)
 
 
-def getShortlist2():
+def getShortlist():
 	print "\n==================\nGetting Short List\n==================\n"
-	# data = dataETL.getExchangeData(convert=True)
-	# filters = {
-	# 	'min_MarketCap':1000000, # $1,000,000 Mil
-	# 	'max_LastSale':1.00,
-	# 	'min_LastSale':.10,
-	# }
-	# data = dataETL.filterData(filters=filters, data=data)
-	# symbols = data["Symbol"].tolist()
+	data = dataETL.getExchangeData(convert=True)
+	filters = {
+		'min_MarketCap':1000000, # $1,000,000 Mil
+		'max_LastSale':1.00,
+		'min_LastSale':.10,
+	}
+	data = dataETL.filterData(filters=filters, data=data)
+	symbols = data["Symbol"].tolist()
 
-	symbols = ['ACPW', 'ATEC', 'AMRS', 'APRI', 'BIOC', 'BIOD', 'BLIN'
-				, 'CPRX', 'CYTR', 'ETRM', 'GNVC', 'NVCN', 'ORIG', 'PPHM'
-				, 'REXX', 'SGNL', 'ANY', 'SSH', 'WGBS', 'XOMA', 'BAS', 'BXE', 'HK'
-				, 'ROX', 'LODE', 'DNN', 'ESNC', 'GMO', 'AUMN', 'GSS', 'IMUC', 'NSPR'
-				, 'JRJR', 'LIQT', 'NCQ', 'PTN', 'PLM', 'PLX', 'RNN', 'XPL', 'TGB'
-				, 'TGD', 'TAT', 'HTM']
+	# symbols = ['ACPW', 'ATEC', 'AMRS', 'APRI', 'BIOC', 'BIOD', 'BLIN'
+	# 			, 'CPRX', 'CYTR', 'ETRM', 'GNVC', 'NVCN', 'ORIG', 'PPHM'
+	# 			, 'REXX', 'SGNL', 'ANY', 'SSH', 'WGBS', 'XOMA', 'BAS', 'BXE', 'HK'
+	# 			, 'ROX', 'LODE', 'DNN', 'ESNC', 'GMO', 'AUMN', 'GSS', 'IMUC', 'NSPR'
+	# 			, 'JRJR', 'LIQT', 'NCQ', 'PTN', 'PLM', 'PLX', 'RNN', 'XPL', 'TGB'
+	# 			, 'TGD', 'TAT', 'HTM']
 
 	for i in range(len(symbols)):
 		symbols[i] = symbols[i].replace(" ", "")	
@@ -188,8 +190,7 @@ def doAnalysis(stockList, industryRanks, listName=None):
 	# symbols = [stock.symbol for stock in stockList]
 	# print symbols
 
-	# print('Symbol\tIndustry\t\tZacks_Score(V,G,M)\tPrice\tMarketCap')
-	print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap')
+	print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions')
 	for stock in stockList:
 		stock.setIndustryDetails(industryRanks)
 		stock.getFundamentals()
@@ -205,7 +206,7 @@ industryRanks = zacks.getIndustryRanks()
 sortedByZacksRank = sorted(industryRanks.values(), key=lambda obj: obj['rank_weighted_average'], reverse=True)
 pp(sortedByZacksRank)
 
-shortList = getShortlist2()
+shortList = getShortlist()
 sortedByPrice = sorted(shortList['complete'], key=lambda stock: stock.basicData['price'])
 doAnalysis(sortedByPrice, industryRanks, 'Potential Stock List')
 

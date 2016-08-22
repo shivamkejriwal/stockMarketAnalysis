@@ -175,7 +175,7 @@ def getKeyRatios(symbol):
 	result = clean_key_ratios_data(rows)
 	return result
 
-# keyRatios = getKeyRatios('ORIG')
+# keyRatios = getKeyRatios('NSPR')
 # pp(keyRatios)
 # financials = getFinancials('gss',3)
 # pp(financials)
