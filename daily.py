@@ -18,7 +18,7 @@ def isValidRank(zacks_opinion):
 	return True
 
 
-def isValidStock(zacks_opinion):
+def isGoodStock(zacks_opinion):
 	valueScore = zacks_opinion["Style_Score"]["Value"]
 	growthScore = zacks_opinion["Style_Score"]["Growth"]
 	validScores = ['A', 'B']
@@ -60,6 +60,11 @@ def isMomentumStock(zacks_opinion):
 		return  False
 	return True
 
+
+def hasGoodEarnings(earningsData):
+	if earningsData['Earnings']['past_surprise']<0:
+		return False
+	return True
 
 # def printData(data):
 # 	print('IPOyear\tSymbol\tLastSale\tZacks_Score(V,G,M)\tMarketCap\tSector\t\t\tIndustry')
@@ -116,23 +121,19 @@ def isMomentumStock(zacks_opinion):
 # 	printData(data)
 
 
-def getShortlist():
+def getShortlist(symbols=None):
 	print "\n==================\nGetting Short List\n==================\n"
-	data = dataETL.getExchangeData(convert=True)
-	filters = {
-		'min_MarketCap':1000000, # $1,000,000 Mil
-		'max_LastSale':1.00,
-		'min_LastSale':.10,
-	}
-	data = dataETL.filterData(filters=filters, data=data)
-	symbols = data["Symbol"].tolist()
+	if symbols==None:
+		data = dataETL.getExchangeData(convert=True)
+		filters = {
+			'min_MarketCap':1000000, # $1,000,000 Mil
+			'max_LastSale':1.00,
+			'min_LastSale':.10,
+		}
+		data = dataETL.filterData(filters=filters, data=data)
+		symbols = data["Symbol"].tolist()
 
-	# symbols = ['ACPW', 'ATEC', 'AMRS', 'APRI', 'BIOC', 'BIOD', 'BLIN'
-	# 			, 'CPRX', 'CYTR', 'ETRM', 'GNVC', 'NVCN', 'ORIG', 'PPHM'
-	# 			, 'REXX', 'SGNL', 'ANY', 'SSH', 'WGBS', 'XOMA', 'BAS', 'BXE', 'HK'
-	# 			, 'ROX', 'LODE', 'DNN', 'ESNC', 'GMO', 'AUMN', 'GSS', 'IMUC', 'NSPR'
-	# 			, 'JRJR', 'LIQT', 'NCQ', 'PTN', 'PLM', 'PLX', 'RNN', 'XPL', 'TGB'
-	# 			, 'TGD', 'TAT', 'HTM']
+
 
 	for i in range(len(symbols)):
 		symbols[i] = symbols[i].replace(" ", "")	
@@ -155,9 +156,10 @@ def getShortlist():
 		stock.getZacksOpinion()
 		if stock.zacksOpinion['Industry']==None:
 			print stock.symbol, "\t=== No Zacks Data"
+			# skipList.append(stock.symbol)
 			continue
 
-		goodStock = isValidStock(stock.zacksOpinion)
+		goodStock = isGoodStock(stock.zacksOpinion)
 		growthStock = isGrowthStock(stock.zacksOpinion)
 		underValuedStock = isUnderValuedStock(stock.zacksOpinion)
 		momentumStock = isMomentumStock(stock.zacksOpinion)
@@ -174,13 +176,17 @@ def getShortlist():
 		if growthStock or underValuedStock or momentumStock:
 			print stock.symbol, "\t=== Potential Stock"
 			stock.getBasicData()
+			stock.getEarnings()
 			if stock.basicData['price'] == None:
 				print stock.symbol, "\t====> No Price Data"
+			elif not hasGoodEarnings(stock.earningsData):
+				print stock.symbol, "\t====> Bad Earnings Data" 
 			else:
 				result['complete'].append(stock)
 		else: 
 			print stock.symbol, "\t=== Bad Stock"
 
+	# print "skipList:",skipList
 	return result
 
 
@@ -190,12 +196,12 @@ def doAnalysis(stockList, industryRanks, listName=None):
 	# symbols = [stock.symbol for stock in stockList]
 	# print symbols
 
-	print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions')
+	print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5)')
 	for stock in stockList:
 		stock.setIndustryDetails(industryRanks)
 		stock.getFundamentals()
 		stock.getTechnicals()
-		stock.getEarnings()
+		# stock.getEarnings()
 		stock.getInsiderTransactions()
 		stock.getRecentSentiment()
 		stock.printData()
@@ -204,10 +210,23 @@ def doAnalysis(stockList, industryRanks, listName=None):
 
 industryRanks = zacks.getIndustryRanks()
 sortedByZacksRank = sorted(industryRanks.values(), key=lambda obj: obj['rank_weighted_average'], reverse=True)
-pp(sortedByZacksRank)
+# pp(sortedByZacksRank)
+
+# symbols = ['ACPW', 'ATEC', 'AMRS', 'APRI', 'BIOC', 'BIOD', 'BLIN'
+# 		, 'CPRX', 'CYTR', 'ETRM', 'GNVC', 'NVCN', 'ORIG', 'PPHM'
+# 		, 'REXX', 'SGNL', 'ANY', 'SSH', 'WGBS', 'XOMA', 'BAS', 'BXE', 'HK'
+# 		, 'ROX', 'LODE', 'DNN', 'ESNC', 'GMO', 'AUMN', 'GSS', 'IMUC', 'NSPR'
+# 		, 'JRJR', 'LIQT', 'NCQ', 'PTN', 'PLM', 'PLX', 'RNN', 'XPL', 'TGB'
+# 		, 'TGD', 'TAT', 'HTM']
 
 shortList = getShortlist()
+
 sortedByPrice = sorted(shortList['complete'], key=lambda stock: stock.basicData['price'])
+
+# for stock in sortedByPrice:
+# 	symbols.append(stock.symbol)
+# print "symbols:",symbols
+
 doAnalysis(sortedByPrice, industryRanks, 'Potential Stock List')
 
 # current_portfolio = portfolio.getCurrentPortfolio(config.portfolio)

@@ -18,7 +18,7 @@ def getSuggestion(rank):
 	return suggestion_mapping[rank]
 
 def fixDecimal(value,limit):
-	if value == None:
+	if value == None or value == '':
 		return None
 	result = decimal.Decimal(value)
 	result = round(result,limit)
@@ -248,9 +248,15 @@ def getInsiderTransactions(symbol):
 			start_index = trades_all_text.find(start_text)
 			start_index+=len(start_text)+2
 
-			end_text = '};'
-			end_index = trades_all_text.find(end_text,start_index)
-			end_index+=len(end_text)-1
+			end_text1 = '};'
+			end_text2 = 'window.app_data_buy='
+			end_index1 = trades_all_text.find(end_text1,start_index)
+			end_index2 = trades_all_text.find(end_text2,start_index)
+			end_index = end_index1
+			end_index+=len(end_text1)-1
+			if end_index1>end_index2:
+				end_index = end_index2
+				# end_index+=len(end_text2)-2
 
 			json_data = trades_all_text[start_index:end_index]
 			json_data = json_data.replace('\r\n', "").replace("columns:","\"columns\":")
@@ -266,9 +272,15 @@ def getInsiderTransactions(symbol):
 			start_index = trades_buys_text.find(start_text)
 			start_index+=len(start_text)+2
 
-			end_text = '};'
-			end_index = trades_buys_text.find(end_text,start_index)
-			end_index+=len(end_text)-1
+			end_text1 = '};'
+			end_text2 = 'window.app_data_sell='
+			end_index1 = trades_buys_text.find(end_text1,start_index)
+			end_index2 = trades_buys_text.find(end_text2,start_index)
+			end_index = end_index1
+			end_index+=len(end_text1)-1
+			if end_index1>end_index2:
+				end_index = end_index2
+				# end_index+=len(end_text2)
 
 			json_data = trades_buys_text[start_index:end_index]
 			json_data = json_data.replace('\r\n', "").replace("columns:","\"columns\":")
@@ -291,10 +303,10 @@ def getInsiderTransactions(symbol):
 			end_index1 = trades_sells_text.find(end_text1,start_index)
 			end_index2 = trades_sells_text.find(end_text2,start_index)
 			end_index = end_index1
-			end_index+=len(end_text)-1
+			end_index+=len(end_text1)-1
 			if end_index1>end_index2:
 				end_index = end_index2
-				end_index+=len(end_text)-2
+				# end_index+=len(end_text2)-2
 
 			json_data = trades_sells_text[start_index:end_index]
 			json_data = json_data.replace('\r\n', "").replace("columns:","\"columns\":")
@@ -480,7 +492,55 @@ def getIndustryRanks():
 
 	return industryRanks
 
+def getIndustryWideEPS():
 
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36',
+		'Host':'www.zacks.com'
+		# ,'Referer':'https://www.zacks.com/stocks/industry-rank?icid=zpiq-pb-irm'
+	}
+
+	industryData = {}
+	for i in range(1,290): #1-244
+
+		result = {}
+		# premium_string=1&
+		page = requests.get('https://www.zacks.com/zrank/zacks_industry_rank_data_handler.php?i='+str(i),headers=headers)
+		contentStr = page.content
+		end_index = contentStr.find('^')
+		result['industry'] = contentStr[0:end_index]
+		# print result['industry'], i
+		if result['industry'] != 'NA':
+			# print contentStr
+			start_text = '"data"  : '
+			start_index = contentStr.find(start_text)
+			start_index+=len(start_text)
+			end_index = contentStr.find(']',start_index)
+			dataStr = contentStr[start_index:end_index+1]
+			data = json.loads(dataStr);
+			result['data'] = []
+			for company in data:
+				name = str(company['Company'])
+				EPS_Estimate = str(company['EPS Estimate<br>(Current Yr)'])[1:]
+				EPS_Suprise = getDivData(str(company['EPS Suprise<br>(Last Qtr)'])).split('%')[0]
+				EPS_Suprise = EPS_Suprise.replace(',','')
+				# print EPS_Suprise
+				if 'no_report' in EPS_Suprise:
+					EPS_Suprise = ''
+				if 'no_report' in EPS_Estimate:
+					EPS_Estimate = ''
+				obj = {}
+				obj['Name'] = name
+				obj['EPS_Estimate'] = fixDecimal(EPS_Estimate,3)
+				obj['EPS_Suprise'] = fixDecimal(EPS_Suprise,3)
+				result['data'].append(obj)
+			industryData[result['industry']] = result
+
+	# print len(industryData.keys())
+	# pp(industryData)
+	return industryData
+
+# getIndustryWideEPS()
 # getIndustryDetails()
 # pp(getIndustryDetails())
 # ranks = getIndustryRanks()
@@ -491,7 +551,7 @@ def getIndustryRanks():
 
 # sortedRanks= sorted(ranks.items(), key=lambda obj: getSortValue(obj,'average'))[:10]
 # pp(sortedRanks)
-# getInsiderTransactions('GNVC')
+# getInsiderTransactions('BXE')
 # getPriceConsensus('gss')
 # data = getEarnings('PPHM')
 # pp(data)

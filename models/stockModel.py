@@ -83,7 +83,39 @@ class Stock:
 		# print "zacksOpinion : ", self.zacksOpinion
 
 	def getEarnings(self):
-		self.earningsData = zacks.getEarnings(self.symbol)
+		earningsData = zacks.getEarnings(self.symbol)
+
+		# pp(earningsData)
+
+		self.earningsData = {
+			'Earnings': { 'last_surprise': 0,'past_surprise': 0 },
+			'Revisions': { 'last_surprise': 0, 'past_surprise': 0 }
+		}
+
+		count = 0
+		foundOne = False
+		for surpise in earningsData['earnings_data'][:4]:
+			if surpise['Surprise'] != None:
+				if not foundOne:
+					self.earningsData['Earnings']['last_surprise'] = surpise['Surprise']
+					foundOne = True
+				self.earningsData['Earnings']['past_surprise']+=surpise['Surprise']
+				count+=1
+		if count>0:
+			self.earningsData['Earnings']['past_surprise'] = fixDecimal(self.earningsData['Earnings']['past_surprise']/count, 3)
+
+		# count = 0
+		# foundOne = False
+		# for surpise in earningsData['earnings_data'][:5]:
+		# 	if surpise['Surprise'] != None:
+		# 		if not foundOne:
+		# 			self.earningsData['Earnings']['last_surprise'] = surpise['Surprise']
+		# 			foundOne = True
+		# 		self.earningsData['Earnings']['past_surprise']+=surpise['Surprise']
+		# 		count+=1
+		# self.earningsData['Earnings']['past_surprise'] = fixDecimal(self.earningsData['Earnings']['past_surprise']/count, 3)
+
+		# pp(self.earningsData)
 		# print "earningsData  : ", self.earningsData
 
 	def getInsiderTransactions(self):
@@ -100,13 +132,15 @@ class Stock:
 			'VicePresident':.2,
 			'VicePresident-Geosciences':.2,
 			'ChiefOperatingOfficer': .2,
+			'EVP,ChiefOperatingOfficer': .2,
 			'V.P.,IntellectualProperty':.2,
 			'VP,ClinicalandRegAffairs':.2,
 			'SVP,Ops&BusDev':.2,
-			'SeniorVicePresident&CFO': .4,
 			'SRVPofR&DandCSO': .3,
 			'SrVP&SrMedDirector': .3,
 			'PresidentofR&D':.3,
+			'ChiefCommercialOfficer':.3,
+			'SeniorVicePresident&CFO': .4,
 			'ExecutiveVicePresident&COO': .4,
 			'ExecutiveVPandCFO/COO':.4,
 			'ChiefFinancialOfficer': .4,
@@ -115,6 +149,7 @@ class Stock:
 			'SVP,CFO,TREAS.&SECRETARY':.4,
 			'CFO,SrV.P.Operations&Sec.':.4,
 			'CFOandCAO': .4,
+			'CFO':.4,
 			'CEO&President':.5,
 			'PresidentandCOO':.5,
 			'PresidentandCEO': .5,
@@ -210,24 +245,26 @@ class Stock:
 				,self.insiderTransactions['sells']['Count'],self.insiderTransactions['sells']['Price']
 				,self.insiderTransactions['sells']['WeightedCount'])
 
+		earningsStr = '({0}%, {1}%)'.format(self.earningsData['Earnings']['last_surprise'],self.earningsData['Earnings']['past_surprise'])
+
 		if len(self.industryDetails.keys()) == 0:
-			# print('Symbol\tIndustry\t\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions')
-			template = '{0}\t{1:20}\t{2:20}\t{3}\t{4}\t{5}\t{6:20}\t{7}'
+			# print('Symbol\tIndustry\t\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5)')
+			template = '{0}\t{1:20}\t{2:20}\t{3}\t{4}\t{5}\t{6:20}\t{7}\t{8}'
 			print(template.format(self.symbol,self.zacksOpinion['Industry']
 					,zacksStr,self.basicData['price'],self.basicData['market_capitalization']
-					,self.zacksOpinion['Beta'],sentimentStr,insiderStr))
+					,self.zacksOpinion['Beta'],sentimentStr,insiderStr,earningsStr))
 		if len(self.industryDetails.keys()) > 0:
-			# print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions')
-			template = '{0}\t{1:20}\t({2},{3},{4})\t\t{5:20}\t{6}\t{7}\t{8}\t{9:20}\t{10}'
+			# print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5)')
+			template = '{0}\t{1:20}\t({2},{3},{4})\t\t{5:20}\t{6}\t{7}\t{8}\t{9:20}\t{10:30}\t{11}'
 			print(template.format(self.symbol,self.zacksOpinion['Industry']
 					,self.industryDetails["rank"]['ByZacks'],self.industryDetails['rank']['ByAverage']
 					,self.industryDetails['rank']['ByWeightedAverage']
 					,zacksStr,self.basicData['price'],self.basicData['market_capitalization'],self.zacksOpinion['Beta']
-					,sentimentStr,insiderStr))
+					,sentimentStr,insiderStr,earningsStr))
 
 
 # industryRanks = zacks.getIndustryRanks()
-# stock = Stock('fes')
+# stock = Stock('atec')
 # # print stock.symbol
 # stock.getZacksOpinion()
 # stock.getEarnings()
@@ -236,6 +273,7 @@ class Stock:
 # stock.getBasicData()
 # stock.getTechnicals()
 # stock.setIndustryDetails(industryRanks)
+# stock.getEarnings()
 # stock.printData()
 
 
