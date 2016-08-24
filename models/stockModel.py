@@ -11,6 +11,8 @@ from pprint import pprint as pp
 def fixDecimal(value,limit):
 	if value == None:
 		return None
+	if str(value) == 'NA':
+		return None
 	result = decimal.Decimal(value)
 	result = round(result,limit)
 	return result
@@ -138,11 +140,16 @@ class Stock:
 			'EVP,ChiefOperatingOfficer': .2,
 			'V.P.,IntellectualProperty':.2,
 			'VP,ClinicalandRegAffairs':.2,
+			'SVP,ChiefDevelopmentOfficer':.2,
+			'SVP,ChiefBusinessOfficer':.2,
+			'VPFinance&CAO': .2,
 			'SVP,Ops&BusDev':.2,
+			'VP-Sales': .3,
 			'SRVPofR&DandCSO': .3,
 			'SrVP&SrMedDirector': .3,
 			'PresidentofR&D':.3,
 			'ChiefCommercialOfficer':.3,
+			'ChiefMedicalOfficer': .4,
 			'SeniorVicePresident&CFO': .4,
 			'ExecutiveVicePresident&COO': .4,
 			'CFO,Secretary,Treasurer': .4,
@@ -155,6 +162,7 @@ class Stock:
 			'CFOandCAO': .4,
 			'CFO':.4,
 			'CEO&President':.5,
+			'CEO&Secretary': .5,
 			'PresidentandCOO':.5,
 			'PresidentandCEO': .5,
 			'President&CEO': .5,
@@ -202,7 +210,9 @@ class Stock:
 					buyDetails['WeightedCount']+=1*weights[buyer]
 				else:
 					print "buyer:", buyer
-				buyDetails['Price']+=fixDecimal(transaction['Price'],3)
+				value = fixDecimal(transaction['Price'],3)
+				if value!= None:
+					buyDetails['Price']+=value
 		if buyDetails['Count']>0:
 			buyDetails['Price']=buyDetails['Price']/buyDetails['Count']
 			buyDetails['Price']=fixDecimal(buyDetails['Price'],3)
@@ -223,7 +233,9 @@ class Stock:
 					sellDetails['WeightedCount']+=1*weights[seller]
 				else:
 					print "seller:", seller
-				sellDetails['Price']+=fixDecimal(transaction['Price'],3)
+				value = fixDecimal(transaction['Price'],3)
+				if value != None:
+					sellDetails['Price']+= value
 		if sellDetails['Count']>0:
 			sellDetails['Price']=sellDetails['Price']/sellDetails['Count']
 			sellDetails['Price']=fixDecimal(sellDetails['Price'],3)

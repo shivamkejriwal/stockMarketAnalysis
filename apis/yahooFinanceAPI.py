@@ -169,7 +169,7 @@ def getPriceToBook(data):
 
 def getStockData(ticker, data_arr=None):
 	if data_arr == None:
-		data_arr = ['a','b','o','p','j1','j2','v','a2','m3', 'm4','b4','j4']
+		data_arr = ['a','b','o','p','j1','j2','v','a2','m3', 'm4','b4','j4', 'x']
 	url = createURL(ticker,data_arr)
 	data = getData(url,data_arr)
 	# print data
@@ -209,7 +209,7 @@ def getMultipleStockData(tickerList, data_arr=None):
 # 	earnings_estimate = fixDecimal(earnings_estimate)
 # 	return earnings_estimate
 
-# ticker = "scon"
+# ticker = "OMCM"
 # data = getStockData(ticker)
 # data['PE_ratio'] = getPE_ratio(data)
 # data["fair_value"] = getFairValue(data)

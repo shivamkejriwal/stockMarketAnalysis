@@ -165,6 +165,7 @@ def getShortlist(symbols):
 			# skipList.append(stock.symbol)
 			continue
 
+		validRank = isValidRank(stock.zacksOpinion)
 		goodStock = isGoodStock(stock.zacksOpinion)
 		growthStock = isGrowthStock(stock.zacksOpinion)
 		underValuedStock = isUnderValuedStock(stock.zacksOpinion)
@@ -179,7 +180,7 @@ def getShortlist(symbols):
 		if momentumStock:
 			result['momentum'].append(stock)
 
-		if growthStock or underValuedStock or momentumStock:
+		if growthStock or underValuedStock or momentumStock or validRank:
 			print stock.symbol, "\t=== Potential Stock"
 			# stock.getBasicData()
 			stock.getEarnings()
@@ -245,7 +246,7 @@ def getTickerListFromNasdaq():
 def getTickerList():
 	zacksTickerList = config.zacksTickerList
 	data_err = ['j1','j2','x']
-	veto_exchanges = ['PNK', '/']
+	veto_exchanges = ['PNK', '/', 'OBB']
 	dataList = []
 	print "Zacks ticker list:", len(zacksTickerList)
 	for chunk in chunks(zacksTickerList,1000):
