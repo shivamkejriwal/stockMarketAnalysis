@@ -45,36 +45,57 @@ def fixDecimal(value):
 	return result
 
 def createURL(symbol,data_arr):
+
+	url = "http://finance.yahoo.com/d/quotes.csv?"
+
+
+	ticker_str = ''
+	if isinstance(symbol, list):
+		for ticker in symbol:
+			ticker_str+=','+ticker
+	else:
+		ticker_str = symbol
+
+
 	data_str = ''
 	for value in data_arr:
 		data_str+=value
 
-	url = "http://finance.yahoo.com/d/quotes.csv?"
-	ticker = "s="+symbol.upper()
+	
+	ticker = "s="+ticker_str.upper()
 	data = "&f="+data_str
 	return url+ticker+data
+
+def cleanData(contentLineStr, data_arr):
+	result = {}
+	data = contentLineStr.split(',')
+	for index in  range(len(data_arr)):
+		key = mapping[data_arr[index]]
+		value = data[index]
+		if key != 'stock_exchange':
+			# print value
+			if value == 'N/A':
+				value = None
+			else:
+				mult = 1
+				if value[-1] =='M':
+					value = value[:-1]
+					mult = 1000000
+				if value[-1] =='B':
+					value = value[:-1] 
+					mult = 1000000000
+				value = float(value)*mult
+		else:
+			value = value[1:-1]
+		result[key]= str(value)
+	return result
 
 def getData(url,data_arr):
 	# df = pd.read_csv(url, encoding='utf-16', header=None)
 	result = {}
 	response = requests.get(url)
 	content = response.content.replace('\t', '').replace('\n', '')
-	data = content.split(',')
-	for index in  range(len(data_arr)):
-		key = mapping[data_arr[index]]
-		value = data[index]
-		if value == 'N/A':
-			value = None
-		else:
-			mult = 1
-			if value[-1] =='M':
-				value = value[:-1]
-				mult = 1000000
-			if value[-1] =='B':
-				value = value[:-1] 
-				mult = 1000000000
-			value = float(value)*mult
-		result[key]=value
+	result = cleanData(content, data_arr)
 	return result
 
 
@@ -112,13 +133,23 @@ def getFairValue_estimates(data):
 	return fair_value
 
 def getMarketValue(data):
+	# print data
 	if 'market_capitalization' not in data or 'shares_outstanding' not in data:
 		return None
 
 	if data['market_capitalization'] == None or data['shares_outstanding'] == None:
 		return None
-	m_cap = data['market_capitalization']
-	shares = data['shares_outstanding']
+
+	if data['market_capitalization'] == None or data['market_capitalization'] == 'None':
+		return None
+
+	if data['shares_outstanding'] == None or data['shares_outstanding'] == 'None':
+		return None
+
+	# print "----", data
+	m_cap = fixDecimal(data['market_capitalization'])
+	shares = fixDecimal(data['shares_outstanding'])
+	# print m_cap,shares
 	market_value = m_cap/shares
 	market_value = fixDecimal(market_value)
 	return market_value
@@ -149,6 +180,28 @@ def getStockData(ticker, data_arr=None):
 	return data
 
 
+def getMultiLineData(url,data_arr):
+	result = []
+	response = requests.get(url)
+	content = response.content.replace('\t', '')#.replace('\n', '')
+	# print content
+	for line in content.splitlines():
+		data = cleanData(line, data_arr)
+		data["market_value"] = getMarketValue(data)
+		result.append(data)
+	return result
+
+def getMultipleStockData(tickerList, data_arr=None):
+	if data_arr == None:
+		data_arr = ['a','b','o','p','j1','j2','v','a2','m3', 'm4','b4','j4']
+	url = createURL(tickerList,data_arr)
+	# print url
+	data = getMultiLineData(url,data_arr)
+	for index in range(len(data)):
+		data[index]['symbol'] = tickerList[index]
+	# print data
+	return data
+
 # def getEarningsEstimate(data):
 # 	eps = data['eps']
 # 	shares = data['shares_outstanding']
@@ -157,13 +210,15 @@ def getStockData(ticker, data_arr=None):
 # 	return earnings_estimate
 
 # ticker = "scon"
-# data_arr = mapping.keys()
-# url = createURL(ticker,data_arr)
-# data = getData(url,data_arr)
+# data = getStockData(ticker)
 # data['PE_ratio'] = getPE_ratio(data)
 # data["fair_value"] = getFairValue(data)
 
 # pp(data)
 # pp(getFairValue_estimates(data))
+
+# symbols = ['ACPW', 'ATEC', 'AMRS', 'APRI', 'BIOC', 'BIOD', 'BLIN']
+# getMultipleStockData(symbols)
+
 
 

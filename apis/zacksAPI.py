@@ -492,6 +492,15 @@ def getIndustryRanks():
 
 	return industryRanks
 
+
+def getSecondInnerDivData(string):
+	start_index = string.find('>')
+	start_index = string.find('>',start_index+1)
+	end_index = string.find('<',start_index)
+	return string[start_index+1:end_index]
+
+
+
 def getIndustryWideEPS():
 
 	headers = {
@@ -501,6 +510,7 @@ def getIndustryWideEPS():
 	}
 
 	industryData = {}
+	# companyList = []
 	for i in range(1,290): #1-244
 
 		result = {}
@@ -520,6 +530,7 @@ def getIndustryWideEPS():
 			data = json.loads(dataStr);
 			result['data'] = []
 			for company in data:
+				symbol = str(company['Symbol'])
 				name = str(company['Company'])
 				EPS_Estimate = str(company['EPS Estimate<br>(Current Yr)'])[1:]
 				EPS_Suprise = getDivData(str(company['EPS Suprise<br>(Last Qtr)'])).split('%')[0]
@@ -530,17 +541,27 @@ def getIndustryWideEPS():
 				if 'no_report' in EPS_Estimate:
 					EPS_Estimate = ''
 				obj = {}
+				obj['Symbol'] = getSecondInnerDivData(symbol)
 				obj['Name'] = name
-				obj['EPS_Estimate'] = fixDecimal(EPS_Estimate,3)
-				obj['EPS_Suprise'] = fixDecimal(EPS_Suprise,3)
+				obj['EPS_Estimate_Current_Yr'] = fixDecimal(EPS_Estimate,3)
+				obj['EPS_Suprise_Last_Qtr'] = fixDecimal(EPS_Suprise,3)
 				result['data'].append(obj)
+				# companyList.append(obj)
 			industryData[result['industry']] = result
+
 
 	# print len(industryData.keys())
 	# pp(industryData)
 	return industryData
 
-# getIndustryWideEPS()
+# industryData,companyList = getIndustryWideEPS()
+
+# symbolList = []
+# for company in companyList:
+# 	symbolList.append(company['Symbol'])
+
+# print symbolList
+
 # getIndustryDetails()
 # pp(getIndustryDetails())
 # ranks = getIndustryRanks()

@@ -71,13 +71,16 @@ def getExchangeData(convert=False):
 
     if convert == True:
         for index, row in data.iterrows():
+            # print row['MarketCap'], row['Symbol']
             if row['MarketCap'] != 'n/a':
                 mult = 0
                 if row['MarketCap'][-1] =='M': mult = 1000000
                 if row['MarketCap'][-1] =='B': mult = 1000000000
                 value = float(row['MarketCap'][1:-1])*mult
+                # print "===>", value
                 data.set_value(index,'MarketCap',value)
             else :
+                # print "===> Not"
                 data.set_value(index,'MarketCap',-1)
 
     # header = data.columns.values
@@ -100,10 +103,14 @@ def filterData(filters={}, data=None):
             filters[flt_type]=None
 
     for key, value in filters.iteritems():
+        # print key, value
         if value != None:
             limit_type = key[:3]
             selector_type = key[4:]
             if limit_type == "max":
+                # print data[selector_type]
+                # print "-------"
+                # print data[data[selector_type] <= value]
                 data = data[data[selector_type] <= value]
             if limit_type == 'min':
                 data = data[data[selector_type] >= value]
@@ -137,19 +144,25 @@ def getDataBySector(sectors = [], data=None):
     Main
 ==============
 '''
-# def printData(data):
-#     print('Symbol\tLastSale\tMarketCap\tName\tSector\tindustry\t')
-#     for index, row in data.iterrows():
-#         # print('{Symbol:4}\t{LastSale:10}\t{Name:20}\t{Sector:20}\t{industry:20}'.format(row['Symbol'], row['LastSale'], row['Name'], row['Sector'], row['industry']))
-#         print row['Symbol'], row['LastSale'], row['MarketCap'], row['Name'], row['Sector'], row['industry']
+def printData(data):
+    print('Symbol\tLastSale\tMarketCap\tName\tSector\tindustry\t')
+    for index, row in data.iterrows():
+        # print('{Symbol:4}\t{LastSale:10}\t{Name:20}\t{Sector:20}\t{industry:20}'.format(row['Symbol'], row['LastSale'], row['Name'], row['Sector'], row['industry']))
+        print row['Symbol'], row['LastSale'], row['MarketCap'], row['Name'], row['Sector'], row['industry']
 
 
 # data = getExchangeData(convert=True)
+# symbols = data["Symbol"].tolist()
+# print symbols
+# print "Count: ",len(symbols)
+
 # data = filterData(filters={
-#     'min_MarketCap':0,
-#     'max_LastSale':1
-#     }, data)
+#     'min_MarketCap':1000000, # $1,000,000 Mil
+#     'max_LastSale':1.00,
+#     'min_LastSale':.10,
+#     }, data=data)
 # data  = getDataBySector(['Finance', 'Consumer Services'], data)
+
 # printData(data)
 
 

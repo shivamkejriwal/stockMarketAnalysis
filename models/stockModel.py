@@ -120,6 +120,9 @@ class Stock:
 
 	def getInsiderTransactions(self):
 		insiderTransactions = zacks.getInsiderTransactions(self.symbol)
+
+		# print insiderTransactions
+
 		fourMonthsBack = datetime.now() - timedelta(days=31*4)
 
 		weights = {
@@ -142,6 +145,7 @@ class Stock:
 			'ChiefCommercialOfficer':.3,
 			'SeniorVicePresident&CFO': .4,
 			'ExecutiveVicePresident&COO': .4,
+			'CFO,Secretary,Treasurer': .4,
 			'ExecutiveVPandCFO/COO':.4,
 			'ChiefFinancialOfficer': .4,
 			'CFOandCorporateSecretary':.4,
@@ -157,9 +161,21 @@ class Stock:
 			'ChiefExecutiveOfficer':.5
 		}
 
+		if insiderTransactions == None:
+			insiderTransactions = {}
+
+		# if insiderTransactions['buys'] == None :
+			insiderTransactions['buys'] = {}
 		if 'data' not in insiderTransactions['buys']:
 			insiderTransactions['buys']['data'] = []
-		if 'data' not in insiderTransactions['sells']:
+
+		# print insiderTransactions.keys()
+		# print insiderTransactions['buys']
+
+		if insiderTransactions['sells'] == None:
+			insiderTransactions['sells'] = {}
+		
+		if  'data' not in insiderTransactions['sells']:
 			insiderTransactions['sells']['data'] = []
 
 		buys = insiderTransactions['buys']['data']
@@ -237,8 +253,10 @@ class Stock:
 				,self.zacksOpinion['Style_Score']["Value"],self.zacksOpinion['Style_Score']["Growth"]
 				,self.zacksOpinion['Style_Score']["Momentum"])
 		
-		sentimentStr = '({0},{1},{2})'.format(self.recentSentiment['total'],self.recentSentiment['Bullish']
-				,self.recentSentiment['Bearish'])
+		sentimentStr = ''
+		if self.recentSentiment != None:
+			sentimentStr = '({0},{1},{2})'.format(self.recentSentiment['total'],self.recentSentiment['Bullish']
+					,self.recentSentiment['Bearish'])
 
 		insiderStr = '({0},{1},{2}):({3},{4},{5})'.format(self.insiderTransactions['buys']['Count'],self.insiderTransactions['buys']['Price']
 				,self.insiderTransactions['buys']['WeightedCount']
@@ -264,7 +282,7 @@ class Stock:
 
 
 # industryRanks = zacks.getIndustryRanks()
-# stock = Stock('atec')
+# stock = Stock('vend')
 # # print stock.symbol
 # stock.getZacksOpinion()
 # stock.getEarnings()

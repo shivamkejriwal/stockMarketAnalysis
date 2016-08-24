@@ -1,14 +1,30 @@
 import config as config
 from apis import zacksAPI as zacks
 from apis import stockTwitsAPI as stockTwits
+from apis import yahooFinanceAPI as yahoo
 from services import dataETL as dataETL
 from models import portfolioModel as portfolio
 from models import stockModel as StockModel
 from pprint import pprint as pp
+import itertools
 
 skipList = config.skipList
+# zacksTickerList = config.zacksTickerList
 
 
+
+
+def isValidStock(basicData):
+	price = ''
+	if 'price' in basicData:
+		price = basicData['price']
+	else:
+		price = basicData['market_value']
+	marketCap = basicData['market_capitalization']
+	if price > 1 : return False
+	if price < .1 : return False
+	if marketCap < 1000000 : return False
+	return True
 
 def isValidRank(zacks_opinion):
 	rank = zacks_opinion["Rank"]
@@ -121,25 +137,8 @@ def hasGoodEarnings(earningsData):
 # 	printData(data)
 
 
-def getShortlist(symbols=None):
+def getShortlist(symbols):
 	print "\n==================\nGetting Short List\n==================\n"
-	if symbols==None:
-		data = dataETL.getExchangeData(convert=True)
-		filters = {
-			'min_MarketCap':1000000, # $1,000,000 Mil
-			'max_LastSale':1.00,
-			'min_LastSale':.10,
-		}
-		data = dataETL.filterData(filters=filters, data=data)
-		symbols = data["Symbol"].tolist()
-
-
-
-	for i in range(len(symbols)):
-		symbols[i] = symbols[i].replace(" ", "")	
-	for ticker in skipList:
-		if ticker in symbols:
-			symbols.remove(ticker)
 
 	print "Number of Stocks being Analyzed:",len(symbols)
 
@@ -153,6 +152,13 @@ def getShortlist(symbols=None):
 
 	for symbol in symbols:
 		stock  = StockModel.Stock(symbol)
+		stock.getBasicData()
+		
+		# if not isValidStock(stock.basicData):
+		# 	print stock.symbol, "\t=== Not Valid Stock"
+		# 	continue
+
+
 		stock.getZacksOpinion()
 		if stock.zacksOpinion['Industry']==None:
 			print stock.symbol, "\t=== No Zacks Data"
@@ -175,7 +181,7 @@ def getShortlist(symbols=None):
 
 		if growthStock or underValuedStock or momentumStock:
 			print stock.symbol, "\t=== Potential Stock"
-			stock.getBasicData()
+			# stock.getBasicData()
 			stock.getEarnings()
 			if stock.basicData['price'] == None:
 				print stock.symbol, "\t====> No Price Data"
@@ -198,19 +204,66 @@ def doAnalysis(stockList, industryRanks, listName=None):
 
 	print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5)')
 	for stock in stockList:
+		# print stock.symbol
 		stock.setIndustryDetails(industryRanks)
 		stock.getFundamentals()
 		stock.getTechnicals()
-		# stock.getEarnings()
 		stock.getInsiderTransactions()
 		stock.getRecentSentiment()
+		# print stock.recentSentiment
 		stock.printData()
 		# print stock.symbol,stock.basicData['price'],stock.zacksOpinion,stock.recentSentiment
 
 
-industryRanks = zacks.getIndustryRanks()
-sortedByZacksRank = sorted(industryRanks.values(), key=lambda obj: obj['rank_weighted_average'], reverse=True)
-# pp(sortedByZacksRank)
+
+def chunks(l, n):
+	"""Yield successive n-sized chunks from l."""
+	data = []
+	for i in range(0, len(l), n):
+		data.append(l[i:i + n])
+	return data
+
+
+def getTickerListFromNasdaq():
+	data = dataETL.getExchangeData(convert=True)
+	# print len(data["Symbol"].tolist())
+	filters = {
+		'min_MarketCap':1000000, # $1,000,000 Mil
+		'max_LastSale':1.00,
+		'min_LastSale':.10,
+	}
+	data = dataETL.filterData(filters=filters, data=data)
+	symbols = data["Symbol"].tolist()
+	for i in range(len(symbols)):
+		symbols[i] = symbols[i].replace(" ", "")	
+	for ticker in skipList:
+		if ticker in symbols:
+			symbols.remove(ticker)
+
+	return symbols
+
+def getTickerList():
+	zacksTickerList = config.zacksTickerList
+	data_err = ['j1','j2','x']
+	veto_exchanges = ['PNK', '/']
+	dataList = []
+	print "Zacks ticker list:", len(zacksTickerList)
+	for chunk in chunks(zacksTickerList,1000):
+		# print "chunk"
+		res = yahoo.getMultipleStockData(chunk,data_err)
+		for obj in res:
+			if obj['stock_exchange'] not in veto_exchanges and isValidStock(obj): 
+				dataList.append(obj)
+
+	print "Found prospective stocks:", len(dataList)
+
+	symbols = []
+
+	for ticker in dataList:
+		symbols.append(ticker['symbol'])
+
+	return symbols
+
 
 # symbols = ['ACPW', 'ATEC', 'AMRS', 'APRI', 'BIOC', 'BIOD', 'BLIN'
 # 		, 'CPRX', 'CYTR', 'ETRM', 'GNVC', 'NVCN', 'ORIG', 'PPHM'
@@ -219,10 +272,20 @@ sortedByZacksRank = sorted(industryRanks.values(), key=lambda obj: obj['rank_wei
 # 		, 'JRJR', 'LIQT', 'NCQ', 'PTN', 'PLM', 'PLX', 'RNN', 'XPL', 'TGB'
 # 		, 'TGD', 'TAT', 'HTM']
 
-shortList = getShortlist()
+# symbols = ['VEND', 'HK', 'CTIC', 'NEPH'
+# 		, 'CMLS', 'INVS', 'BIOD', 'TGB', 'GEVO', 'SGNL', 'NCQ', 'XOMA', 'REXX', 'GNVC', 'AUMN'
+# 		, 'GSS', 'XPL', 'SSH', 'PBMD', 'BLRX', 'LIQT', 'ROX', 'BCEI', 'WGBS', 'FCSC', 'RMGN']
 
+industryRanks = zacks.getIndustryRanks()
+sortedByZacksRank = sorted(industryRanks.values(), key=lambda obj: obj['rank_weighted_average'], reverse=True)
+# pp(sortedByZacksRank)
+symbols = getTickerList()
+
+
+shortList = getShortlist(symbols)
 sortedByPrice = sorted(shortList['complete'], key=lambda stock: stock.basicData['price'])
 
+# symbols = []
 # for stock in sortedByPrice:
 # 	symbols.append(stock.symbol)
 # print "symbols:",symbols
