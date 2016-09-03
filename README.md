@@ -10,6 +10,7 @@ python -m models.portfolioModel.py
 python -m apis.morningstarAPI.py
 python -m services.dataETL.py
 python  apis/zacksAPI.py
-python  apis/morningstarAPI.py
 python  apis/yahooFinanceAPI.py
+python  apis/morningstarAPI.py
+python  apis/zacksFinancialAPI.py
 ```

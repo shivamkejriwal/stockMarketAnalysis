@@ -4,6 +4,7 @@ import requests
 import json
 import decimal
 from pprint import pprint as pp
+from datetime import datetime
 
 
 def getSuggestion(rank):
@@ -74,6 +75,28 @@ def getZacksStyleScore(symbol):
 		}
 	return style_score
 
+def tableToData(box):
+	data = {}
+	for row in box:
+		if len(row)>1:
+			key = None
+			value = None
+			if len(row[0]) > 0:
+				key = row[0][0].text
+				value = row[1][0].text
+			else:
+				key = row[0].text
+				value = row[1].text
+				if value == None : value = row[1][0].text 
+			
+			if value == 'NA': value = None
+			if value != None:
+				value = value.replace(',','')
+				if '%' in value: value = value[:-1]
+				value = fixDecimal(value,3)
+			data[key] = value
+	# pp(data)
+	return data
 
 def getZacksOpinion(symbol):
 	opinon = {
@@ -81,6 +104,9 @@ def getZacksOpinion(symbol):
 		"Suggestion":None,
 		"Industry":None,
 		"Beta":None,
+		"PE_Forward": None,
+		"EPS_Curr_Qtr": None,
+		"EPS_Curr_Yr": None,
 		"Style_Score": {
 			"Value":None,
 			"Growth":None,
@@ -94,19 +120,22 @@ def getZacksOpinion(symbol):
 	rankbox = tree.xpath('//div[@class="zr_rankbox"]/span')
 	stylebox = tree.xpath('//div[@class="composite_group"]/p/span')
 
+	earningsbox = tree.xpath('//section[@id="stock_key_earnings"]/table/tbody/tr')
+	earningsData = tableToData(earningsbox)
+	
+	opinon['PE_Forward'] = earningsData['Forward PE']
+	opinon['EPS_Curr_Qtr'] = earningsData['Current Qtr Est']
+	opinon['EPS_Curr_Yr'] = earningsData['Current Yr Est']
+
+	stockActivityBox = tree.xpath('//section[@id="stock_activity"]/table/tbody/tr')
+	stockActivityData = tableToData(stockActivityBox)
+
+	opinon['Beta'] = stockActivityData['Beta']
+
 	industrybox = tree.xpath('//section[@id="stock_industry_analysis"]/p[@class="premium"]/a')
 	if len(industrybox)>0:
 		industry = industrybox[0].text[len('See all '):-len(' Peers>> ')]
 		opinon["Industry"] = industry
-	
-	stockActivityBox = tree.xpath('//section[@id="stock_activity"]/table/tbody/tr')
-	for row in stockActivityBox:
-		key = row[0].text
-		if key == 'Beta':
-			value = row[1][0].text
-			if value == 'NA': 
-				value = None
-			opinon["Beta"] = fixDecimal(value,3)
 
 	for value in rankbox:
 		if isInteger(value.text):
@@ -178,22 +207,23 @@ def cleanEarningsData(data):
 	# =============
 	revisions_data = []
 	for value in revisions_table:
-		date = value[0]
+		date = datetime.strptime(value[0], '%m/%d/%Y')
 		period_ending = value[1]
 		if period_ending !=None:
 			start_index = period_ending.find('>')
 			end_index = period_ending.find('<',start_index)
-			period_ending = period_ending[start_index+1:end_index-1]
-		orig = fixDecimal(value[2].replace("$", ""),2) if '--'not in value[2] else None
+			period_ending = period_ending[start_index+1:end_index-1].replace('(Q)','').replace('(FY)','')[:-1]
+			period_ending = datetime.strptime(period_ending, '%b %Y')
+		orig = fixDecimal(value[2].replace("$", ""), 3) if '--' not in value[2] else None
 		revision = value[3] if '--'not in value[2] else None
 		if revision !=None:
 			start_index = revision.find('>')
 			end_index = revision.find('<',start_index)
-			revision = revision[start_index+1:end_index-1]
-			revision = fixDecimal(revision.replace("$", ""),2) if '--'not in revision else None
+			revision = revision[start_index+1:end_index]
+			revision = fixDecimal(revision.replace("$", ""), 3) if '--' not in revision else None
 		obj = {
-			'Date':str(date),
-			'Period_Ending':str(period_ending),
+			'Date':date,
+			'Period_Ending':period_ending,
 			'Previous':orig,
 			'Current':revision
 		}
@@ -579,7 +609,7 @@ def getIndustryWideEPS():
 # ========
 # 	Main
 # ========
-# ticker = 'NSPR'
+# ticker = 'LEE'
 # print getZacksOpinion(ticker)
 # print getZacksRank(ticker)
 # print getZacksStyleScore(ticker)

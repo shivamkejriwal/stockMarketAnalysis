@@ -21,8 +21,8 @@ def isValidStock(basicData):
 	else:
 		price = basicData['market_value']
 	marketCap = basicData['market_capitalization']
-	if price > 1 : return False
-	if price < .1 : return False
+	if price > 5 : return False
+	if price < 1 : return False
 	if marketCap < 1000000 : return False
 	return True
 
@@ -79,6 +79,16 @@ def isMomentumStock(zacks_opinion):
 
 def hasGoodEarnings(earningsData):
 	if earningsData['Earnings']['past_surprise']<0:
+		return False
+	return True
+
+def hasPositiveRevisions(earningsData):
+	pos_rev = earningsData['Revisions']['pos_revs']
+	neg_rev = earningsData['Revisions']['neg_revs']
+	ave_change = earningsData['Revisions']['ave_change']
+	if pos_rev<neg_rev:
+		return False
+	if ave_change <= 0:
 		return False
 	return True
 
@@ -180,7 +190,8 @@ def getShortlist(symbols):
 		if momentumStock:
 			result['momentum'].append(stock)
 
-		if growthStock or underValuedStock or momentumStock or validRank:
+		if goodStock and validRank:
+		# if growthStock or underValuedStock or momentumStock or validRank:
 			print stock.symbol, "\t=== Potential Stock"
 			# stock.getBasicData()
 			stock.getEarnings()
@@ -188,6 +199,8 @@ def getShortlist(symbols):
 				print stock.symbol, "\t====> No Price Data"
 			elif not hasGoodEarnings(stock.earningsData):
 				print stock.symbol, "\t====> Bad Earnings Data" 
+			elif not hasPositiveRevisions(stock.earningsData):
+				print stock.symbol, "\t====> No Positive Revisions Data" 
 			else:
 				result['complete'].append(stock)
 		else: 
@@ -203,7 +216,7 @@ def doAnalysis(stockList, industryRanks, listName=None):
 	# symbols = [stock.symbol for stock in stockList]
 	# print symbols
 
-	print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5)')
+	print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5) - Revision(pos,neg,ave)')
 	for stock in stockList:
 		# print stock.symbol
 		stock.setIndustryDetails(industryRanks)
@@ -211,7 +224,7 @@ def doAnalysis(stockList, industryRanks, listName=None):
 		stock.getTechnicals()
 		stock.getInsiderTransactions()
 		stock.getRecentSentiment()
-		# print stock.recentSentiment
+		stock.recentSentiment
 		stock.printData()
 		# print stock.symbol,stock.basicData['price'],stock.zacksOpinion,stock.recentSentiment
 
@@ -277,9 +290,12 @@ def getTickerList():
 # 		, 'CMLS', 'INVS', 'BIOD', 'TGB', 'GEVO', 'SGNL', 'NCQ', 'XOMA', 'REXX', 'GNVC', 'AUMN'
 # 		, 'GSS', 'XPL', 'SSH', 'PBMD', 'BLRX', 'LIQT', 'ROX', 'BCEI', 'WGBS', 'FCSC', 'RMGN']
 
+# symbols = ['SXE', 'SORL', 'JTPY', 'PFMT', 'LEE', 'CIG', 'HLTH', 'PRTS', 'EXTR', 'DXYN', 'HCHC']
+
+
 industryRanks = zacks.getIndustryRanks()
 sortedByZacksRank = sorted(industryRanks.values(), key=lambda obj: obj['rank_weighted_average'], reverse=True)
-# pp(sortedByZacksRank)
+pp(sortedByZacksRank)
 symbols = getTickerList()
 
 
