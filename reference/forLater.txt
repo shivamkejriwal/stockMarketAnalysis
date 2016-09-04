@@ -1,3 +1,11 @@
+#Articles
+
+http://seekingalpha.com/article/664221-an-alternative-to-the-p-e-ratio
+
+
+# ===========
+
+
 https://www.zacks.com/data_handler/etf/z2_ajax_etf_category_details_data_handler.php?etf_category_id=1
 
 

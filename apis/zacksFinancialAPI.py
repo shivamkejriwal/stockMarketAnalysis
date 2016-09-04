@@ -212,7 +212,7 @@ def getDataMap(symbol,max_count):
 	return dataMap
 
 
-def getRealisticGrowthRate(data,index):
+def getReturnOnCapital(data,index):
 	net_income = data['net_income_ttm'][index][1]
 	dividend = data['dividend'][index][1]
 	share_holders_equity = data['share_holders_equity'][index][1]
@@ -220,9 +220,9 @@ def getRealisticGrowthRate(data,index):
 	if 'N/A' in [net_income,dividend,share_holders_equity,long_term_debt]:
 		return None
 	# print net_income,dividend,share_holders_equity,long_term_debt
-	return_on_capital = share_holders_equity+long_term_debt
-	RealisticGrowthRate = (net_income-dividend)/return_on_capital
-	return RealisticGrowthRate
+	capital = share_holders_equity+long_term_debt
+	ReturnOnCapital = (net_income-dividend)/capital
+	return ReturnOnCapital
 
 def getReturnOnEquityRatio(data,index):
 	net_income = data['net_income_ttm'][index][1]
@@ -270,7 +270,7 @@ def getLatesDataset(symbol):
 	symbol = symbol.upper()
 	data = getDataMap(symbol,1)
 	result = {}
-	result['RealisticGrowthRate'] = getRealisticGrowthRate(data,0)
+	result['ReturnOnCapital'] = getReturnOnCapital(data,0)
 	result['CapitalizationRatio'] = getCapitalizationRatio(data,0)
 	result['ProfitMarginRatio'] = getProfitMarginRatio(data,0)
 	result['MaxSustainableGrowthRate'] = getMaxSustainableGrowthRate(data,0)

@@ -101,16 +101,16 @@ def hasPositiveInsiderSignal(insiderTransactions):
 
 def hasPositiveGrowth(Analysis, growth_multiple=1):
 	by_PE = None
-	by_RealisticGrowthRate = None
+	by_ReturnOnCapital = None
 	keys = Analysis['growth_multiple'].keys()
 	if 'by_PE' in keys:
 		by_PE = Analysis['growth_multiple']['by_PE']
-	if 'by_RealisticGrowthRate' in keys:
-		by_RealisticGrowthRate = Analysis['growth_multiple']['by_RealisticGrowthRate']
-	if by_PE == None and by_RealisticGrowthRate == None:
+	if 'by_ReturnOnCapital' in keys:
+		by_ReturnOnCapital = Analysis['growth_multiple']['by_ReturnOnCapital']
+	if by_PE == None and by_ReturnOnCapital == None:
 		return False
 
-	if by_RealisticGrowthRate!= None and by_RealisticGrowthRate < growth_multiple:
+	if by_ReturnOnCapital!= None and by_ReturnOnCapital < growth_multiple:
 		return False
 
 	if by_PE != None and by_PE < growth_multiple:
@@ -184,7 +184,7 @@ def stockFilter(stock):
 	count = stock.stocksCount
 	starStr = '*'*len(str(count))
 
-	
+
 	template = '({0}) {1:5}\t=== {2}'
 	if not goodStock or not validRank:
 		print template.format(count,stock.symbol,"Bad Stock")
@@ -258,7 +258,7 @@ def printList(stockList, listName=None):
 	# print symbols
 
 	print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5) - Revision(pos,neg,ave)')
-	print('\t\t\t======>\tTarget Price(by_RealisticGrowthRate,by_PE): Growth Multiple(by_RealisticGrowthRate,by_PE)\n')
+	print('\t\t\t======>\tTarget Price(by_ReturnOnCapital,by_PE): Growth Multiple(by_ReturnOnCapital,by_PE)\n')
 	for stock in stockList:
 		# print stock.symbol
 		stock.printData()
@@ -327,13 +327,14 @@ def getTickerList():
 # 		, 'GSS', 'XPL', 'SSH', 'PBMD', 'BLRX', 'LIQT', 'ROX', 'BCEI', 'WGBS', 'FCSC', 'RMGN']
 
 # symbols = ['SXE', 'SORL', 'JTPY', 'PFMT', 'LEE', 'CIG', 'HLTH', 'PRTS', 'EXTR', 'DXYN', 'HCHC']
-# symbols = ['PFMT', 'LEE', 'HLTH', 'PRTS']
+symbols = ['PFMT', 'LEE', 'HLTH', 'PRTS']
+# symbols = ['PFMT', 'DVD', 'CRNT', 'LEE', 'EXFO', 'HLTH', 'PIR', 'IEC', 'FIG', 'DRAD', 'PRTS', 'ELMD', 'STB', 'AUDC', 'MPX', 'TLYS', 'SIM']
 
 industryRanks = None
 industryRanks = zacks.getIndustryRanks()
 sortedByZacksRank = sorted(industryRanks.values(), key=lambda obj: obj['rank_weighted_average'], reverse=True)
 pp(sortedByZacksRank)
-symbols = getTickerList()
+# symbols = getTickerList()
 
 # print symbols
 shortList = getShortlist(symbols,industryRanks)

@@ -140,26 +140,26 @@ class Stock:
 
 	def getAnalysis(self):
 		self.Analysis['target_price'] = {
-			'by_PE':None, 'by_RealisticGrowthRate': None
+			'by_PE':None, 'by_ReturnOnCapital': None
 		}
 		self.Analysis['growth_multiple'] = {
-			'by_PE':None, 'by_RealisticGrowthRate': None
+			'by_PE':None, 'by_ReturnOnCapital': None
 		}
 		# Price x ((current P/E) / (forward P/E)) = future price (or price target)
 		price = self.basicData['price']
 		PE_Current = self.Fundamentals['pe_ratio']
 		PE_Forward = self.zacksOpinion['PE_Forward']
-		RealisticGrowthRate = self.Fundamentals['RealisticGrowthRate']
+		ReturnOnCapital = self.Fundamentals['ReturnOnCapital']
 		if None not in [price, PE_Forward, PE_Current]:
 			growth = float(PE_Current)/float(PE_Forward)
 			target_price = price*growth
 			self.Analysis['growth_multiple']['by_PE'] = fixDecimal(growth,3)
 			self.Analysis['target_price']['by_PE'] = fixDecimal(target_price,3)
-		if None not in [price, RealisticGrowthRate]:
-			growth = (1+RealisticGrowthRate)
+		if None not in [price, ReturnOnCapital]:
+			growth = (1+ReturnOnCapital)
 			target_price = price*growth
-			self.Analysis['growth_multiple']['by_RealisticGrowthRate'] = fixDecimal(growth,3)
-			self.Analysis['target_price']['by_RealisticGrowthRate'] = fixDecimal(target_price,3)
+			self.Analysis['growth_multiple']['by_ReturnOnCapital'] = fixDecimal(growth,3)
+			self.Analysis['target_price']['by_ReturnOnCapital'] = fixDecimal(target_price,3)
 
 		# print "Analysis  : ", self.Analysis
 
@@ -431,8 +431,8 @@ class Stock:
 		revisionStr = '({0}, {1}, {2}%)'.format(self.earningsData['Revisions']['pos_revs']
 				,self.earningsData['Revisions']['neg_revs'],self.earningsData['Revisions']['ave_change']*100)
 
-		forcastStr = '({0},{1}):({2},{3})'.format(self.Analysis['target_price']['by_RealisticGrowthRate'],self.Analysis['target_price']['by_PE']
-			,self.Analysis['growth_multiple']['by_RealisticGrowthRate'],self.Analysis['growth_multiple']['by_PE'])
+		forcastStr = '({0},{1}):({2},{3})'.format(self.Analysis['target_price']['by_ReturnOnCapital'],self.Analysis['target_price']['by_PE']
+			,self.Analysis['growth_multiple']['by_ReturnOnCapital'],self.Analysis['growth_multiple']['by_PE'])
 		# print revisionStr
 
 		if len(self.industryDetails.keys()) == 0:
