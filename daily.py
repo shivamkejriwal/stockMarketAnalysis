@@ -181,17 +181,21 @@ def stockFilter(stock):
 	growthStock = isGrowthStock(stock.zacksOpinion)
 	underValuedStock = isUnderValuedStock(stock.zacksOpinion)
 	momentumStock = isMomentumStock(stock.zacksOpinion)
+	count = stock.stocksCount
+	starStr = '*'*len(str(count))
 
-
+	
+	template = '({0}) {1:5}\t=== {2}'
 	if not goodStock or not validRank:
-		print stock.symbol, "\t=== Bad Stock"
+		print template.format(count,stock.symbol,"Bad Stock")
 		return False
+	else:
+		print template.format(count,stock.symbol,"Potential Stock")
 
-	print stock.symbol, "\t=== Potential Stock"
-
+	template = '({0}) {1:5}\t====> {2}'
 	stock.getBasicData()
 	if stock.basicData['price'] == None:
-		print stock.symbol, "\t====> No Price Data"
+		print template.format(starStr,stock.symbol,"No Price Data")
 		return False
 	# if not isValidStock(stock.basicData):
 	# 	print stock.symbol, "\t====> Not Valid Stock"
@@ -199,21 +203,21 @@ def stockFilter(stock):
 
 	stock.getEarnings()
 	if not hasGoodEarnings(stock.earningsData):
-		print stock.symbol, "\t====> Bad Earnings Data" 
+		print template.format(starStr,stock.symbol,"Bad Earnings Data") 
 		return False
 	if not hasPositiveRevisions(stock.earningsData):
-		print stock.symbol, "\t====> Bad Positive Revisions Data" 
+		print template.format(starStr,stock.symbol,"Bad Positive Revisions Data")
 		return False
 
 	stock.getInsiderTransactions()
 	if not hasPositiveInsiderSignal(stock.insiderTransactions):
-		print stock.symbol, "\t====> Bad Insider Data" 
+		print template.format(starStr,stock.symbol,"Bad Insider Data")
 		return False
 
 	stock.getFundamentals()
 	stock.getAnalysis()
 	if not hasPositiveGrowth(stock.Analysis, 1):
-		print stock.symbol, "\t====> Bad Growth Data" 
+		print template.format(starStr,stock.symbol,"Bad Growth Data")
 		return False
 
 	return True
@@ -223,7 +227,8 @@ def stockFilter(stock):
 def getShortlist(symbols,industryRanks=None):
 	print "\n==================\nGetting Short List\n==================\n"
 
-	print "Number of Stocks being Analyzed:",len(symbols)
+	count = len(symbols)
+	print "Number of Stocks being Analyzed:",count
 
 	result = {
 		'valueAndGrowth' : [],
