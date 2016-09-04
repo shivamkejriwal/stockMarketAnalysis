@@ -125,15 +125,16 @@ def getZacksOpinion(symbol):
 
 	earningsbox = tree.xpath('//section[@id="stock_key_earnings"]/table/tbody/tr')
 	earningsData = tableToData(earningsbox)
-	
-	opinon['PE_Forward'] = earningsData['Forward PE']
-	opinon['EPS_Curr_Qtr'] = earningsData['Current Qtr Est']
-	opinon['EPS_Curr_Yr'] = earningsData['Current Yr Est']
+	if len(earningsData.keys())>0:
+		opinon['PE_Forward'] = earningsData['Forward PE']
+		opinon['EPS_Curr_Qtr'] = earningsData['Current Qtr Est']
+		opinon['EPS_Curr_Yr'] = earningsData['Current Yr Est']
 
 	stockActivityBox = tree.xpath('//section[@id="stock_activity"]/table/tbody/tr')
 	stockActivityData = tableToData(stockActivityBox)
 
-	opinon['Beta'] = stockActivityData['Beta']
+	if len(stockActivityData.keys())>0:
+		opinon['Beta'] = stockActivityData['Beta']
 
 	industrybox = tree.xpath('//section[@id="stock_industry_analysis"]/p[@class="premium"]/a')
 	if len(industrybox)>0:
@@ -612,7 +613,7 @@ def getIndustryWideEPS():
 # ========
 # 	Main
 # ========
-# ticker = 'BBVA'
+# ticker = 'TTHI'
 # print getZacksOpinion(ticker)
 # print getZacksRank(ticker)
 # print getZacksStyleScore(ticker)

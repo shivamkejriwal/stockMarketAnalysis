@@ -184,6 +184,7 @@ def stockFilter(stock):
 
 
 	if not goodStock or not validRank:
+		print stock.symbol, "\t=== Bad Stock"
 		return False
 
 	print stock.symbol, "\t=== Potential Stock"
@@ -240,8 +241,6 @@ def getShortlist(symbols,industryRanks=None):
 			stock.getRecentSentiment()
 			# stock.getTechnicals()
 			result['complete'].append(stock)
-		else: 
-			print stock.symbol, "\t=====> Bad Stock"
 
 	# print "skipList:",skipList
 	return result
