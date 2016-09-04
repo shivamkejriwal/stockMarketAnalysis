@@ -1,0 +1,44 @@
+With the market less than 1% away from its all-time highs, many are wondering what the market will do next.
+Will it pull back as the bears want to believe? Or will it power-up to new all-time highs as the bulls expect?
+But regardless of what you think may or may not happen to the market, everyone would like to have a better understanding of what their stock's potential price target is. And that's what we're going to talk about today.
+You can do this by using either technicals or fundamentals.
+Today, I'm going to focus on the fundamentals.
+And we're going to use the P/E ratio to calculate it.
+
+The P/E Ratio Can Tell You A Lot
+Many people use P/E ratios to determine a company's perceived under or overvaluation.
+But you can also use the P/E ratio to determine a stock's upside and downside price targets.
+The two most common P/E ratios used are the:
+1) P/Es using the Trailing 12 months (or 4 quarters) of earnings
+2) P/Es using the F1 (or Current Fiscal Year) Estimates
+You can also use the P/E using 12 Month Forward EPS estimate. (I’m actually partial to that one over the P/E using F1.)
+The calculation for the P/E ratio is simply price divided by earnings.
+For example: if a stock's price is $30 and its earnings are $1.25, its P/E would be 24.
+If that stock's earnings rose to $2.00, the P/E would now be lower at 15. ($30 price / $2.00 earnings = 15 P/E)
+And the most logical conclusion would be to see the stock's price rise until its most recent multiple (or P/E ratio) of 24 was hit again.
+Why is this so 'logical'? Because if people had just been willing to pay 24 times earnings, they probably will again if they believe the company's earnings will continue to improve.
+And in an environment where P/Es are increasing, they might be willing to pay even more.
+You'll also find that most of the time a stock's P/E ratio using EPS actuals is higher than its P/E ratio using its forward estimates.
+That's because of the uncertainty regarding the projected earnings vs. the certainty of actual earnings.
+As the company continues to report (and meet its projections), the forward P/E ratio typically increases, which means the stock price increases as the earnings projections are coming to fruition.
+And as more optimism grows over future earnings growth, you may see the P/E ratio grow even more, getting even higher than its previous multiple.
+
+Calculating the Price Target
+So, the calculation to figure out your stock's price target is below:
+Price x ((current P/E) / (forward P/E)) = future price (or price target)
+In other words: let's say a stock's price was $50 and its current P/E was 20. Let's also say its forward P/E was 15.
+That's: $50 * (20 / 15) = $66.50 price target
+Another way of saying this would be: 15 goes into 20, 1.33 times. So $50 times 1.33 equals your price target of $66.50.
+Price Target Screen
+The screen I'm running today finds stocks with P/Es under their average P/E over the last 5 years and that also have price targets of at least 20% or more above their current price.
+The Parameters are:
+• P/E less than Average P/E over the Last 5 Years
+(I want the stock's P/E to be less than the Average P/E over the Last 5 Years.)
+• Price Target greater than or equal to 1.2* the current price
+(Looking for stocks whose price target is at least 20% above their current price.)
+• Zacks Rank less than or equal to 3
+(No Sells or Strong Sells allowed.)
+
+
+
+https://www.zacks.com/commentary/89370/what39s-your-stock39s-price-target
