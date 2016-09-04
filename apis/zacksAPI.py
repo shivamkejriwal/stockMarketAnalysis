@@ -83,17 +83,20 @@ def tableToData(box):
 			value = None
 			if len(row[0]) > 0:
 				key = row[0][0].text
-				value = row[1][0].text
+				if len(row[1])==1:
+					value = row[1][0].text
+				else:
+					value = row[1][1].text
 			else:
 				key = row[0].text
 				value = row[1].text
-				if value == None : value = row[1][0].text 
-			
+				if value == None : value = row[1][0].text
 			if value == 'NA': value = None
 			if value != None:
 				value = value.replace(',','')
 				if '%' in value: value = value[:-1]
-				value = fixDecimal(value,3)
+				elif '/' in value: value = str(value)
+				else: value = fixDecimal(value,3)
 			data[key] = value
 	# pp(data)
 	return data
@@ -609,7 +612,7 @@ def getIndustryWideEPS():
 # ========
 # 	Main
 # ========
-# ticker = 'LEE'
+# ticker = 'BBVA'
 # print getZacksOpinion(ticker)
 # print getZacksRank(ticker)
 # print getZacksStyleScore(ticker)

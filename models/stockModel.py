@@ -3,6 +3,7 @@ from datetime import datetime,timedelta
 from pprint import pprint as pp
 from apis import yahooFinanceAPI as yahoo
 from apis import zacksAPI as zacks
+from apis import zacksFinancialAPI as zacksFinancial
 from apis import stockTwitsAPI as stockTwits
 from apis import morningstarAPI as morningstar
 from pprint import pprint as pp
@@ -42,6 +43,7 @@ class Stock:
 		self.insiderTransactions = {}
 		self.recentSentiment = {}
 		self.industryDetails = {}
+		self.Analysis = {}
 		self.currentDate = datetime.now().strftime("%Y-%m-%d")
 		self.currentTime = datetime.now().strftime("%H-%M")
 
@@ -62,9 +64,12 @@ class Stock:
 		# stockData = yahoo.getStockData(self.symbol,data_request_arr)
 		# self.Fundamentals['EBITDA'] = stockData['EBITDA']
 		# self.Fundamentals['book_value'] = stockData['book_value']
-		self.Fundamentals['keyRatios_yearly'] = morningstar.getKeyRatios(self.symbol)
-		self.Fundamentals['financials_yearly'] = morningstar.getFinancials(self.symbol,12)
-		self.Fundamentals['financials_quaterly'] = morningstar.getFinancials(self.symbol,3)
+		# self.Fundamentals['keyRatios_yearly'] = morningstar.getKeyRatios(self.symbol)
+		# self.Fundamentals['financials_yearly'] = morningstar.getFinancials(self.symbol,12)
+		# self.Fundamentals['financials_quaterly'] = morningstar.getFinancials(self.symbol,3)
+		data = zacksFinancial.getLatesDataset(self.symbol)
+		for key,value in data.iteritems():
+			self.Fundamentals[key] = value
 		# print "Fundamentals  : ", self.Fundamentals
 
 	def getTechnicals(self):
@@ -132,6 +137,32 @@ class Stock:
 
 		# pp(self.earningsData)
 		# print "earningsData  : ", self.earningsData
+
+	def getAnalysis(self):
+		self.Analysis['target_price'] = {
+			'by_PE':None, 'by_RealisticGrowthRate': None
+		}
+		self.Analysis['growth_multiple'] = {
+			'by_PE':None, 'by_RealisticGrowthRate': None
+		}
+		# Price x ((current P/E) / (forward P/E)) = future price (or price target)
+		price = self.basicData['price']
+		PE_Current = self.Fundamentals['pe_ratio']
+		PE_Forward = self.zacksOpinion['PE_Forward']
+		RealisticGrowthRate = self.Fundamentals['RealisticGrowthRate']
+		if None not in [price, PE_Forward, PE_Current]:
+			growth = float(PE_Current)/float(PE_Forward)
+			target_price = price*growth
+			self.Analysis['growth_multiple']['by_PE'] = fixDecimal(growth,3)
+			self.Analysis['target_price']['by_PE'] = fixDecimal(target_price,3)
+		if None not in [price, RealisticGrowthRate]:
+			growth = (1+RealisticGrowthRate)
+			target_price = price*growth
+			self.Analysis['growth_multiple']['by_RealisticGrowthRate'] = fixDecimal(growth,3)
+			self.Analysis['target_price']['by_RealisticGrowthRate'] = fixDecimal(target_price,3)
+
+		# print "Analysis  : ", self.Analysis
+
 
 	def getInsiderTransactions(self):
 		insiderTransactions = zacks.getInsiderTransactions(self.symbol)
@@ -392,32 +423,37 @@ class Stock:
 		revisionStr = '({0}, {1}, {2}%)'.format(self.earningsData['Revisions']['pos_revs']
 				,self.earningsData['Revisions']['neg_revs'],self.earningsData['Revisions']['ave_change']*100)
 
+		forcastStr = '({0},{1}):({2},{3})'.format(self.Analysis['target_price']['by_RealisticGrowthRate'],self.Analysis['target_price']['by_PE']
+			,self.Analysis['growth_multiple']['by_RealisticGrowthRate'],self.Analysis['growth_multiple']['by_PE'])
 		# print revisionStr
 
 		if len(self.industryDetails.keys()) == 0:
 			# print('Symbol\tIndustry\t\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5) - Revision(pos,neg,ave)')
-			template = '{0}\t{1:20}\t{2:20}\t{3}\t{4}\t{5}\t{6:20}\t{7}\t{8} - {9}'
+			template = '{0}\t{1:20}\t{2:20}\t{3}\t{4}\t{5}\t{6:20}\t{7}\t{8} - {9}\n\t\t\t======>\t{10}'
 			print(template.format(self.symbol,self.zacksOpinion['Industry']
 					,zacksStr,self.basicData['price'],self.basicData['market_capitalization']
-					,self.zacksOpinion['Beta'],sentimentStr,insiderStr,earningsStr, revisionStr))
+					,self.zacksOpinion['Beta'],sentimentStr,insiderStr,earningsStr, revisionStr,forcastStr))
 		if len(self.industryDetails.keys()) > 0:
 			# print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5) - Revision(pos,neg,ave)')
-			template = '{0}\t{1:20}\t({2},{3},{4})\t\t{5:20}\t{6}\t{7}\t{8}\t{9:20}\t{10:30}\t{11} - {12}'
+			template = '{0}\t{1:20}\t({2},{3},{4})\t\t{5:20}\t{6}\t{7}\t{8}\t{9:20}\t{10:30}\t{11} - {12}\n\t\t\t======>\t{13}'
 			print(template.format(self.symbol,self.zacksOpinion['Industry'][:20]
 					,self.industryDetails["rank"]['ByZacks'],self.industryDetails['rank']['ByAverage']
 					,self.industryDetails['rank']['ByWeightedAverage']
 					,zacksStr,self.basicData['price'],self.basicData['market_capitalization'],self.zacksOpinion['Beta']
-					,sentimentStr,insiderStr,earningsStr, revisionStr))
+					,sentimentStr,insiderStr,earningsStr, revisionStr,forcastStr))
 
 
 # industryRanks = zacks.getIndustryRanks()
-# stock = Stock('mtu')
-# # print stock.symbol
+# stock = Stock('hlth')
+
+# print stock.symbol
+# stock.getBasicData()
 # stock.getZacksOpinion()
 # stock.getEarnings()
 # stock.getInsiderTransactions()
 # stock.getRecentSentiment()
-# stock.getBasicData()
+# stock.getFundamentals()
+# stock.getAnalysis()
 # stock.getTechnicals()
 # stock.setIndustryDetails(industryRanks)
 # stock.getEarnings()
