@@ -19,8 +19,8 @@ def isValidStock(basicData):
 	else:
 		price = basicData['market_value']
 	marketCap = basicData['market_capitalization']
-	if price > 10 : return False
-	if price < .1 : return False
+	if price > 6 : return False
+	if price < 1 : return False
 	if marketCap < 1000000 : return False
 	return True
 
@@ -204,7 +204,7 @@ def printList(stockList, listName=None):
 	# print symbols
 
 	print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5) - Revision(pos,neg,ave)')
-	print('\t\t\t======>\tTarget Price(by_ReturnOnCapital,by_PE): Growth Multiple(by_ReturnOnCapital,by_PE)\n')
+	print('\t\t\t======>\tTarget Price(by_ReturnOnCapital,by_PE): Growth Multiple(by_ReturnOnCapital,by_PE)\tDebt Ratios(CapitalizationRatio,DebtRatio,Debt_to_equity)\n')
 	for stock in stockList:
 		# print stock.symbol
 		stock.printData()

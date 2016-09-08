@@ -50,7 +50,9 @@ urls_Complete = [
 urls_Basic = [
 	'https://widget3.zacks.com/data/zrs/json/{0}/enterprise_value/www.zacks.com?periodicity=weekly',
 	'https://widget3.zacks.com/data/zrs/json/{0}/book_value_per_share/www.zacks.com?periodicity=weekly',
-	'https://widget3.zacks.com/data/zrs/json/{0}/revenue_ttm/www.zacks.com?periodicity=weekly'
+	'https://widget3.zacks.com/data/zrs/json/{0}/revenue_ttm/www.zacks.com?periodicity=weekly',
+	'https://widget3.zacks.com/data/zrs/json/{0}/liabilities_total/www.zacks.com?periodicity=weekly',
+	'https://widget3.zacks.com/data/zrs/json/{0}/assets_total/www.zacks.com?periodicity=weekly'
 ]
 
 # RealisticGrowthRate = (Net Income - Dividends - Depreciation & Amortization) / (Shareholders' Equity + Long-Term Debt)
@@ -79,6 +81,8 @@ def getUnit(name):
 		'free_cash_flow':1000000,
 		'net_income_ttm':1000000,
 		'net_income':1000000,
+		'liabilities_total':1000000,
+		'assets_total':1000000,
 		'share_holders_equity':1000000,
 		'debt_lt_total_ttm':1000000,
 		'enterprise_value':1000000,
@@ -248,9 +252,20 @@ def getCapitalizationRatio(data,index):
 	share_holders_equity = data['share_holders_equity'][index][1]
 	if 'N/A' in [long_term_debt,share_holders_equity]:
 		return None
-	return_on_capital = share_holders_equity+long_term_debt
-	capitalizationRatio = float(long_term_debt)/ float(return_on_capital)
+	capital = share_holders_equity+long_term_debt
+	capitalizationRatio = float(long_term_debt)/ float(capital)
+	capitalizationRatio = fixDecimal(capitalizationRatio,3)
 	return capitalizationRatio
+
+def getDebtRatio(data,index):
+	# DebtRatio = Libities/assets
+	liabilities = data['liabilities_total'][index][1]
+	assets = data['assets_total'][index][1]
+	if 'N/A' in [liabilities,assets]:
+		return None
+	DebtRatio = float(liabilities)/ float(assets)
+	DebtRatio = fixDecimal(DebtRatio,3)
+	return DebtRatio
 
 def getProfitMarginRatio(data,index):
 	net_income = data['net_income_ttm'][index][1]
@@ -272,6 +287,7 @@ def getLatesDataset(symbol):
 	result = {}
 	result['ReturnOnCapital'] = getReturnOnCapital(data,0)
 	result['CapitalizationRatio'] = getCapitalizationRatio(data,0)
+	result['DebtRatio'] = getDebtRatio(data,0)
 	result['ProfitMarginRatio'] = getProfitMarginRatio(data,0)
 	result['MaxSustainableGrowthRate'] = getMaxSustainableGrowthRate(data,0)
 	result['ReturnOnEquityRatio'] = getReturnOnEquityRatio(data,0)

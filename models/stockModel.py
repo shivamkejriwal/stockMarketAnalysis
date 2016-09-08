@@ -50,10 +50,11 @@ class Stock:
 		Stock.stocksCount += 1
 
 	def getBasicData(self):
-		data_request_arr = ['p','j1','j2','j3','v','j4','p5','p6','t8']
+		data_request_arr = ['p','j1','j2','v','j4','p5','p6','t8']
 		stockData = yahoo.getStockData(self.symbol,data_request_arr)
 		self.basicData['price'] = stockData['market_value']
 		self.basicData['volume'] = stockData['volume']
+		# self.basicData['ave_daily_volume'] = stockData['ave_daily_volume']
 		self.basicData['shares_outstanding'] = stockData['shares_outstanding']
 		self.basicData['market_capitalization'] = stockData['market_capitalization']
 		self.basicData['yr_target_price'] = stockData['yr_target_price']
@@ -242,6 +243,10 @@ class Stock:
 			'GlobalBrandPresident-AE': .2,
 			'GlobalBrandPresident-aerie': .2,
 			'EVP-Stores&Wholesale': .2,
+			'SVP/GeneralCounsel,Secretary': .2,
+			'ExecVP-GlobalChainSupply': .2,
+			'SVP-InformationServices': .2,
+			'ChiefOperatingOfficer&EVP': .2,
 			'EVPChiefInformationOfficer': .3,
 			'ExecVicePres/HumanResources': .3,
 			'SVP-InforrmationServices': .3,
@@ -270,6 +275,8 @@ class Stock:
 			'VP&ChiefAccountingOfficer': .3,
 			'SVPDevelopment': .3,
 			'SVP,Finance&CAO': .3,
+			'ExecutiveVicePresident': .3,
+			'VP,FinanceandCFO': .4,
 			'EVP,CFO&Treasurer': .4,
 			'C.F.O.': .4,
 			'CFO&Secretary': .4,
@@ -299,6 +306,7 @@ class Stock:
 			'EVP,COOandCFO': .4,
 			'EVPChiefOperOfficerandCFO': .4,
 			'CFO,ExecutiveVicePresident': .4,
+			'President&ChiefExecOfficer': .5,
 			'President,ChairmanandCEO': .5,
 			'Chairman,PresidentandCEO': .5,
 			'ExecutiveVP,CFOandSec':.5,
@@ -433,22 +441,24 @@ class Stock:
 
 		forcastStr = '({0},{1}):({2},{3})'.format(self.Analysis['target_price']['by_ReturnOnCapital'],self.Analysis['target_price']['by_PE']
 			,self.Analysis['growth_multiple']['by_ReturnOnCapital'],self.Analysis['growth_multiple']['by_PE'])
+
+		debtStr = '({0},{1},{2})'.format(self.Fundamentals['CapitalizationRatio'],self.Fundamentals['DebtRatio'],self.Fundamentals['debt_to_equity'])
 		# print revisionStr
 
 		if len(self.industryDetails.keys()) == 0:
 			# print('Symbol\tIndustry\t\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5) - Revision(pos,neg,ave)')
-			template = '{0}\t{1:20}\t{2:20}\t{3}\t{4}\t{5}\t{6:20}\t{7}\t{8} - {9}\n\t\t\t======>\t{10}'
+			template = '{0}\t{1:20}\t{2:20}\t{3}\t{4}\t{5}\t{6:20}\t{7}\t{8} - {9}\n\t\t\t======>\t{10}\t{11}'
 			print(template.format(self.symbol,self.zacksOpinion['Industry']
 					,zacksStr,self.basicData['price'],self.basicData['market_capitalization']
-					,self.zacksOpinion['Beta'],sentimentStr,insiderStr,earningsStr, revisionStr,forcastStr))
+					,self.zacksOpinion['Beta'],sentimentStr,insiderStr,earningsStr, revisionStr,forcastStr,debtStr))
 		if len(self.industryDetails.keys()) > 0:
 			# print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5) - Revision(pos,neg,ave)')
-			template = '{0}\t{1:20}\t({2},{3},{4})\t\t{5:20}\t{6}\t{7}\t{8}\t{9:20}\t{10:30}\t{11} - {12}\n\t\t\t======>\t{13}'
+			template = '{0}\t{1:20}\t({2},{3},{4})\t\t{5:20}\t{6}\t{7}\t{8}\t{9:20}\t{10:30}\t{11} - {12}\n\t\t\t======>\t{13}\t{14}'
 			print(template.format(self.symbol,self.zacksOpinion['Industry'][:20]
 					,self.industryDetails["rank"]['ByZacks'],self.industryDetails['rank']['ByAverage']
 					,self.industryDetails['rank']['ByWeightedAverage']
 					,zacksStr,self.basicData['price'],self.basicData['market_capitalization'],self.zacksOpinion['Beta']
-					,sentimentStr,insiderStr,earningsStr, revisionStr,forcastStr))
+					,sentimentStr,insiderStr,earningsStr, revisionStr,forcastStr,debtStr))
 
 
 # industryRanks = zacks.getIndustryRanks()
