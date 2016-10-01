@@ -1,0 +1,14 @@
+Price/Sales Ratio less than or equal to Industry Median 
+
+As mentioned before, the P/S ratio shows how much you're paying for every $1 of sales the company makes. For this screen, we're requiring the P/S ratio to be less than the median P/S for its Industry. Note: different industries will have different averages or medians for different items. A P/S of 1 is not such a great bargain if the median for its Industry is 0.7. But it's a great find if the Industry's median is 1.5. This parameter lets us focus in on 'discounted' valuations germane to their industry. And this allows these stocks to still be considered undervalued even as their stock price continues higher.
+
+
+
+P/E (using F1 Estimates) less than or equal to Industry Median
+
+Just like the P/S ratio, we're looking for stocks whose P/E is below the median for their respective Industry. Including proven valuation metrics when using price momentum screens gives the trader a significant advantage.
+
+
+Projected One Year EPS Growth F(1)/F(0) greater than or equal to Industry Median
+
+While the P/S and P/E ratios searched for stocks with valuations below their Industry's median. This item is looking for stocks with projected growth rates above the median for its Industry. In order for a stock to continue to go higher, there needs to be a reason for it to do so. And strong growth of course is an important part of that.
