@@ -588,6 +588,66 @@ def getIndustryWideEPS():
 	# pp(industryData)
 	return industryData
 
+def getScoresFromBoxes(box):
+	data = {}
+	for row in box:
+		key = row[0].text
+		stock_value = row[1].text
+		industry_value = row[2].text
+
+		if stock_value==None and len(row[1])>0:stock_value = row[1][0].text
+		if industry_value==None and len(row[2])>0:industry_value = row[2][0].text
+		if key[-1]==' ': key=key[:-1]
+		if key[-1]==' ': key=key[:-1]
+		key = key.replace('.','').replace(' ','_')
+		if stock_value == 'NA':stock_value=None
+		if industry_value == 'NA':industry_value=None
+		data[key] = {}
+		data[key]['stock'] = stock_value
+		data[key]['industry'] = industry_value
+	return data
+
+def populateScoreCards(scoreCard,data,scoreType):
+	for key,value in data.iteritems():
+		scoreCard['StockStyleScorecard'][scoreType][key]=value['stock']
+		scoreCard['IndustryStyleScorecard'][scoreType][key]=value['industry']
+
+
+def getStyleScorecard(symbol):
+	symbol = symbol.upper()
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36',
+		'Host':'www.zacks.com',
+		'Referer':'https://www.zacks.com/stock/quote/'+symbol
+	}
+	scoreCard = {
+		'StockStyleScorecard': {
+			'Growth':{},'Value':{},'Momentum':{}
+		},
+		'IndustryStyleScorecard': {
+			'Growth':{},'Value':{},'Momentum':{}
+		}
+	}
+	page = requests.get('https://www.zacks.com/stock/research/'+symbol+'/stock-style-scores',headers=headers)
+	tree = html.fromstring(page.content)
+
+	valuebox = tree.xpath('//section[@id="value_vw2"]/table/tbody/tr')
+	growthbox = tree.xpath('//section[@id="growth_vw2"]/table/tbody/tr')
+	momentumbox = tree.xpath('//section[@id="momentum_vw2"]/table/tbody/tr')
+
+	valueData = getScoresFromBoxes(valuebox)
+	growthData = getScoresFromBoxes(growthbox)
+	momentumData = getScoresFromBoxes(momentumbox)
+
+	populateScoreCards(scoreCard,valueData,'Value')
+	populateScoreCards(scoreCard,growthData,'Growth')
+	populateScoreCards(scoreCard,momentumData,'Momentum')
+	return scoreCard
+
+
+
+
+
 # industryData,companyList = getIndustryWideEPS()
 
 # symbolList = []
@@ -613,7 +673,13 @@ def getIndustryWideEPS():
 # ========
 # 	Main
 # ========
-# ticker = 'TTHI'
+# ticker = 'pfmt'
 # print getZacksOpinion(ticker)
 # print getZacksRank(ticker)
 # print getZacksStyleScore(ticker)
+# data = getStyleScorecard(ticker)
+# pp(data)
+
+
+
+

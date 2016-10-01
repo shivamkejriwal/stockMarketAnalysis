@@ -92,7 +92,7 @@ class Stock:
 
 	def getEarnings(self):
 		today = datetime.now()
-		lastMonth = datetime.now() - timedelta(days=31)
+		lastMonth = datetime.now() - timedelta(days=31*2)
 		earningsData = zacks.getEarnings(self.symbol)
 
 		# pp(earningsData['revisions_data'])
@@ -247,6 +247,11 @@ class Stock:
 			'ExecVP-GlobalChainSupply': .2,
 			'SVP-InformationServices': .2,
 			'ChiefOperatingOfficer&EVP': .2,
+			'VP&GENERALCOUNSEL': .2,
+			'ChiefLegalOfficer&Secretary': .2,
+			'ChiefNetworkOfficer': .2,
+			'ChiefInformationOfficer': .2,
+			'CorporateController': 2,
 			'EVPChiefInformationOfficer': .3,
 			'ExecVicePres/HumanResources': .3,
 			'SVP-InforrmationServices': .3,
@@ -276,6 +281,10 @@ class Stock:
 			'SVPDevelopment': .3,
 			'SVP,Finance&CAO': .3,
 			'ExecutiveVicePresident': .3,
+			'VICEPRESIDENT&CAO': .3,
+			'Exec.VP,CAO&Gen.Counsel': .3,
+			'SVPFinance,Int\'lCFO': .3,
+			'CHIEFFINANCIALOFFICER&CAO': .4,
 			'VP,FinanceandCFO': .4,
 			'EVP,CFO&Treasurer': .4,
 			'C.F.O.': .4,
@@ -306,6 +315,9 @@ class Stock:
 			'EVP,COOandCFO': .4,
 			'EVPChiefOperOfficerandCFO': .4,
 			'CFO,ExecutiveVicePresident': .4,
+			'EVP&ChiefFinancialOfficer': .4,
+			'PRESIDENT&CMO': .5,
+			'CHIEFEXECUTIVEOFFICER': .5,
 			'President&ChiefExecOfficer': .5,
 			'President,ChairmanandCEO': .5,
 			'Chairman,PresidentandCEO': .5,
@@ -460,11 +472,11 @@ class Stock:
 					,zacksStr,self.basicData['price'],self.basicData['market_capitalization'],self.zacksOpinion['Beta']
 					,sentimentStr,insiderStr,earningsStr, revisionStr,forcastStr,debtStr))
 
-
+# stock = Stock('sxe')
+# # print stock.symbol
 # industryRanks = zacks.getIndustryRanks()
-# stock = Stock('hlth')
 
-# print stock.symbol
+
 # stock.getBasicData()
 # stock.getZacksOpinion()
 # stock.getEarnings()

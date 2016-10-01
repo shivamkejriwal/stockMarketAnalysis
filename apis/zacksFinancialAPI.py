@@ -180,6 +180,9 @@ def getLatestValue(data):
 	oldMonth = datetime.now() - timedelta(days=31*3)
 	index = len(data.keys())-1
 	name = data.keys()[index]
+
+	name = name.replace("weekly_", "").replace("daily_", "").replace("monthly_", "")
+
 	values = data.values()[index]
 	if len(values) == 0:
 		return [None,None], name
@@ -284,6 +287,7 @@ def getCashFlowToDebtRatio(data,index):
 def getLatesDataset(symbol):
 	symbol = symbol.upper()
 	data = getDataMap(symbol,1)
+	# pp(data)
 	result = {}
 	result['ReturnOnCapital'] = getReturnOnCapital(data,0)
 	result['CapitalizationRatio'] = getCapitalizationRatio(data,0)
@@ -368,7 +372,7 @@ def getFreeCashFlow(symbol,max_count, min_count=0):
 
 
 
-# symbol = 'DYNT'
+# symbol = 'PRTS'
 # pp(getLatesDataset(symbol))
 # max_count = 5
 

@@ -19,7 +19,7 @@ def isValidStock(basicData):
 	else:
 		price = basicData['market_value']
 	marketCap = basicData['market_capitalization']
-	if price > 6 : return False
+	if price > 10 : return False
 	if price < 1 : return False
 	if marketCap < 1000000 : return False
 	return True
@@ -86,7 +86,7 @@ def hasPositiveRevisions(earningsData):
 	ave_change = earningsData['Revisions']['ave_change']
 	if pos_rev<neg_rev:
 		return False
-	if ave_change < 0:
+	if ave_change <= 0:
 		return False
 	return True
 
@@ -244,7 +244,7 @@ def getTickerList():
 	veto_exchanges = ['PNK', '/', 'OBB']
 	dataList = []
 	print "Zacks ticker list:", len(zacksTickerList)
-	for chunk in chunks(zacksTickerList,1000):
+	for chunk in chunks(zacksTickerList,500):
 		# print "chunk"
 		res = yahoo.getMultipleStockData(chunk,data_err)
 		for obj in res:
@@ -261,6 +261,22 @@ def getTickerList():
 	return symbols
 
 
+def doJob(symbols=None, getIndustry=False):
+	industryRanks = None
+
+	if symbols == None:
+		symbols = getTickerList()
+	if getIndustry == True:
+		industryRanks = zacks.getIndustryRanks()
+		sortedByZacksRank = sorted(industryRanks.values(), key=lambda obj: obj['rank_weighted_average'], reverse=True)
+		pp(sortedByZacksRank)
+
+	shortList = getShortlist(symbols,industryRanks)
+	sortedByPrice = sorted(shortList['complete'], key=lambda stock: stock.basicData['price'])
+	printList(sortedByPrice, 'Potential Stock List')
+
+
+
 # symbols = ['ACPW', 'ATEC', 'AMRS', 'APRI', 'BIOC', 'BIOD', 'BLIN'
 # 		, 'CPRX', 'CYTR', 'ETRM', 'GNVC', 'NVCN', 'ORIG', 'PPHM'
 # 		, 'REXX', 'SGNL', 'ANY', 'SSH', 'WGBS', 'XOMA', 'BAS', 'BXE', 'HK'
@@ -275,18 +291,24 @@ def getTickerList():
 # symbols = ['SXE', 'SORL', 'JTPY', 'PFMT', 'LEE', 'CIG', 'HLTH', 'PRTS', 'EXTR', 'DXYN', 'HCHC']
 # symbols = ['PFMT', 'LEE', 'HLTH', 'PRTS']
 # symbols = ['PFMT', 'DVD', 'CRNT', 'LEE', 'EXFO', 'HLTH', 'PIR', 'IEC', 'FIG', 'DRAD', 'PRTS', 'ELMD', 'STB', 'AUDC', 'MPX', 'TLYS', 'SIM']
+# symbols = ['atec', 'gss', 'rox', 'lee','cmls','hlth']
 
-industryRanks = None
-industryRanks = zacks.getIndustryRanks()
-sortedByZacksRank = sorted(industryRanks.values(), key=lambda obj: obj['rank_weighted_average'], reverse=True)
-pp(sortedByZacksRank)
-symbols = getTickerList()
+# industryRanks = None
+# industryRanks = zacks.getIndustryRanks()
+# sortedByZacksRank = sorted(industryRanks.values(), key=lambda obj: obj['rank_weighted_average'], reverse=True)
+# pp(sortedByZacksRank)
+# symbols = getTickerList()
 
 # print symbols
-shortList = getShortlist(symbols,industryRanks)
-sortedByPrice = sorted(shortList['complete'], key=lambda stock: stock.basicData['price'])
-printList(sortedByPrice, 'Potential Stock List')
+# shortList = getShortlist(symbols,industryRanks)
+# sortedByPrice = sorted(shortList['complete'], key=lambda stock: stock.basicData['price'])
+# printList(sortedByPrice, 'Potential Stock List')
 
 # current_portfolio = portfolio.getCurrentPortfolio(config.portfolio)
 # portfolio.printPortfolio(current_portfolio)
 # getShortList()
+
+doJob(None,True)
+
+
+

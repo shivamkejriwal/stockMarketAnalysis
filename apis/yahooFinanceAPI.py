@@ -68,6 +68,7 @@ def createURL(symbol,data_arr):
 
 def cleanData(contentLineStr, data_arr):
 	result = {}
+	# print contentLineStr
 	data = contentLineStr.split(',')
 	for index in  range(len(data_arr)):
 		key = mapping[data_arr[index]]
