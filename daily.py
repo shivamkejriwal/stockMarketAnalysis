@@ -19,7 +19,7 @@ def isValidStock(basicData):
 	else:
 		price = basicData['market_value']
 	marketCap = basicData['market_capitalization']
-	if price > 10 : return False
+	if price > 5 : return False
 	if price < 1 : return False
 	if marketCap < 1000000 : return False
 	return True
@@ -86,7 +86,7 @@ def hasPositiveRevisions(earningsData):
 	ave_change = earningsData['Revisions']['ave_change']
 	if pos_rev<neg_rev:
 		return False
-	if ave_change <= 0:
+	if ave_change < 0:
 		return False
 	return True
 
