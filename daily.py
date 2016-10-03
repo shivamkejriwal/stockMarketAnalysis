@@ -113,10 +113,11 @@ def hasPositiveGrowth(Analysis, growth_multiple=1):
 
 	if by_PE != None and by_PE < growth_multiple:
 		return False
-	
+
+	# if by_PE == None or by_PE < growth_multiple:
+	# 	return False
 
 	return True
-
 
 
 
@@ -196,7 +197,6 @@ def getShortlist(symbols,industryRanks=None):
 	# print "skipList:",skipList
 	return result
 
-
 def printList(stockList, listName=None):
 	print "Printing List : ", listName
 	print "Stocks in list : ", len(stockList)
@@ -210,15 +210,12 @@ def printList(stockList, listName=None):
 		stock.printData()
 		# print stock.symbol,stock.basicData['price'],stock.zacksOpinion,stock.recentSentiment
 
-
-
 def chunks(l, n):
 	"""Yield successive n-sized chunks from l."""
 	data = []
 	for i in range(0, len(l), n):
 		data.append(l[i:i + n])
 	return data
-
 
 def getTickerListFromNasdaq():
 	data = dataETL.getExchangeData(convert=True)
@@ -259,7 +256,6 @@ def getTickerList():
 		symbols.append(ticker['symbol'])
 
 	return symbols
-
 
 def doJob(symbols=None, getIndustry=False):
 	industryRanks = None
