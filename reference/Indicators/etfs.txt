@@ -1,0 +1,31 @@
+https://www.blackrock.com/ca/individual/en/products/product-list#
+
+
+XGD	iShares S&P/TSX Global Gold Index ETF
+XEG	iShares S&P/TSX Capped Energy Index ETF
+XIT	iShares S&P/TSX Capped Information Technology Index ETF
+XST	iShares S&P/TSX Capped Consumer Staples Index ETF
+XUT	iShares S&P/TSX Capped Utilities Index ETF
+XHC	iShares Global Healthcare Index ETF (CAD-Hedged)
+XMA	iShares S&P/TSX Capped Materials Index ETF
+XGI	iShares S&P Global Industrials Index ETF (CAD-Hedged)
+XCD	iShares S&P Global Consumer Discretionary Index ETF (CAD-Hedged)
+XBM	iShares S&P/TSX Global Base Metals Index ETF
+XFN	iShares S&P/TSX Capped Financials Index ETF
+CEW	iShares Equal Weight Banc & Lifeco ETF
+FIE	iShares Canadian Financial Monthly Income ETF
+
+
+
+
+
+
+
+
+
+Referer:https://www.zacks.com/funds/top-etfs
+https://www.zacks.com/funds/top_etf_ajax_datahelper.php?category_id=all&rank_id=1
+
+https://www.zacks.com/funds/top_etf_ajax_datahelper.php?category_id=16&rank_id=1
+
+https://www.zacks.com/funds/etf/PSI/holding

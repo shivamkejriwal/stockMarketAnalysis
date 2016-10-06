@@ -1,0 +1,130 @@
+https://www.quandl.com/collections/usa/usa-economy-data
+
+
+===========================================================
+Bussiness Sectors
+
+Retail and Food Services Sales
+https://www.quandl.com/data/FRED/RSAFS
+
+E-Commerce Retail Sales
+https://www.quandl.com/data/FRED/ECOMSA
+
+https://www.quandl.com/data/FRED/BUSINV-Total-Business-Inventories
+https://www.quandl.com/data/FRED/BUSINV
+
+https://www.quandl.com/data/FRED/CP-Corporate-Profits-After-Tax
+https://www.quandl.com/data/FRED/CP
+
+Commercial Paper Outstanding
+https://www.quandl.com/data/FRED/COMPOUT
+
+
+
+===========================================================
+
+
+Average Hourly Earnings of All Employees: Total Private
+https://www.quandl.com/data/FRED/CES0500000003
+
+Average Weekly Hours Of Production And Nonsupervisory Employees: Total private
+https://www.quandl.com/data/FRED/AWHNONAG
+
+
+Consumer Price Index for All Urban Consumers: All Items (USA Inflation)
+https://www.quandl.com/data/FRED/CPIAUCSL
+
+Initial Jobless Claims
+https://www.quandl.com/data/FRED/ICSA
+
+===========================================================
+Productions
+
+Industrial Production Index
+https://www.quandl.com/data/FRED/INDPRO
+
+Capacity Utilization: Total Industry
+https://www.quandl.com/data/FRED/TCU
+
+PMI Composite Index
+https://www.quandl.com/data/ISM/MAN_PMI
+
+
+===========================================================
+Consumer
+
+Total Consumer Credit Owned and Securitized, Outstanding
+https://www.quandl.com/data/FRED/TOTALSL
+
+Households and Nonprofit Organizations; Credit Market Instruments; Liability, Level
+https://www.quandl.com/data/FRED/CMDEBT
+
+Real Disposable Personal Income: Per capita
+https://www.quandl.com/data/FRED/A229RX0
+
+Personal Saving Rate
+https://www.quandl.com/data/FRED/PSAVERT
+
+
+Household Debt Service Payments as a Percent of Disposable Personal Income
+https://www.quandl.com/data/FRED/TDSP
+
+
+
+
+===========================================================
+
+
+Delinquency rate on credit card loans;All commercial banks(Seasonally adjusted), Quarterly
+https://www.quandl.com/data/FED/STFBQDCC_STFBAILCC_XEOP_MA_Q
+
+
+Delinquency rate on consumer loans;All commercial banks(Seasonally adjusted), Quarterly
+https://www.quandl.com/data/FED/STFBQDC_STFBAILC_XEOP_MA_Q
+
+
+Consumer debt service ratio, seasonally adjusted, Quarterly
+https://www.quandl.com/data/FED/DTFC_YPD_Q
+
+
+
+
+
+
+
+
+https://www.quandl.com/data/ECRI/USLEADING
+U.S. Weekly Leading Index
+
+Composite Index of Leading Indicators:-
+1. The average weekly hours worked by manufacturing workers;
+2. The average number of initial applications for unemployment insurance;
+3. The amount of manufacturers' new orders for consumer goods and materials;
+4. The speed of delivery of new merchandise to vendors from suppliers;
+5. The amount of new orders for capital goods unrelated to defense;
+6. The amount of new building permits for residential buildings;
+7. The S&P 500 stock index;
+8. The inflation-adjusted monetary supply (M2);
+9. The spread between long and short interest rates; and
+10. consumer sentiment.
+
+http://www.investopedia.com/terms/c/cb-leading-index.asp#ixzz4Lu1bMbeG
+
+
+
+
+
+
+
+https://www.quandl.com/data/SWA/WAGE_AH
+
+Hours Worked by Full-Time and Part-Time Employees by Industry
+https://www.quandl.com/data/BEA/60900DANN
+
+
+
+Manufacturing New Orders Index
+https://www.quandl.com/data/ISM/MAN_NEWORDERS
+
+Non-Manufacturing New Orders Index
+https://www.quandl.com/data/ISM/NONMAN_NEWORD

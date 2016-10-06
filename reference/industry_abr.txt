@@ -1,0 +1,60 @@
+https://www.zacks.com/ABR/1
+
+
+http://www.tmxmoney.com/en/index.html
+
+
+
+
+http://money.usnews.com/funds/etfs/sector
+
+
+
+https://www.fidelity.com/etfs/sector-etfs
+
+
+
+
+
+
+
+http://www.sectorspdr.com/sectorspdr/tools/correlation-tracker
+
+
+	SPDR Select Sector Fund - Health Care	XLV	0.307	12/15/1998
+	SPDR Select Sector Fund - Financial	XLF	0.239	12/15/1998
+	SPDR Select Sector Fund - Consumer Staples	XLP	0.239	12/15/1998
+	Financial Services Select Sector SPDR Fund (The)	XLFS	0.236	10/06/2015
+	SPDR Select Sector Fund - Consumer Discretionary	XLY	0.221	12/15/1998
+	SPDR Select Sector Fund - Energy Select Sector	XLE	0.201	12/15/1998
+	SPDR Select Sector Fund - Industrial	XLI	0.17	12/15/1998
+	SPDR Select Sector Fund - Technology	XLK	0.14	12/15/1998
+	Materials Select Sector SPDR	XLB	0.125	12/15/1998
+	SPDR Select Sector Fund - Utilities	XLU	0.084	12/15/1998
+
+
+	XLY - Consumer Discretionary
+
+	XLP - Consumer Staples
+
+	XLE - Energy
+
+	XLF - Financials
+
+	XLV - Health Care
+
+	XLI - Industrials
+
+	XLB - Materials
+
+	XLK - Technology
+
+	XLU - Utilities
+
+	SPY - S&P 500 Index
+
+
+
+
+https://www.fidelity.com/learning-center/trading-investing/markets-sectors/sector-seasonality
+
