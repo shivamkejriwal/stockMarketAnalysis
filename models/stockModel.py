@@ -473,21 +473,21 @@ class Stock:
 					,zacksStr,self.basicData['price'],self.basicData['market_capitalization'],self.zacksOpinion['Beta']
 					,sentimentStr,insiderStr,earningsStr, revisionStr,forcastStr,debtStr,valuationStr))
 
-stock = Stock('pfmt')
-# print stock.symbol
-# industryRanks = zacks.getIndustryRanks()
+# stock = Stock('pfmt')
+# # print stock.symbol
+# # industryRanks = zacks.getIndustryRanks()
 
 
-stock.getBasicData()
-stock.getZacksOpinion()
-stock.getEarnings()
-stock.getInsiderTransactions()
-stock.getRecentSentiment()
-stock.getFundamentals()
-stock.getAnalysis()
-stock.getTechnicals()
-# stock.setIndustryDetails(industryRanks)
-stock.getEarnings()
-stock.printData()
+# stock.getBasicData()
+# stock.getZacksOpinion()
+# stock.getEarnings()
+# stock.getInsiderTransactions()
+# stock.getRecentSentiment()
+# stock.getFundamentals()
+# stock.getAnalysis()
+# stock.getTechnicals()
+# # stock.setIndustryDetails(industryRanks)
+# stock.getEarnings()
+# stock.printData()
 
 
