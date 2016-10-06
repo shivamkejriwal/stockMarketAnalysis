@@ -39,20 +39,32 @@ urls_Complete = [
 	# cash
 	'https://widget3.zacks.com/data/zrs/json/{0}/cash/www.zacks.com?periodicity=weekly',
 	'https://widget3.zacks.com/data/zrs/json/{0}/cash_from_financing/www.zacks.com?periodicity=weekly',
+	'https://widget3.zacks.com/data/zrs/json/{0}/cash_from_financing_ttm/www.zacks.com?periodicity=weekly',
 	'https://widget3.zacks.com/data/zrs/json/{0}/cash_from_investing/www.zacks.com?periodicity=weekly',
+	'https://widget3.zacks.com/data/zrs/json/{0}/cash_from_investing_ttm/www.zacks.com?periodicity=weekly',
 	'https://widget3.zacks.com/data/zrs/json/{0}/cash_from_operations/www.zacks.com?periodicity=weekly',
+	'https://widget3.zacks.com/data/zrs/json/{0}/cash_from_operations_ttm/www.zacks.com?periodicity=weekly',
 	'https://widget3.zacks.com/data/zrs/json/{0}/free_cash_flow/www.zacks.com?periodicity=weekly',
+	'https://widget3.zacks.com/data/zrs/json/{0}/free_cash_flow_ttm/www.zacks.com?periodicity=weekly',
 
 	'https://widget3.zacks.com/data/zrs/json/{0}/roe/www.zacks.com?periodicity=weekly',
 	'https://widget3.zacks.com/data/zrs/json/{0}/return_on_assets/www.zacks.com?periodicity=weekly'
 ]
 
 urls_Basic = [
+	# 'https://widget3.zacks.com/data/zrs/json/{0}/price/www.zacks.com?periodicity=weekly',
+	# 'https://widget3.zacks.com/data/zrs/json/{0}/market_cap/www.zacks.com?periodicity=weekly',
+	# 'https://widget3.zacks.com/data/zrs/json/{0}/cash/www.zacks.com?periodicity=weekly',
+	# 'https://widget3.zacks.com/data/zrs/json/{0}/free_cash_flow/www.zacks.com?periodicity=weekly',
+	# 'https://widget3.zacks.com/data/zrs/json/{0}/cash_from_financing/www.zacks.com?periodicity=weekly',
+	# 'https://widget3.zacks.com/data/zrs/json/{0}/cash_from_investing/www.zacks.com?periodicity=weekly',
+	# 'https://widget3.zacks.com/data/zrs/json/{0}/cash_from_operations/www.zacks.com?periodicity=weekly',
 	'https://widget3.zacks.com/data/zrs/json/{0}/enterprise_value/www.zacks.com?periodicity=weekly',
 	'https://widget3.zacks.com/data/zrs/json/{0}/book_value_per_share/www.zacks.com?periodicity=weekly',
 	'https://widget3.zacks.com/data/zrs/json/{0}/revenue_ttm/www.zacks.com?periodicity=weekly',
 	'https://widget3.zacks.com/data/zrs/json/{0}/liabilities_total/www.zacks.com?periodicity=weekly',
-	'https://widget3.zacks.com/data/zrs/json/{0}/assets_total/www.zacks.com?periodicity=weekly'
+	'https://widget3.zacks.com/data/zrs/json/{0}/assets_total/www.zacks.com?periodicity=weekly',
+	'https://widget3.zacks.com/data/zrs/json/{0}/ps_ratio/www.zacks.com?periodicity=weekly',
 ]
 
 # RealisticGrowthRate = (Net Income - Dividends - Depreciation & Amortization) / (Shareholders' Equity + Long-Term Debt)
@@ -79,6 +91,14 @@ def getUnit(name):
 	units = {
 		'market_cap':1000000,
 		'free_cash_flow':1000000,
+		'free_cash_flow_ttm':1000000,
+		'cash_from_operations':1000000,
+		'cash_from_operations_ttm':1000000,
+		'cash_from_financing':1000000,
+		'cash_from_financing_ttm':1000000,
+		'cash_from_investing':1000000,
+		'cash_from_investing_ttm':1000000,
+		'cash':1000000,
 		'net_income_ttm':1000000,
 		'net_income':1000000,
 		'liabilities_total':1000000,
@@ -177,7 +197,7 @@ def getValues(data):
 	return sorted(dataSet, key=lambda obj: obj[0]),name
 
 def getLatestValue(data):
-	oldMonth = datetime.now() - timedelta(days=31*3)
+	oldMonth = datetime.now() - timedelta(days=31*4)
 	index = len(data.keys())-1
 	name = data.keys()[index]
 
@@ -193,6 +213,11 @@ def getLatestValue(data):
 	sortedDates = sorted(dates, key=lambda obj: getYearFromStr(obj), reverse=True)
 	# pp(sortedDates)
 	latestDate = sortedDates[0]
+	for dateElem in sortedDates:
+		if values[dateElem]!='N/A':
+			latestDate = dateElem
+			break
+
 	latestValue = values[latestDate]
 	if latestValue !='N/A':
 		unit = getUnit(name)
@@ -251,6 +276,7 @@ def getMaxSustainableGrowthRate(data,index):
 	return MaxSustainableGrowthRate
 
 def getCapitalizationRatio(data,index):
+	# print data
 	long_term_debt = data['debt_lt_total_ttm'][index][1]
 	share_holders_equity = data['share_holders_equity'][index][1]
 	if 'N/A' in [long_term_debt,share_holders_equity]:
@@ -276,25 +302,103 @@ def getProfitMarginRatio(data,index):
 	if 'N/A' in [net_income,revenue]:
 		return None
 	profitMarginRatio = float(net_income)/ float(revenue)
+	profitMarginRatio = fixDecimal(profitMarginRatio,3)
 	return profitMarginRatio
 
 def getCashFlowToDebtRatio(data,index):
 	#This coverage ratio compares a company's operating cash flow to its total deb
 	print "getCashFlowToDebtRatio"
 
+def getSalesToAssets(data,index):
+	'''
+	The Sales to Assets ratio (or Sales to Total Assets or S/TA for short) shows how much sales are generated from a company's assets. 
+	As the name suggests, it's calculated as sales divided by assets. This is also commonly referred to as the Asset Utilization ratio.
+	A higher number is better than a lower one as it shows how effective a company is at generating revenue from its assets. 
+	A sales/assets ratio of 2.50 means the company generated $2.50 in revenue for every $1.00 of assets on its books.
+	'''
+	assets = data['assets_total'][index][1]
+	revenue = data['revenue_ttm'][index][1]
+	if 'N/A' in [assets,revenue]:
+		return None
+	AssetUtilizationRatio = float(revenue)/ float(assets)
+	AssetUtilizationRatio = fixDecimal(AssetUtilizationRatio,3)
+	return AssetUtilizationRatio
 
+def getPriceToCashFlow(data,index):
+	price = data['price'][index][1]
+	market_cap = data['market_cap'][index][1]
+	free_cash_flow = data['free_cash_flow'][index][1]
+	cash_from_financing = data['cash_from_financing'][index][1]
+	cash_from_investing = data['cash_from_investing'][index][1]
+	cash_from_operations = data['cash_from_operations'][index][1]
+	cash = data['cash'][index][1]
+	if 'N/A' in [price,market_cap,cash_from_financing,cash_from_investing,cash_from_operations]:
+		return None
+	
+	netCash = cash_from_financing + cash_from_investing +cash_from_operations
+	print cash, netCash, free_cash_flow
+	shares = market_cap/price
+	# print price, market_cap, shares, netCash
+	cashePerShare = float(netCash)/float(shares)
+	PriceToCashFlow = float(price)/ float(cashePerShare)
+	return PriceToCashFlow
+
+def getCashToPrice(data,index):
+	cash = data['cash'][index][1]
+	price = data['price'][index][1]
+	price = 1.7
+	market_cap = data['market_cap'][index][1]
+	if 'N/A' in [price,cash,market_cap]:
+		return None
+
+	shares = market_cap/price
+	CashPerShare = float(cash)/ float(shares)
+	print "CashPerShare:", CashPerShare
+	CashToPrice = float(CashPerShare)/ float(price)
+	return CashToPrice
+
+def getSharesOutstanding(data,index):
+	market_cap = data['market_cap'][index][1]
+	price = data['price'][index][1]
+	if 'N/A' in [price,market_cap]:
+		return None
+	shares = market_cap/price
+	return int(shares)
+
+# def getEvToEbitda(data,index):
+# 	'''
+# 	Enterprise Value / Earnings Before Interest, Taxes, Depreciation and Amortization is a valuation metric used to measure a company's 
+# 	value and is helpful in comparing one stock to another.
+# 	Enterprise Value (EV) is Market Capitalization + Debt - Cash. Many investors prefer EV to just Market Cap as a better way to determine 
+# 	the value of a company. EBITDA, as the acronym depicts, is earnings before interest, taxes, depreciation and amortization. 
+# 	That means these items are added back into the net income to produce this earnings number. Since there is a fair amount of discretion 
+# 	in what's included and not included in the 'ITBA' portion of this calculation, it is considered a non-GAAP metric. The EV/EBITDA ratio 
+# 	is a valuation multiple and is often used in addition, or as an alternative, to the P/E ratio. And like the P/E ratio, a lower number 
+# 	is typically considered 'better' than a higher number.
+# 	'''
+# 	ev = data['enterprise_value'][index][1]
+# 	ebitda = data['revenue_ttm'][index][1]
+# 	if 'N/A' in [assets,revenue]:
+# 		return None
+# 	AssetUtilizationRatio = float(revenue)/ float(assets)
+# 	return AssetUtilizationRatio
 
 def getLatesDataset(symbol):
 	symbol = symbol.upper()
 	data = getDataMap(symbol,1)
 	# pp(data)
 	result = {}
+
 	result['ReturnOnCapital'] = getReturnOnCapital(data,0)
 	result['CapitalizationRatio'] = getCapitalizationRatio(data,0)
 	result['DebtRatio'] = getDebtRatio(data,0)
 	result['ProfitMarginRatio'] = getProfitMarginRatio(data,0)
+	result['AssetUtilizationRatio'] = getSalesToAssets(data,0)
 	result['MaxSustainableGrowthRate'] = getMaxSustainableGrowthRate(data,0)
 	result['ReturnOnEquityRatio'] = getReturnOnEquityRatio(data,0)
+	# result['SharesOutstanding'] = getSharesOutstanding(data,0)
+	# result['CashToPrice'] = getCashToPrice(data,0)
+	# result['PriceToCashFlow'] = getPriceToCashFlow(data,0)
 
 	for key,value in data.iteritems():
 		value = value[0][1]
@@ -372,7 +476,7 @@ def getFreeCashFlow(symbol,max_count, min_count=0):
 
 
 
-# symbol = 'PRTS'
+# symbol = 'pfmt'
 # pp(getLatesDataset(symbol))
 # max_count = 5
 

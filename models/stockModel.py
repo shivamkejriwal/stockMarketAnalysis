@@ -455,38 +455,39 @@ class Stock:
 			,self.Analysis['growth_multiple']['by_ReturnOnCapital'],self.Analysis['growth_multiple']['by_PE'])
 
 		debtStr = '({0},{1},{2})'.format(self.Fundamentals['CapitalizationRatio'],self.Fundamentals['DebtRatio'],self.Fundamentals['debt_to_equity'])
+		valuationStr = '({0},{1},{2})'.format(self.Fundamentals['ps_ratio'],self.Fundamentals['ProfitMarginRatio'],self.Fundamentals['AssetUtilizationRatio'])
 		# print revisionStr
 
 		if len(self.industryDetails.keys()) == 0:
 			# print('Symbol\tIndustry\t\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5) - Revision(pos,neg,ave)')
-			template = '{0}\t{1:20}\t{2:20}\t{3}\t{4}\t{5}\t{6:20}\t{7}\t{8} - {9}\n\t\t\t======>\t{10}\t{11}'
+			template = '{0}\t{1:20}\t{2:20}\t{3}\t{4}\t{5}\t{6:20}\t{7}\t{8} - {9}\n\t\t\t======>\t{10}\t{11}\t{12}'
 			print(template.format(self.symbol,self.zacksOpinion['Industry']
 					,zacksStr,self.basicData['price'],self.basicData['market_capitalization']
-					,self.zacksOpinion['Beta'],sentimentStr,insiderStr,earningsStr, revisionStr,forcastStr,debtStr))
+					,self.zacksOpinion['Beta'],sentimentStr,insiderStr,earningsStr, revisionStr,forcastStr,debtStr,valuationStr))
 		if len(self.industryDetails.keys()) > 0:
 			# print('Symbol\tIndustry\t\tIndustry Rank(Z,A,W)\tZacks_Score(V,G,M)\tPrice\tMarketCap\tBeta\tSentiment(To,Bu,Be)\tInsider Transactions\tEarningsSurprise(Last,Past5) - Revision(pos,neg,ave)')
-			template = '{0}\t{1:20}\t({2},{3},{4})\t\t{5:20}\t{6}\t{7}\t{8}\t{9:20}\t{10:30}\t{11} - {12}\n\t\t\t======>\t{13}\t{14}'
+			template = '{0}\t{1:20}\t({2},{3},{4})\t\t{5:20}\t{6}\t{7}\t{8}\t{9:20}\t{10:30}\t{11} - {12}\n\t\t\t======>\t{13}\t{14}\t{15}'
 			print(template.format(self.symbol,self.zacksOpinion['Industry'][:20]
 					,self.industryDetails["rank"]['ByZacks'],self.industryDetails['rank']['ByAverage']
 					,self.industryDetails['rank']['ByWeightedAverage']
 					,zacksStr,self.basicData['price'],self.basicData['market_capitalization'],self.zacksOpinion['Beta']
-					,sentimentStr,insiderStr,earningsStr, revisionStr,forcastStr,debtStr))
+					,sentimentStr,insiderStr,earningsStr, revisionStr,forcastStr,debtStr,valuationStr))
 
-# stock = Stock('sxe')
-# # print stock.symbol
+stock = Stock('pfmt')
+# print stock.symbol
 # industryRanks = zacks.getIndustryRanks()
 
 
-# stock.getBasicData()
-# stock.getZacksOpinion()
-# stock.getEarnings()
-# stock.getInsiderTransactions()
-# stock.getRecentSentiment()
-# stock.getFundamentals()
-# stock.getAnalysis()
-# stock.getTechnicals()
+stock.getBasicData()
+stock.getZacksOpinion()
+stock.getEarnings()
+stock.getInsiderTransactions()
+stock.getRecentSentiment()
+stock.getFundamentals()
+stock.getAnalysis()
+stock.getTechnicals()
 # stock.setIndustryDetails(industryRanks)
-# stock.getEarnings()
-# stock.printData()
+stock.getEarnings()
+stock.printData()
 
 
