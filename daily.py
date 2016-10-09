@@ -304,7 +304,7 @@ def doJob(symbols=None, getIndustry=False):
 # portfolio.printPortfolio(current_portfolio)
 # getShortList()
 
-doJob(None,True)
+# doJob(None,True)
 
 
 
