@@ -172,3 +172,21 @@ def getData(symbol,data_type=None):
 # data = getData(symbol,'balance-sheet')
 # pp(data)
 
+
+
+
+
+'''
+ebita =		Net Income
+			+ Minority Interest
+			+ Income Taxes
+			+ Depreciation & Amortization (Cash Flow)
+
+
+			or
+			
+			Net Cash From Operating Activities
+			+
+'''
+
+

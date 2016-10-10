@@ -161,7 +161,7 @@ def stockFilter(stock):
 		print template.format(starStr,stock.symbol,"Bad Insider Data")
 		return False
 
-	stock.getFundamentals()
+	stock.getFinancials()
 	stock.getAnalysis()
 	if not hasPositiveGrowth(stock.Analysis, 1):
 		print template.format(starStr,stock.symbol,"Bad Growth Data")

@@ -36,7 +36,7 @@ class Stock:
 		self.Sector = sector
 		self.Industry = industry
 		self.basicData = {}
-		self.Fundamentals = {}
+		self.Financials = {}
 		self.Technicals = {}
 		self.zacksOpinion = {}
 		self.earningsData = {}
@@ -60,18 +60,18 @@ class Stock:
 		self.basicData['yr_target_price'] = stockData['yr_target_price']
 		# print "basicData : ", self.basicData
 
-	def getFundamentals(self):
+	def getFinancials(self):
 		# data_request_arr = ['j4','b4']
 		# stockData = yahoo.getStockData(self.symbol,data_request_arr)
-		# self.Fundamentals['EBITDA'] = stockData['EBITDA']
-		# self.Fundamentals['book_value'] = stockData['book_value']
-		# self.Fundamentals['keyRatios_yearly'] = morningstar.getKeyRatios(self.symbol)
-		# self.Fundamentals['financials_yearly'] = morningstar.getFinancials(self.symbol,12)
-		# self.Fundamentals['financials_quaterly'] = morningstar.getFinancials(self.symbol,3)
+		# self.Financials['EBITDA'] = stockData['EBITDA']
+		# self.Financials['book_value'] = stockData['book_value']
+		# self.Financials['keyRatios_yearly'] = morningstar.getKeyRatios(self.symbol)
+		# self.Financials['financials_yearly'] = morningstar.getFinancials(self.symbol,12)
+		# self.Financials['financials_quaterly'] = morningstar.getFinancials(self.symbol,3)
 		data = zacksFinancial.getLatesDataset(self.symbol)
 		for key,value in data.iteritems():
-			self.Fundamentals[key] = value
-		# print "Fundamentals  : ", self.Fundamentals
+			self.Financials[key] = value
+		# print "Financials  : ", self.Financials
 
 	def getTechnicals(self):
 		data_request_arr = ['j1','j2','v','a2','m3', 'm4','b4','p5','p6','k','j']
@@ -148,9 +148,9 @@ class Stock:
 		}
 		# Price x ((current P/E) / (forward P/E)) = future price (or price target)
 		price = self.basicData['price']
-		PE_Current = self.Fundamentals['pe_ratio']
+		PE_Current = self.Financials['pe_ratio']
 		PE_Forward = self.zacksOpinion['PE_Forward']
-		ReturnOnCapital = self.Fundamentals['ReturnOnCapital']
+		ReturnOnCapital = self.Financials['ReturnOnCapital']
 		if None not in [price, PE_Forward, PE_Current]:
 			growth = float(PE_Current)/float(PE_Forward)
 			target_price = price*growth
@@ -454,8 +454,8 @@ class Stock:
 		forcastStr = '({0},{1}):({2},{3})'.format(self.Analysis['target_price']['by_ReturnOnCapital'],self.Analysis['target_price']['by_PE']
 			,self.Analysis['growth_multiple']['by_ReturnOnCapital'],self.Analysis['growth_multiple']['by_PE'])
 
-		debtStr = '({0},{1},{2})'.format(self.Fundamentals['CapitalizationRatio'],self.Fundamentals['DebtRatio'],self.Fundamentals['debt_to_equity'])
-		valuationStr = '({0},{1},{2})'.format(self.Fundamentals['ps_ratio'],self.Fundamentals['ProfitMarginRatio'],self.Fundamentals['AssetUtilizationRatio'])
+		debtStr = '({0},{1},{2})'.format(self.Financials['CapitalizationRatio'],self.Financials['DebtRatio'],self.Financials['debt_to_equity'])
+		valuationStr = '({0},{1},{2})'.format(self.Financials['ps_ratio'],self.Financials['ProfitMarginRatio'],self.Financials['AssetUtilizationRatio'])
 		# print revisionStr
 
 		if len(self.industryDetails.keys()) == 0:
@@ -483,7 +483,7 @@ class Stock:
 # stock.getEarnings()
 # stock.getInsiderTransactions()
 # stock.getRecentSentiment()
-# stock.getFundamentals()
+# stock.getFinancials()
 # stock.getAnalysis()
 # stock.getTechnicals()
 # # stock.setIndustryDetails(industryRanks)
