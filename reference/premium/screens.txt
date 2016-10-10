@@ -1,0 +1,354 @@
+
+
+====================
+     Value
+====================
+
+
+Undervalued Zacks #1 Rank Stocks
+Undervalued stocks with a Zacks #1 Rank don't stay undervalued for long. This screen puts them on your radar so you can take action before the rest of the crowd does.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376666
+
+
+
+
+Discount Fundamental Strength
+This screen identifies stocks with strong underlying fundamentals and low valuations, along with solid balance sheets, and a history of profitability that are reasonably priced.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376821
+
+
+High Rank Value
+Many value investors look for stocks with low P/E’s and low P/B’s. Unfortunately, not all value stocks are bargains. By requiring them to also have a top Zacks Rank, you now have a list true bargains.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376823
+
+
+
+
+Return on Equity
+The ROE can tell you if a company is creating assets or gobbling up investor's cash. This is one of the best indicators of management's ability to generate profits for the company (and your stock).
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376846
+
+
+
+PEG
+If you like to use a company's P/E ratio to determine its value, you'll love using the PEG ratio. Find out which companies offer the greatest value in regard to their growth rate for stellar returns.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376861
+
+
+
+Highly Ranked Undervalued Stocks
+Value stocks with strong Zacks Ranks (1’s and 2’s), Zacks Value Style Scores (A’s and B’s), and Zacks Industry Ranks (top 50%), that are considered undervalued to their growth prospects.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457227
+
+
+
+Classic Value with Zacks #1 & #2 Rank Stocks
+Classic value stocks with attractive valuations on five of the most popular valuation metrics (P/E, P/S, P/B, P/CF, PEG), along with top Zacks Ranks and Zacks Value Style Scores.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457231
+
+
+
+Value Stocks at 52-Week Highs
+Value stocks trading at/near their 52-week highs with a Zacks Rank 1 or 2 and a Zacks Value Style Score of A.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457237
+
+
+
+====================
+     Growth
+====================
+
+
+
+Zacks #1 Rank Growth Stocks
+This screen looks for stocks with Zacks Rank #1 Strong Buys, a minimum 20% historical growth EPS rate, and a 20% or more projected growth rate. Big growth: both past and present, for big returns.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376657
+
+
+
+
+
+EPS Growth, Revisions, & Positive Surprises
+Top Zacks #1 Rank growth stocks with upward earnings estimate revisions and positive surprises that are poised to outperform. See if these earnings all-stars are right for your portfolio.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376664
+
+
+
+Upgraded Broker Ratings and Zacks #1 Rank
+The only thing better than a broker rating upgrade is a broker rating upgrade and a Zacks #1 Rank. Find out which stocks are topping the list of both the Zacks Rank and the brokers.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376681
+
+
+
+
+
+Growth, Dividends & the Zacks Rank
+Zacks Rank stocks plus something extra. These stocks are poised to go up and pay you a solid dividend as well. Get those stocks with this screen.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376715
+
+
+
+Growth & Income
+This screen looks for stocks that are paying dividend yields of greater than 8%, along with other attractive fundamentals. This lower risk approach has a history of outperforming the S&P 500.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376892
+
+
+
+
+Top Ranked Growth Stocks on the Move
+Proven growth stocks with Zacks Rank 1’s and 2’s, in the top 50% of Zacks Ranked Industries, with Zacks Growth Style Scores of A’s and B‘s, that are on the move.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457202
+
+
+
+Market Beating Growth Stocks
+Top market beating growth stocks (20% or greater projected EPS growth), with a Zacks Rank #1 and a Zacks Growth Style Score of A.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457211
+
+
+Sales & Earnings Growth Winners
+Strong and stable growth stocks with winning sales and earnings growth, effective management, good liquidity, and a Zacks Rank 1 or 2 with a Zacks Growth Style Score of A or B.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457218
+
+
+====================
+     Momentum
+====================
+
+
+Zacks #1 Rank Uptrends
+Stocks with a Zacks Rank #1 Strong Buy, with upward price momentum, market beating relative price strength, trading in the top third of their 52-week price range.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376641
+
+
+
+
+Zacks #1 Rank New Highs
+Stocks making new highs have a tendency of making even higher highs, especially when they are a Zacks Rank #1 with upward earnings estimate revisions.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376691
+
+
+
+
+
+
+Recent Price Strength
+This screen looks for stocks trading in the upper range of their 52-week highs, along with an attractive Zacks Rank and Average Broker Rating, proving that the "trend is your friend".
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376879
+
+
+
+
+Price & Earnings Estimate Momentum
+Top Zacks Ranked momentum stocks in uptrends at or near their 52-week highs. These momentum stocks are exhibiting both price momentum and earnings estimate revision momentum.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457245
+
+
+
+
+Quality Fundamental Outperformers
+Zacks #1 Rank stocks, with a Zacks Momentum Style Score of A, that are in the top 50% of Zacks Ranked Industries, that are outperforming the market.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457250
+
+
+
+
+Fast-Paced Momentum at a Bargain
+Momentum stocks with high Betas and low Price to Sales ratios. These fast-paced movers are trending up yet are still considered attractively priced.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457254
+
+
+
+
+
+====================
+     VGM
+====================
+
+
+
+Top VGM Buys
+Top stocks in the top industries, with Zacks Rank 1’s and 2’s, and VGM Scores of A’s and B’s.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3612828
+
+
+Best of the Best: VGM A’s, Zacks #1 Rank
+The best of the best -- VGM A rated stocks with a Zacks Rank #1 Strong Buy.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3612845
+
+
+Zacks Building Blocks
+Stocks with a favorable Zacks Rank and Style Scores have proven to significantly outperform the market with a higher degree of stock picking success.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3676553
+
+
+
+
+====================
+     Income
+====================
+
+
+Top Zacks Rank Dividend-Payers
+Top Zacks Rank stocks with market beating dividends of 5% or greater and a history of increasing their dividends.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457258
+
+
+
+High Dividend Yield Zacks Rank
+High dividend yielding (10% or greater) Zacks Rank stocks with low Debt to Equity.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457265
+
+
+Dividends with Style
+Studies have shown that dividend stocks with the highest future returns are the ones that are rated better on both the Zacks Rank and Style Scores.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457270
+
+
+
+
+====================
+     Bonus
+====================
+
+
+Growth & Value Stocks Plus Zacks #1 Rank
+No need to choose between growth or value with this screen -- you can have them both and the Zacks #1 Rank. You’ll never settle for just one or the other again.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376674
+
+
+
+Low Priced Stocks
+Looking for stocks priced below $20? How about stocks with discount valuations and a positive trend in earnings estimates revisions? They may be low priced now, but they won’t be for long.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376814
+
+
+
+Upgrades & Revisions
+This screen focuses on broker rating upgrades, EPS revisions, and of course, the Zacks Rank. These powerful indicators can have a dramatic impact on the short-term performance of any stock.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376834
+
+
+
+Earnings & Margins
+Earnings are the single most important metric for a company. Combine that with a healthy profit margin and you have the ingredients for a great company with more earnings going to the bottom line.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=376884
+
+
+
+Model Zacks Strong Buys & Buy
+Model Zacks Strong Buy and Buy stocks which includes Zacks Rank 1’s and 2’s, in the top 50% of Zacks Ranked Industries, with the top Zacks Style Scores of A’s and B’s.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457274
+
+
+
+Increasing Estimates, Ratings, & Prices
+Zacks Rank #1 Strong Buy stocks, with upgraded broker ratings, increased earnings estimate revisions, upward price momentum, and a low price to sale ratio.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457277
+
+
+
+Management Excellence
+Top Zacks Ranked companies with excellent management as shown by their high ROE, low Debt to Equity, and high Current Ratio.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3457285
+
+
+
+Zacks Rank Upgrades
+This screen focuses on stocks with a new Zacks Rank 1 or 2 that have recently seen their Zacks Rank upgraded within the last 4 weeks.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3602663
+
+
+
+Underfollowed Gems
+Zacks Rank 1’s and 2’s that are considered underfollowed by the analyst community. These are potential diamonds in the rough. And you’ll have heard about them here first.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3602730
+
+
+
+Oversold Zacks Buys
+This screen focuses on oversold stocks whose fortunes look like they are about to change given their current status as a Zacks Rank #1 Strong Buy or #2 Buy, amid recent upward estimate revisions.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3613114
+
+
+
+
+====================
+     Market Cap
+====================
+
+
+
+Top Ranked Large-Caps
+Large-Cap stocks (greater than $10 billion market-cap), with strong sales and earnings growth (past and present) that have recently positively surprised.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3612721
+
+
+
+XL Large-Caps with the Best Zacks Rank
+Highly sought after, ($25 billion or greater market-cap) with a Zacks Rank 1 or 2 poised to beat the market.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3612780
+
+
+
+Mid-Sized Stocks for Outsized Returns
+Mid-Cap stocks (greater than $1 billion, but less than $10 billion market-cap) with strong sales and EPS growth. Mid-Caps were the second best performing market-cap class (second only to small-caps) over the last 20 years.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3612822
+
+
+High Growth Mid-Caps at a Discount
+Mid-Cap stocks with strong projected EPS growth rates, that are still trading at a discount to the market.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3612831
+
+
+
+Small-Cap #1’s
+Small-Cap stocks (under $1 billion in market-cap) with a Zacks Rank #1 Strong Buy, and market beating growth rates.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3612855
+
+
+
+
+Small-Caps with Big Growth
+Small-Cap stocks (less than $1 billion market-cap) with big growth rates and low valuations. This is where the future big movers can be found.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3612870
+
+
+
+
+
+====================
+     Bearish
+====================
+
+
+
+Overvalued & Ready to Fall
+The main theme of this bearish screen is to find overvalued companies that are underperforming on growth and receiving downward earnings estimate revisions.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3613086
+
+
+
+Stocks to Short Now
+Zacks Rank 4’s and 5’s (Sells and Strong Sells), with VGM Scores of D’s and F’s, in the bottom 50% of Zacks Ranked Industries, with above average valuations. These are stocks to short sell now.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3613117
+
+
+
+Big Debt & Weak Growth
+Stocks with negative growth rates, falling estimate revisions, and mounting debt, is a recipe for disaster.
+https://www.zacks.com/data_handler/stocks/z2_ajax_premium_screens_data_handler.php?track_id=3613161
+
+
+
+
+
+
+====================
+     Details
+====================
+
+https://www.zacks.com/research/screening/tracks/screen_details.php?track_id=3613161
+
+
+

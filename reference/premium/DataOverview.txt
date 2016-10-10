@@ -1,0 +1,353 @@
+
+Data Overview
+Target Price $87.00
+52 Week High-Low $87.42 - $52.42
+20 Day Average Volume 1,194,151
+Beta 0.76
+Market Cap 3.66 B
+Dividend / Div Yld $0.00 / 0.00%
+Industry MED-OUTP/HM CRE
+Industry Rank 31 / 265 (Top 12%)
+
+Growth Score  ==  A
+Hist. EPS Growth (3-5 yrs) 13.11%
+Proj. EPS Growth (F1/F0) 36.32%
+Curr. Cash Flow Growth 75.56%
+Hist. Cash Flow Growth (3-5 yrs) 19.83%
+Current Ratio 1.52
+Debt/Capital 51.78%
+Net Margin 5.10%
+Return on Equity 8.21%
+Sales/Assets 0.43
+Proj. Sales Growth (F1/F0) 55.59%
+
+Value Score  == B
+Cash/Price 0.05
+EV/EBITDA 12.92
+PEG Ratio 1.36
+Price/Book (P/B) 1.77
+Price/Cash Flow (P/CF) 19.73
+P/E (F1) 21.65
+Price/Sales (P/S) 1.51
+Earnings Yield 4.62%
+Debt/Equity 1.07
+Cash Flow ($/share) 3.86
+
+Momentum Score  = A
+Daily Price Chg -0.95%
+1 Week Price Chg -0.07%
+4 Week Price Chg -9.51%
+12 Week Price Chg -0.39%
+52 Week Price Chg 39.87%
+20 Day Average Volume 1,188,831
+(F1) EPS Est Wkly Chg 0.00%
+(F1) EPS Est Mthly Chg 0.24%
+(F1) EPS Est Qtrly Chg 3.34%
+(Q1) EPS Est Mthly Chg -0.85%
+
+
+
+=================================================
+
+
+Data Overview
+52 Week High-Low $81.15 - $50.09
+20 Day Average Volume 546,666
+Beta 1.31
+Market Cap 6.90 B
+Dividend / Div Yld $0.76 / 0.97%
+Industry MACH-ELECTRICAL
+Industry Rank 208 / 265 (Bottom 22%)
+
+Growth Score
+Hist. EPS Growth (3-5 yrs) 25.17%
+Proj. EPS Growth (F1/F0) 27.87%
+Curr. Cash Flow Growth 11.92%
+Hist. Cash Flow Growth (3-5 yrs) 19.05%
+Current Ratio 2.27
+Debt/Capital 14.83%
+Net Margin 10.15%
+Return on Equity 18.47%
+Sales/Assets 0.98
+Proj. Sales Growth (F1/F0) 9.68%
+
+Value Score
+Cash/Price 0.09
+EV/EBITDA 18.56
+PEG Ratio 1.92
+Price/Book (P/B) 5.25
+Price/Cash Flow (P/CF) 24.98
+P/E (F1) 25.21
+Price/Sales (P/S) 2.73
+Earnings Yield 3.97%
+Debt/Equity 0.17
+Cash Flow ($/share) 3.14
+
+Momentum Score
+Daily Price Chg 1.36%
+1 Week Price Chg 0.01%
+4 Week Price Chg -1.78%
+12 Week Price Chg 15.14%
+52 Week Price Chg 38.24%
+20 Day Average Volume 561,534
+(F1) EPS Est Wkly Chg 0.00%
+(F1) EPS Est Mthly Chg 0.00%
+(F1) EPS Est Qtrly Chg 1.28%
+(Q1) EPS Est Mthly Chg 0.00%
+
+
+
+============================================================
+
+
+
+Data Overview
+52 Week High-Low $114.46 - $79.62
+20 Day Average
+Volume 609,013
+Beta 0.81
+Market Cap 13.46 B
+Dividend / Div Yld $1.16 / 1.02%
+Industry FINANCIAL TRANSACTION
+SERVICES
+Industry Rank 141 / 265 (Bottom 47%)
+
+Growth Score === A
+Hist. EPS Growth (3-5 yrs) 14.93%
+Proj. EPS Growth (F1/F0) 14.98%
+Curr. Cash Flow Growth 7.56%
+Hist. Cash Flow Growth (3-5 yrs) 8.43%
+Current Ratio 0.84
+Debt/Capital 33.57%
+Net Margin 15.84%
+Return on Equity 23.87%
+Sales/Assets 0.57
+Proj. Sales Growth (F1/F0) 9.23%
+
+Value Score ==== D
+Cash/Price 0.01
+EV/EBITDA 17.04
+PEG Ratio 2.27
+Price/Book (P/B) 5.91
+Price/Cash Flow (P/CF) 19.92
+P/E (F1) 25.28
+Price/Sales (P/S) 5.11
+Earnings Yield 3.95%
+Debt/Equity 0.51
+Cash Flow ($/share) 5.67
+
+Momentum Score  === B
+Daily Price Chg 0.28%
+1 Week Price Chg 0.03%
+4 Week Price Chg 1.41%
+12 Week Price Chg 12.01%
+52 Week Price Chg 38.29%
+20 Day Average Volume 594,351
+(F1) EPS Est Wkly Chg 0.00%
+(F1) EPS Est Mthly Chg 0.00%
+(F1) EPS Est Qtrly Chg 0.97%
+(Q1) EPS Est Mthly Chg 0.00%
+
+================================================
+
+
+Data Overview
+52 Week High-Low $81.15 - $50.09
+20 Day Average Volume 546,666
+Beta 1.31
+Market Cap 6.90 B
+Dividend / Div Yld $0.76 / 0.97%
+Industry MACH-ELECTRICAL
+Industry Rank 208 / 265 (Bottom 22%)
+
+Growth Score  == A
+Hist. EPS Growth (3-5 yrs) 25.17%
+Proj. EPS Growth (F1/F0) 27.87%
+Curr. Cash Flow Growth 11.92%
+Hist. Cash Flow Growth (3-5 yrs) 19.05%
+Current Ratio 2.27
+Debt/Capital 14.83%
+Net Margin 10.15%
+Return on Equity 18.47%
+Sales/Assets 0.98
+Proj. Sales Growth (F1/F0) 9.68%
+
+Value Score  == D
+Cash/Price 0.09
+EV/EBITDA 18.56
+PEG Ratio 1.92
+Price/Book (P/B) 5.25
+Price/Cash Flow (P/CF) 24.98
+P/E (F1) 25.21
+Price/Sales (P/S) 2.73
+Earnings Yield 3.97%
+Debt/Equity 0.17
+Cash Flow ($/share) 3.14
+
+Momentum Score === D
+Daily Price Chg 1.36%
+1 Week Price Chg 0.01%
+4 Week Price Chg -1.78%
+12 Week Price Chg 15.14%
+52 Week Price Chg 38.24%
+20 Day Average Volume 561,534
+(F1) EPS Est Wkly Chg 0.00%
+(F1) EPS Est Mthly Chg 0.00%
+(F1) EPS Est Qtrly Chg 1.28%
+(Q1) EPS Est Mthly Chg 0.00%
+
+
+
+=================================================
+
+Data Overview
+52 Week High-Low $69.76 - $46.70
+20 Day Average Volume 765,534
+Beta 1.19
+Market Cap 9.78 B
+Dividend / Div Yld $0.60 / 0.89%
+Industry BANKS-WEST
+Industry Rank 60 / 265 (Top 23%)
+
+Growth Score == F
+Hist. EPS Growth (3-5 yrs) 4.77%
+Proj. EPS Growth (F1/F0) 5.79%
+Curr. Cash Flow Growth 32.63%
+Hist. Cash Flow Growth (3-5 yrs) NA%
+Current Ratio 1.01
+Debt/Capital 49.46%
+Net Margin 26.01%
+Return on Equity 12.09%
+Sales/Assets 0.04
+Proj. Sales Growth (F1/F0) 14.25%
+
+Value Score == D
+Cash/Price 0.14
+EV/EBITDA 19.12
+PEG Ratio 1.64
+Price/Book (P/B) 2.15
+Price/Cash Flow (P/CF) 19.65
+P/E (F1) 21.23
+Price/Sales (P/S) 5.08
+Earnings Yield 4.71%
+Debt/Equity 1.21
+Cash Flow ($/share) 3.39
+
+Momentum Score  == F
+Daily Price Chg -0.30%
+1 Week Price Chg 0.03%
+4 Week Price Chg -3.14%
+12 Week Price Chg 4.12%
+52 Week Price Chg 26.18%
+20 Day Average Volume 775,037
+(F1) EPS Est Wkly Chg 0.00%
+(F1) EPS Est Mthly Chg -0.57%
+(F1) EPS Est Qtrly Chg -1.12%
+(Q1) EPS Est Mthly Chg -1.56%
+
+
+===============================================
+
+
+
+Data Overview
+Target Price $136.00
+52 Week High-Low $123.08 - $97.59
+20 Day Average Volume 417,397
+Beta 0.92
+Market Cap 9.72 B
+Dividend / Div Yld $2.24 / 1.85%
+Industry CHEM-SPECIALTY
+Industry Rank 205 / 265 (Bottom 23%)
+
+Growth Score === D
+Hist. EPS Growth (3-5 yrs) 10.13%
+Proj. EPS Growth (F1/F0) 5.73%
+Curr. Cash Flow Growth 12.08%
+Hist. Cash Flow Growth (3-5 yrs) 11.54%
+Current Ratio 2.38
+Debt/Capital 39.86%
+Net Margin 14.04%
+Return on Equity 27.19%
+Sales/Assets 0.84
+Proj. Sales Growth (F1/F0) -1.30%
+
+Value Score ==== D
+Cash/Price 0.03
+EV/EBITDA 15.26
+PEG Ratio 2.84
+Price/Book (P/B) 6.08
+Price/Cash Flow (P/CF) 19.27
+P/E (F1) 22.41
+Price/Sales (P/S) 3.15
+Earnings Yield 4.46%
+Debt/Equity 0.66
+Cash Flow ($/share) 6.24
+
+Momentum Score === D
+Daily Price Chg 0.32%
+1 Week Price Chg 0.04%
+4 Week Price Chg 0.28%
+12 Week Price Chg 11.22%
+52 Week Price Chg 16.53%
+20 Day Average Volume 443,274
+(F1) EPS Est Wkly Chg 0.00%
+(F1) EPS Est Mthly Chg 0.00%
+(F1) EPS Est Qtrly Chg 0.23%
+(Q1) EPS Est Mthly Chg 0.00%
+
+
+==============================================
+
+
+Data Overview
+52 Week High-Low $181.97 - $105.83
+20 Day Average Volume 2,852,754
+Beta 1.41
+Market Cap 18.59 B
+Dividend / Div Yld $0.08 / 0.06%
+Industry OIL-US EXP&PROD
+Industry Rank 77 / 265 (Top 29%)
+
+Growth Score == F
+Hist. EPS Growth (3-5 yrs) -3.68%
+Proj. EPS Growth (F1/F0) -101.11%
+Curr. Cash Flow Growth 20.39%
+Hist. Cash Flow Growth (3-5 yrs) 32.09%
+Current Ratio 2.10
+Debt/Capital 22.95%
+Net Margin 14.46%
+Return on Equity 1.45%
+Sales/Assets 0.37
+Proj. Sales Growth (F1/F0) -19.24%
+
+Value Score == D
+Cash/Price 0.03
+EV/EBITDA 6.93
+PEG Ratio NA
+Price/Book (P/B) 2.02
+Price/Cash Flow (P/CF) 9.85
+P/E (F1) NA
+Price/Sales (P/S) 3.36
+Earnings Yield -0.04%
+Debt/Equity 0.30
+Cash Flow ($/share) 12.34
+
+Momentum Score == A
+Daily Price Chg -2.75%
+1 Week Price Chg 0.03%
+4 Week Price Chg -16.01%
+12 Week Price Chg -8.94%
+52 Week Price Chg -20.69%
+20 Day Average Volume 2,875,314
+(F1) EPS Est Wkly Chg 0.00%
+(F1) EPS Est Mthly Chg 2.33%
+(F1) EPS Est Qtrly Chg -213.19%
+(Q1) EPS Est Mthly Chg 0.00%
+
+
+
+
+
+===============================================
+

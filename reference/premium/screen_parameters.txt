@@ -1,0 +1,190 @@
+Sales & Earnings Growth Winners
+============================================
+Strong and stable growth stocks with winning sales and earnings growth, effective management, good liquidity, and a Zacks Rank 1 or 2 with a Zacks Growth Style Score of A or B.
+
+Parameters
+Zacks Rank <= 2
+Zacks Growth Style Score <= B
+Sales Growth (F0/F-1) >= 10%
+EPS Growth (F0/F-1) >= 10%
+Projected EPS Growth (F1/F0) >= 10%
+ROE >= 10%
+Current Ratio >= 1
+% Change F1 Est. (4 weeks) >= 0
+% Change Q1 Est. (4 weeks) >= 0
+% Change Q2 Est. (4 weeks) >= 0
+Last Close (price) >= 5
+Avg. 20-Day Volume >= 100,000
+
+
+
+
+Classic Value with Zacks #1 & #2 Rank Stocks
+===============================================
+Classic value stocks with attractive valuations on five of the most popular valuation metrics (P/E, P/S, P/B, P/CF, PEG), along with top Zacks Ranks and top Zacks Value Style Scores.Studies have shown that value stocks have proven to be some of the most profitable investments over time. This screen identifies candidates with unmistakable value with a high likelihood to outperform.
+
+
+Parameters
+Zacks Rank <= 2
+Zacks Value Style Score <= B
+P/E (F1) <= 20
+PEG Ratio <= 1
+Price/Cash Flow <= 20
+Price to Book <= 2
+Price to Sales <= 1
+Last Close (price) >= 5
+Avg. 20-Day Volume >= 100,000
+
+
+
+
+
+
+Highly Ranked Undervalued Stocks
+=======================================
+
+Value stocks with strong Zacks Ranks (1’s and 2’s), Zacks Value Style Scores (A’s and B’s), and Zacks Industry Rank (top 50%), with low P/E ratios (less than 20) and low PEG ratios (under 1). The favorable Zacks Rank metrics which shows estimate revisions on the rise, coupled with low valuations (undervalued to their earnings and growth), points to companies with very present catalysts poised to move up in price.
+
+
+Parameters
+Zacks Rank <= 2
+Zacks Value Style Score <= B
+Zacks Industry Rank <= 132
+P/E (Trailing Twelve Months) <= 20
+P/E (F1) <= 20
+P/E (F2) <= 20
+PEG Ratio <= 1
+Last Close (price) >= 5
+Avg. 20-Day Volume >= 100,000
+
+
+
+
+
+
+Underfollowed Gems
+=========================================
+
+Zacks Rank 1’s and 2’s that are considered underfollowed by the analyst community. This is an interesting concept. There are at least 2 analysts following it to make sure there’s more than just one opinion/assessment on the stock. But there’s less than 6 analysts covering it in all. The average number of analysts following the stocks in the S&P is 14. So up to 6 analysts covering these stocks means they have less than half the amount of coverage than average. As more analysts pick up coverage on them, they will receive additional fanfare and become even more sought after as they become more visible.
+
+Parameters
+Rank <= 2
+# of Brokers in Rating >= 2
+# of Brokers in Rating <= 6
+Current Average Broker Recommendation <= 2
+Last EPS Surprise >= 0
+ROE >= 10
+This Year’s Projected EPS Growth (F1/F0) >= 10
+% Price Change (12 Weeks) >= 0
+% Price Change (4 Weeks) >= 0
+Last Close (price) >= 1
+Avg. 20-Day Volume >= 100,000
+
+
+
+
+
+
+Management Excellence
+================================
+Top Zacks Ranked companies with excellent management. ROE has long been considered a measure of management’s efficiency as it tells you how successful a company is at using its shareholders’ equity. The low Debt to Equity ensures that the company isn’t using excessive debt to finance operations and inflate the ROE. This shows the quality of the ROE. And the high Current Ratio shows the company’s favorable position in terms of paying short-term debt with assets far exceeding liabilities.
+
+Parameters
+Zacks Rank = 1
+Last EPS Surprise >= 0
+ROE >= 15
+Debt to Equity <= 1
+Current Ratio >= 1.5
+Last Close (price) >= 5
+Avg. 20-Day Volume >= 100,000
+
+
+
+Discount Fundamental Strength
+=================================
+Fundamental strength is often a key criterion for many investors. A strong balance sheet and a history of profitability indicate that a company has the ability to meet its obligations and the flexibility to pursue opportunities for growth. Therefore, such stocks are often perceived as having a lower level of risk.
+
+Parameters
+Current Ratio > 1.5 A strong current ratio implies the company is more than able to meet all of its short-term obligations.
+Debt/Equity < .5 Companies with manageable, or no, levels of debt are better position to prosper in the future than companies with high levels of debt.
+ROA (Retu on Assets) Average Last 5 Years (%) > 1.5 Companies must both have been historically profitable and have a record of effectively managing assets to build shareholder value.
+Price/Sales < 1.0 Value investors commonly seek out stocks that trading at P/S multiples of 1.0 or lower.
+PEG Ratio: P/E F(1)/EPS Growth < .9 Checking valuation against expected growth provides assurance that the stock is trading at a discount.
+Zacks Rank < 3 Strong Buys, Buys and Holds only. (No Sells or Strong Sells. Stocks whose eaings estimates are being revised materially downward are at greater risk for seeing their fundamental strength deteriorate in the future.)
+
+
+
+
+
+Small-Cap #1’s
+===============================
+
+Small-Cap stocks (under $1 billion in market-cap) with a Zacks Rank #1 Strong Buy, and market beating growth rates. Small-Cap stocks, historically, have the distinction of outperforming all other market-caps. Small-Cap stocks are generally newer, younger companies in the early part of their growth cycle. This is when growth rates are typically at their highest. But finding winning stocks is not as easy as just buying those with the highest growth rates. In fact, our testing has shown that those with the highest growth rates oftentimes perform as poorly as those with the lowest growth rates. Because of this, we have identified one of the optimum growth rate ranges to produce the best returns.
+
+
+
+Parameters
+Zacks Rank = 1
+Market Cap <= 1,000 ($1 billion)
+This Year’s Estimated EPS Growth (F1/F0) >= 10
+This Year’s Estimated EPS Growth (F1/F0) <= 50
+Last EPS Surprise (%) >= 0
+% Change F1 Est. (4 weeks) >= 0
+Last Close (price) >= 1
+Avg. 20-Day Volume >= 100,000
+
+
+
+
+
+Small-Caps with Big Growth
+===============================
+Small-Cap stocks (less than $1 billion market-cap) with big growth rates, and low valuations. This screen first starts off by selecting only those with a Zacks Rank 1 or 2 Strong Buy or Buy. Then it keeps those with projected growth rates at or above 20% or greater. And to make sure these strong growth performers are still trading at bargain prices, it includes only those with a Price to Sales (P/S) ratio of less than or equal to 1 (which means the investor is paying less than $1 for a dollar’s worth of sales).
+
+Parameters
+Zacks Rank <= 2
+Market Cap <= 1,000 ($1 billion)
+This Year’s Estimated EPS Growth (F1/F0) >= 20
+P/S Ratio <= 1
+Last Close (price) >= 5
+Avg. 20-Day Volume >= 100,000
+
+
+
+High Growth Mid-Caps at a Discount
+=======================================
+
+Mid-Cap stocks with strong projected EPS growth rates, yet attractive valuations. This screen identifies stocks with projected growth rates greater than 20%, which is 3x that of the S&P’s 6%. Moreover, their PEG Ratio (P/E divided by their growth rate) of 1.5 or less, shows that these high growth stocks are still trading at reasonable values, and at a discount compared to the market.
+
+
+Parameters
+Zacks Rank = 1
+Market Cap >= 1,000 ($1 billion) and <= 10,000 ($10 billion)
+This Year''s Estimated EPS Growth (F1/F0) >= 20
+PEG Ratio <= 1.5
+
+
+
+
+
+Mid-Sized Stocks for Outsized Returns
+=======================================
+
+Mid-Cap stocks (greater than $1 billion, but less than $10 billion market-capitalization) with strong sales and EPS growth. While Small-Caps have outperformed other market-caps over the last 20 years, Mid-Caps were not that far behind, making them the second best performing market-cap class. This group’s added advantage however, is it did so with less volatility. There are a lot of hoops to jump thru in this screen (14 items in all). But, each hurdle winnows this list down to the very best Mid-Cap stocks with the highest probability of success.
+
+
+Parameters
+Zacks Rank <= 2
+Market Cap >= 1,000 ($1 billion) and <= 10,000 ($10 billion)
+Sales Growth (F0/f-1) >= 10
+5 Year Historical Sales Growth >= 10
+Last Year’s EPS Growth (F0/F-1) >= 10
+5 Year Historical EPS Growth >= 10
+This Year’s Estimated EPS Growth (F1/F0) >= 10
+Last EPS Surprise (%) >= 0
+Previous EPS Surprise (%) >= 0
+Average EPS Surprise (Last $ Qtrs.) >= 0
+% Change Q1 Estimate (4 weeks) >= 0
+% Change F1 Estimate (4 weeks) >= 0
+Last Close (price) >= 5
+Avg. 20-Day Volume >= 100,000

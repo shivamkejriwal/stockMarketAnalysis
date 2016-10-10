@@ -1,0 +1,40 @@
+
+
+
+
+__gads=ID=0fe9b19e0f3aefc5:T=1472615995:S=ALNI_MZBRv84DMzUNSUg-rKCpDBtc9YriQ; __qca=P0-871025690-1466656050886; __utma=181928748.1272482839.1466656051.1471411514.1472029267.8; __utmz=181928748.1472029267.8.5.utmcsr=zacks.com|utmccn=(referral)|utmcmd=referral|utmcct=/education/stock-education; new_zacks_username=shivamkejriwal%40gmail.com; optimizelyEndUserId=oeu1466654907525r0.39951506575272533; __atssc=google%3B1; __atuvc=0%7C35%2C0%7C36%2C0%7C37%2C0%7C38%2C1%7C39; s_cpc=0; etf_sv_scr_id=4154639; optimizelySegments=%7B%22160853778%22%3A%22search%22%2C%22160853779%22%3A%22none%22%2C%22160905530%22%3A%22false%22%2C%22160957294%22%3A%22gc%22%2C%226358043473%22%3A%22none%22%2C%226197520739%22%3A%22direct%22%2C%226189120877%22%3A%22false%22%2C%226187601133%22%3A%22gc%22%7D; optimizelyBuckets=%7B%7D; _mkto_trk=id:589-ZEA-685&token:_mch-zacks.com-1466654908239-57427; 30ab6b980ea72ab67bdeef438a48bd12=cdaeeeba9b4a4c5ebf042c0215a7bb0e; recentQuotes=AMD%2CDRWI%2CHELE%2CHA%2CATEC; s_cm=Other%20Natural%20Referrersundefinedwww.google.com; __unam=8b9872-1557b834fa7-527214e0-157; s_prdcts=%5B%5B%271425%27%2C%271467965150544%27%5D%2C%5B%271651%27%2C%271475897282133%27%5D%5D; com.silverpop.iMAWebCookie=3c4a5410-8014-c829-ea85-57c08a176242; screener_client=zacksredesign; user_session=c853f10efe7123239d3d142eaa7fe9d7; ZUCSZID=Q0M3MUUzNTg4ODExMTAyREYzRQ%3D%3D; ZCCSUID=c7ff1804d6373641c0d4b2994ddc44b1; CUSTOMER_ID=358881110; USER_EMAIL=shivamkejriwal%40gmail.com; IS_PREMIUM_USER=1; scr_app=ss; ss_sv_scr_id=4161643; s_evar7=10%3A15PM; s_evar8=Friday; s_evar10=Repeat; s_vnum=1478147215772%26vn%3D6; s_evar11=6; s_evar12=First%20Visit; s_sq=%5B%5BB%5D%5D; PHPSESSID=qvb0jg27bncubigo7l45rgp2v5; ZTOKENID=7537311ad017fd306e97302a02e83f35; _gat=1; _sdsat_External Campaign Code=; _ga=GA1.2.1272482839.1466656051; s_cc=true; s_fid=66D8C317EF59D125-02D504DE21F88B22; s_nr=1475900383099-Repeat; s_p42=%2Fstock%2Fresearch%2Fsnapshot%2Fatec; undefined_s=First%20Visit; s_v17=ZP_quote_leftnav_snapshot
+
+
+
+
+
+
+
+========================================================
+
+
+
+
+
+
+
+Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Encoding:gzip, deflate, sdch, br
+Accept-Language:en-US,en;q=0.8
+Cache-Control:no-cache
+Connection:keep-alive
+Cookie:__gads=ID=0fe9b19e0f3aefc5:T=1472615995:S=ALNI_MZBRv84DMzUNSUg-rKCpDBtc9YriQ; __qca=P0-871025690-1466656050886; new_zacks_username=shivamkejriwal%40gmail.com; optimizelyEndUserId=oeu1466654907525r0.39951506575272533; __atssc=google%3B1; __atuvc=0%7C35%2C0%7C36%2C0%7C37%2C0%7C38%2C1%7C39; s_cpc=0; etf_sv_scr_id=4154639; optimizelySegments=%7B%22160853778%22%3A%22search%22%2C%22160853779%22%3A%22none%22%2C%22160905530%22%3A%22false%22%2C%22160957294%22%3A%22gc%22%2C%226358043473%22%3A%22none%22%2C%226197520739%22%3A%22direct%22%2C%226189120877%22%3A%22false%22%2C%226187601133%22%3A%22gc%22%7D; optimizelyBuckets=%7B%7D; _mkto_trk=id:589-ZEA-685&token:_mch-zacks.com-1466654908239-57427; 30ab6b980ea72ab67bdeef438a48bd12=cdaeeeba9b4a4c5ebf042c0215a7bb0e; recentQuotes=AMD%2CDRWI%2CHELE%2CHA%2CATEC; s_cm=Other%20Natural%20Referrersundefinedwww.google.com; __unam=8b9872-1557b834fa7-527214e0-157; s_prdcts=%5B%5B%271425%27%2C%271467965150544%27%5D%2C%5B%271651%27%2C%271475897282133%27%5D%5D; s_vnum=1478147215772%26vn%3D7; screener_client=zacksredesign; ss_sv_scr_id=4161709; PHPSESSID=gntc3gk5n3i7eikqbmsdb4c1b3; ZTOKENID=5f3fe8ced846b834719db93d3b05e7f6; com.silverpop.iMAWebCookie=3c4a5410-8014-c829-ea85-57c08a176242; user_session=c853f10efe7123239d3d142eaa7fe9d7; ZUCSZID=Q0M3MUUzNTg4ODExMTAyREYzRQ%3D%3D; ZCCSUID=c7ff1804d6373641c0d4b2994ddc44b1; CUSTOMER_ID=358881110; USER_EMAIL=shivamkejriwal%40gmail.com; IS_PREMIUM_USER=1; scr_app=ss; s_evar7=12%3A00AM; s_evar8=Saturday; s_evar10=Repeat; s_invisit=true; s_evar11=7; s_evar12=First%20Visit; s_sq=%5B%5BB%5D%5D; _gat=1; randDefinitionindex=22; __utmt=1; __utma=181928748.1272482839.1466656051.1472029267.1475903866.9; __utmb=181928748.3.10.1475903866; __utmc=181928748; __utmz=181928748.1475903866.9.6.utmcsr=zacks.com|utmccn=(referral)|utmcmd=referral|utmcct=/research/screening/tracks/details.php; _sdsat_External Campaign Code=; s_fid=66D8C317EF59D125-02D504DE21F88B22; s_nr=1475905156452-Repeat; s_p42=%2Fresearch%2Fscreening%2Ftracks%2Fscreen_details.php; undefined_s=First%20Visit; s_v17=I_RW_stockscreener_021015; s_cc=true; _ga=GA1.2.1272482839.1466656051
+DNT:1
+Host:www.zacks.com
+Pragma:no-cache
+Upgrade-Insecure-Requests:1
+User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36
+
+
+
+
+
+
+
+
+

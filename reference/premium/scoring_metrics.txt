@@ -1,0 +1,150 @@
+Data Overview
+
+Target Price			$16.00
+52 Week High-Low		$23.45 - $13.78
+20 Day Average Volume	970,156
+Beta					0.76
+Market Cap				1.21 B
+Dividend / Div Yld		$0.90 / 6.26%
+Industry				TEXTILE-APPAREL
+Industry Rank			177 / 265 (Bottom 33%)
+Current Ratio			3.11
+Debt/Capital			2.61%
+Net Margin				3.10%
+Price/Book (P/B)		1.20
+Price/Cash Flow (P/CF)	8.38
+Earnings Yield			4.38%
+Debt/Equity				0.02
+
+
+
+Value Score	= A
+P/E (F1)					22.45
+P/E (F1) Rel to Industry	8.15
+PEG Ratio					1.38
+P/S (F1)					0.53
+P/S (TTM)					0.56
+P/CFO						8.38
+P/CFO Rel to Industry		-2.81
+EV/EDITDA Annual			4.12
+
+
+
+Growth Score = C
+Proj. EPS Growth (F1/F0)	-34.50%
+Hist. EPS Growth (Q0/Q-1)	-10.00
+Qtr CFO Growth				30.21
+2 Yr CFO Growth				-50.35
+Return on Equity (ROE)		7.80%
+(NI - CFO) / Total Assets	-4.91
+Asset Turnover				1.38
+
+
+
+Momentum Score = D
+1 week Volume change				-2.99%
+1 week Price Cng Rel to Industry	-0.46%
+(F1) EPS Est 1 week change			0.00%
+(F1) EPS Est 4 week change			0.00%
+(F1) EPS Est 12 week change			11.11%
+(Q1) EPS Est 1 week change			0.00%
+
+
+=======================================
+Data Overview
+
+Target Price					$11.00
+52 Week High-Low				$9.83 - $3.98
+20 Day Average Volume			1,751,016
+Beta							2.01
+Market Cap						6.48 B
+Dividend / Div Yld				$0.05 / 0.52%
+Industry						UTIL-WATER SPLY
+Industry Rank					191 / 265 (Bottom 28%)
+Current Ratio					0.84
+Debt/Capital					40.24%
+Net Margin						9.69%
+Price/Book (P/B)				1.51
+Price/Cash Flow (P/CF)			-1.25
+Earnings Yield					9.97%
+Debt/Equity						0.67
+
+
+Value Score	= D
+P/E (F1)					9.98
+P/E (F1) Rel to Industry	-6.48
+PEG Ratio					NA
+P/S (F1)					1.55
+P/S (TTM)					1.83
+P/CFO						-1.25
+P/CFO Rel to Industry		-11.87
+EV/EDITDA Annual			11.68
+
+
+Growth Score = F
+Proj. EPS Growth (F1/F0)	493.75%
+Hist. EPS Growth (Q0/Q-1)	51.52
+Qtr CFO Growth				-116.60
+2 Yr CFO Growth				-502.50
+Return on Equity (ROE)		3.92%
+(NI - CFO) / Total Assets	56.05
+Asset Turnover				0.36
+
+
+Momentum Score	= D
+1 week Volume change				2.99%
+1 week Price Cng Rel to Industry	4.08%
+(F1) EPS Est 1 week change			0.00%
+(F1) EPS Est 4 week change			0.00%
+(F1) EPS Est 12 week change			33.80%
+(Q1) EPS Est 1 week change			23.53%
+
+
+========================================
+Data Overview
+
+Target Price				$965.00
+52 Week High-Low			$847.21 - $474.00
+20 Day Average Volume		3,353,900
+Beta						1.20
+Market Cap					399.01 B
+Dividend / Div Yld			$0.00 / 0.00%
+Industry					INTERNET COMMERCE
+Industry Rank				103 / 265 (Top 39%)
+Current Ratio				1.09
+Debt/Capital				33.18%
+Net Margin					1.60%
+Price/Book (P/B)			24.20
+Price/Cash Flow (P/CF)		32.94
+Earnings Yield				0.69%
+Debt/Equity					0.50
+
+
+Value Score	= F
+P/E (F1)					142.55
+P/E (F1) Rel to Industry	125.08
+PEG Ratio					4.07
+P/S (F1)					2.91
+P/S (TTM)					3.31
+P/CFO						32.94
+P/CFO Rel to Industry		29.47
+EV/EDITDA Annual			47.02
+
+
+Growth Score = A
+Proj. EPS Growth (F1/F0)	216.37%
+Hist. EPS Growth (Q0/Q-1)	65.43
+Qtr CFO Growth				35.92
+2 Yr CFO Growth				151.43
+Return on Equity (ROE)		4.38%
+(NI - CFO) / Total Assets	-15.65
+Asset Turnover				1.85
+
+
+Momentum Score	= A
+1 week Volume change				9.73%
+1 week Price Cng Rel to Industry	-0.21%
+(F1) EPS Est 1 week change			1.92%
+(F1) EPS Est 4 week change			2.26%
+(F1) EPS Est 12 week change			9.86%
+(Q1) EPS Est 1 week change			162.71%
